@@ -1,0 +1,798 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{81C64D5D-3674-499E-B718-257AA862B1B2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FinTrakBanking.ThirdPartyIntegration</RootNamespace>
+    <AssemblyName>FinTrakBanking.ThirdPartyIntegration</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.14.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.14.0\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.2.6.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.1.2.6\lib\net46\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.2.6.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.2.6\lib\net46\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.28.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.28\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Bson, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.Bson.1.0.2\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.15.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.15.0\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp.Serializers.NewtonsoftJson, Version=106.15.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.Serializers.NewtonsoftJson.106.15.0\lib\net452\RestSharp.Serializers.NewtonsoftJson.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.6.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.28\lib\net452\Ubiety.Dns.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ZstdNet, Version=1.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.28\lib\net452\ZstdNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Basel\BaselIntegration.cs" />
+    <Compile Include="Connected Services\CRCWebServiceNew\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ESBCRCService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ESBFirstCentralService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\FCBCreditBureau\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\FirstCentralCRB\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\TestESBFirstCentralService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\TestService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\TwoFactorAuthService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\TwoFactorAuthSoapService1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\TwoFactorAuthSoapService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Flexcube\CWGAPI\LoanPrepayment.cs" />
+    <Compile Include="Flexcube\CWGAPI\StaffDetails.cs" />
+    <Compile Include="HeadOfficeToSub\HeadOfficeToSubIntegration.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="StagingDatabase\Finacle\StaffMIS.cs" />
+    <Compile Include="TwoFactorAuthIntegration\TwoFactorAuthIntegrationService.cs" />
+    <Compile Include="Connected Services\CRCWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\FbnAlertWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\XDSWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="CreditBureau\CRC\CRCService.cs" />
+    <Compile Include="CreditBureau\CreditBureauProcess.cs" />
+    <Compile Include="CreditBureau\XDS\XDSService.cs" />
+    <Compile Include="Flexcube\CWGAPI\AccountDetail.cs" />
+    <Compile Include="Flexcube\CWGAPI\BulkTransactionPosting.cs" />
+    <Compile Include="Flexcube\CWGAPI\CustomerDetails.cs" />
+    <Compile Include="Flexcube\CWGAPI\ForeignCurrencyAccount.cs" />
+    <Compile Include="Flexcube\CWGAPI\OverDraft.cs" />
+    <Compile Include="Flexcube\IntegrationWithFlexcube.cs" />
+    <Compile Include="Flexcube\CWGAPI\TransactionPosting.cs" />
+    <Compile Include="Notification\SMS\SMSIntegration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CRCWebServiceNew\crcweb.wsdl" />
+    <None Include="Connected Services\CRCWebServiceNew\crcweb.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CRCWebService\liverequestinvoker.wsdl" />
+    <None Include="Connected Services\ESBCRCService\crcweb.wsdl" />
+    <None Include="Connected Services\ESBCRCService\crcweb.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.ConnectCommercialMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.ConnectConsumerMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.GetCommercialBasicCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.GetCommercialEnquiryReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.GetCommercialFullCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.GetCommercialFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.GetConsumerAccountMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.GetConsumerBasicCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.GetConsumerBasicTraceReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.GetConsumerEnquiryReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.GetConsumerFullCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.GetConsumerFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.GetConsumerPrimeReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.GetConsumerXscorePrimereportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.GetReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.GetXSCoreConsumerFullCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.GetXSCoreConsumerFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.IsTicketValidResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.ESBFirstCentralService.LoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\firstcentral.wsdl" />
+    <None Include="Connected Services\ESBFirstCentralService\firstcentral.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FbnAlertWS\FinTrakBanking.ThirdPartyIntegration.FbnAlertWS.Output.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FbnAlertWS\Service.wsdl" />
+    <None Include="Connected Services\FbnAlertWS\Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FbnAlertWS\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FbnAlertWS\Service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.ConnectCommercialMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.ConnectConsumerMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetCommercialBasicCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetCommercialEnquiryReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetCommercialFullCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetCommercialFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetConsumerAccountMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetConsumerBasicCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetConsumerBasicCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetConsumerBasicTraceReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetConsumerEnquiryReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetConsumerFullCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetConsumerFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetConsumerPrimeReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetConsumerSnapCheckBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetConsumerSnapCheckResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetConsumerXscorePrimereportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetXSCoreConsumerFullCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.GetXSCoreConsumerFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.IsTicketValidResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FinTrakBanking.ThirdPartyIntegration.FCBCreditBureau.LoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\FirstCentralNigeriaWebService.wsdl" />
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.ConnectCommercialMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.ConnectConsumerMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetCommercialBasicCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetCommercialEnquiryReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetCommercialFullCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetCommercialFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetConsumerAccountMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetConsumerBasicCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetConsumerBasicTraceReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetConsumerEnquiryReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetConsumerFullCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetConsumerFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetConsumerPrimeReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetConsumerXscorePrimereportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetXScoreCommercialFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetXSCoreConsumerFullCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.GetXSCoreConsumerFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.IsTicketValidResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FinTrakBanking.ThirdPartyIntegration.FirstCentralCRB.LoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\FirstCentralNigeriaWebService.wsdl" />
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.ConnectCommercialMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.ConnectConsumerMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.GetCommercialBasicCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.GetCommercialEnquiryReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.GetCommercialFullCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.GetCommercialFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.GetConsumerAccountMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.GetConsumerBasicCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.GetConsumerBasicTraceReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.GetConsumerEnquiryReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.GetConsumerFullCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.GetConsumerFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.GetConsumerPrimeReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.GetConsumerXscorePrimereportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.GetReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.GetXSCoreConsumerFullCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.GetXSCoreConsumerFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.IsTicketValidResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\FinTrakBanking.ThirdPartyIntegration.TestESBFirstCentralService.LoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\firstcentral.wsdl" />
+    <None Include="Connected Services\TestESBFirstCentralService\firstcentral.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TestService\FinTrakBanking.ThirdPartyIntegration.TestService.ForecastReturn.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\FinTrakBanking.ThirdPartyIntegration.TestService.GetWeatherInformationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\FinTrakBanking.ThirdPartyIntegration.TestService.WeatherDescription.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\FinTrakBanking.ThirdPartyIntegration.TestService.WeatherReturn.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\Weather.wsdl" />
+    <None Include="Connected Services\TwoFactorAuthService\AuthWrapper.wsdl" />
+    <None Include="Connected Services\TwoFactorAuthService\AuthWrapper.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TwoFactorAuthService\AuthWrapper1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TwoFactorAuthService\AuthWrapper2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TwoFactorAuthService\AuthWrapper3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TwoFactorAuthService\FinTrakBanking.ThirdPartyIntegration.TwoFactorAuthService.AuthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TwoFactorAuthService\FinTrakBanking.ThirdPartyIntegration.TwoFactorAuthService.ResponseModel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TwoFactorAuthService\FinTrakBanking.ThirdPartyIntegration.TwoFactorAuthService.SerialNoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TwoFactorAuthService\FinTrakBanking.ThirdPartyIntegration.TwoFactorAuthService.UnlockClearQAResponseModel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TwoFactorAuthService\FinTrakBanking.ThirdPartyIntegration.TwoFactorAuthService.UserCheckResponseModel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TwoFactorAuthSoapService1\Service.wsdl" />
+    <None Include="Connected Services\TwoFactorAuthSoapService1\Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TwoFactorAuthSoapService\Service.wsdl" />
+    <None Include="Connected Services\TwoFactorAuthSoapService\Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.ConnectCommercialMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.ConnectConsumerMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.GetCommercialBasicCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.GetCommercialEnquiryReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.GetCommercialFullCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.GetCommercialFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.GetConsumerAccountMatchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.GetConsumerBasicCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.GetConsumerBasicTraceReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.GetConsumerEnquiryReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.GetConsumerFullCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.GetConsumerFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.GetConsumerPrimeReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.GetConsumerXscorePrimereportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.GetReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.GetXSCoreConsumerFullCreditReportBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.GetXSCoreConsumerFullCreditReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.IsTicketValidResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FinTrakBanking.ThirdPartyIntegration.XDSWebService.LoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\XDSWebService\FirstCentralNigeriaWebService.wsdl" />
+    <None Include="Connected Services\XDSWebService\XDSNigeriaWebService.wsdl" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CRCWebServiceNew\" />
+    <WCFMetadataStorage Include="Connected Services\CRCWebService\" />
+    <WCFMetadataStorage Include="Connected Services\ESBCRCService\" />
+    <WCFMetadataStorage Include="Connected Services\ESBFirstCentralService\" />
+    <WCFMetadataStorage Include="Connected Services\FbnAlertWS\" />
+    <WCFMetadataStorage Include="Connected Services\FCBCreditBureau\" />
+    <WCFMetadataStorage Include="Connected Services\FirstCentralCRB\" />
+    <WCFMetadataStorage Include="Connected Services\TestESBFirstCentralService\" />
+    <WCFMetadataStorage Include="Connected Services\TestService\" />
+    <WCFMetadataStorage Include="Connected Services\TwoFactorAuthService\" />
+    <WCFMetadataStorage Include="Connected Services\TwoFactorAuthSoapService1\" />
+    <WCFMetadataStorage Include="Connected Services\TwoFactorAuthSoapService\" />
+    <WCFMetadataStorage Include="Connected Services\XDSWebService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\XDSWebService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\XDSWebService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\XDSWebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CRCWebService\liverequestinvoker.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CRCWebService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CRCWebService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CRCWebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FbnAlertWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FbnAlertWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FbnAlertWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TwoFactorAuthService\AuthWrapper.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TwoFactorAuthService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TwoFactorAuthService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TwoFactorAuthService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Connected Services\XDSWebService\FirstCentralNigeriaWebService.disco" />
+    <None Include="Connected Services\TwoFactorAuthSoapService\configuration91.svcinfo" />
+    <None Include="Connected Services\TwoFactorAuthSoapService\configuration.svcinfo" />
+    <None Include="Connected Services\TwoFactorAuthSoapService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\TestService\configuration91.svcinfo" />
+    <None Include="Connected Services\TestService\configuration.svcinfo" />
+    <None Include="Connected Services\TestService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\TwoFactorAuthSoapService1\configuration91.svcinfo" />
+    <None Include="Connected Services\TwoFactorAuthSoapService1\configuration.svcinfo" />
+    <None Include="Connected Services\TwoFactorAuthSoapService1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ESBFirstCentralService\configuration91.svcinfo" />
+    <None Include="Connected Services\ESBFirstCentralService\configuration.svcinfo" />
+    <None Include="Connected Services\ESBFirstCentralService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\TestESBFirstCentralService\configuration91.svcinfo" />
+    <None Include="Connected Services\TestESBFirstCentralService\configuration.svcinfo" />
+    <None Include="Connected Services\TestESBFirstCentralService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ESBCRCService\configuration91.svcinfo" />
+    <None Include="Connected Services\ESBCRCService\configuration.svcinfo" />
+    <None Include="Connected Services\ESBCRCService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\CRCWebServiceNew\configuration91.svcinfo" />
+    <None Include="Connected Services\CRCWebServiceNew\configuration.svcinfo" />
+    <None Include="Connected Services\CRCWebServiceNew\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\FirstCentralCRB\configuration91.svcinfo" />
+    <None Include="Connected Services\FirstCentralCRB\configuration.svcinfo" />
+    <None Include="Connected Services\FirstCentralCRB\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\FCBCreditBureau\configuration91.svcinfo" />
+    <None Include="Connected Services\FCBCreditBureau\configuration.svcinfo" />
+    <None Include="Connected Services\FCBCreditBureau\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\XDSWebService\XDSNigeriaWebService.asmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FintrakBanking.Common\FintrakBanking.Common.csproj">
+      <Project>{18cefc20-2662-4757-94de-23d623ffc98d}</Project>
+      <Name>FintrakBanking.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FintrakBanking.Entities\FintrakBanking.Entities.csproj">
+      <Project>{fb338a9b-9c63-46ed-a8c3-d75a08dad6f0}</Project>
+      <Name>FintrakBanking.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FintrakBanking.Interfaces\FintrakBanking.Interfaces.csproj">
+      <Project>{6a7c3564-00b2-45d4-a40c-4b52a06c296a}</Project>
+      <Name>FintrakBanking.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FintrakBanking.ViewModels\FintrakBanking.ViewModels.csproj">
+      <Project>{53a300f2-b78d-4708-bfb4-2b86de64ec7d}</Project>
+      <Name>FintrakBanking.ViewModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+</Project>
