@@ -1389,371 +1389,493 @@ namespace FintrakBanking.Repositories.Admin
 
         public async Task<TBL_DOWN_PAYMENT> AddDownPaymentSetup(TBL_DOWN_PAYMENT model)
         {
-            if (model == null)
-                throw new SecureException("Request payload is required");
+            try
+            {
+                if (model == null)
+                    throw new SecureException("Request payload is required");
 
-            if (model.EMPLOYMENTTYPEID <= 0)
-                throw new SecureException("Employment Type is required");
+                if (model.EMPLOYMENTTYPEID <= 0)
+                    throw new SecureException("Employment Type is required");
 
-            if (model.PRODUCTID <= 0)
-                throw new SecureException("Product is required");
+                if (model.PRODUCTID <= 0)
+                    throw new SecureException("Product is required");
 
-            if (model.MINAMOUNT <= 0)
-                throw new SecureException("Min amount is required");
+                if (model.MINAMOUNT <= 0)
+                    throw new SecureException("Min amount is required");
 
-            if (model.MAXAMOUNT <= 0)
-                throw new SecureException("Max amount is required");
+                if (model.MAXAMOUNT <= 0)
+                    throw new SecureException("Max amount is required");
 
-            if (model.MINAMOUNT >= model.MAXAMOUNT)
-                throw new SecureException("Min amount cannot be greater than or equal to Max amount");
+                if (model.MINAMOUNT >= model.MAXAMOUNT)
+                    throw new SecureException("Min amount cannot be greater than or equal to Max amount");
 
-            if (model.PERCENTAGE <= 0)
-                throw new SecureException("Percentage is required");
+                if (model.PERCENTAGE <= 0)
+                    throw new SecureException("Percentage is required");
 
-            var exists = await context.TBL_DOWN_PAYMENT
-                .AnyAsync(x =>
-                    x.PRODUCTID == model.PRODUCTID &&
-                    x.EMPLOYMENTTYPEID == model.EMPLOYMENTTYPEID);
+                var exists = await context.TBL_DOWN_PAYMENT
+                    .AnyAsync(x =>
+                        x.PRODUCTID == model.PRODUCTID &&
+                        x.EMPLOYMENTTYPEID == model.EMPLOYMENTTYPEID);
 
-            if (exists)
-                throw new SecureException("Down payment already setup for this product and employment type");
+                if (exists)
+                    throw new SecureException("Down payment already setup for this product and employment type");
 
-            context.TBL_DOWN_PAYMENT.Add(model);
-            context.SaveChanges();
+                context.TBL_DOWN_PAYMENT.Add(model);
+                context.SaveChanges();
 
-            return model;
+                return model;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public async Task<TBL_DOWN_PAYMENT> UpdateDownPaymentSetup(long id, TBL_DOWN_PAYMENT model)
         {
-            if (model == null)
-                throw new SecureException("Request payload is required");
+            try
+            {
+                if (model == null)
+                    throw new SecureException("Request payload is required");
 
-            if (id <= 0)
-                throw new SecureException("Invalid down payment id");
+                if (id <= 0)
+                    throw new SecureException("Invalid down payment id");
 
-            if (model.EMPLOYMENTTYPEID <= 0)
-                throw new SecureException("Employment Type is required");
+                if (model.EMPLOYMENTTYPEID <= 0)
+                    throw new SecureException("Employment Type is required");
 
-            if (model.PRODUCTID <= 0)
-                throw new SecureException("Product is required");
+                if (model.PRODUCTID <= 0)
+                    throw new SecureException("Product is required");
 
-            if (model.MINAMOUNT <= 0)
-                throw new SecureException("Min amount is required");
+                if (model.MINAMOUNT <= 0)
+                    throw new SecureException("Min amount is required");
 
-            if (model.MAXAMOUNT <= 0)
-                throw new SecureException("Max amount is required");
+                if (model.MAXAMOUNT <= 0)
+                    throw new SecureException("Max amount is required");
 
-            if (model.MINAMOUNT >= model.MAXAMOUNT)
-                throw new SecureException("Min amount cannot be greater than or equal to Max amount");
+                if (model.MINAMOUNT >= model.MAXAMOUNT)
+                    throw new SecureException("Min amount cannot be greater than or equal to Max amount");
 
-            if (model.PERCENTAGE <= 0)
-                throw new SecureException("Percentage is required");
+                if (model.PERCENTAGE <= 0)
+                    throw new SecureException("Percentage is required");
 
-            var existing = await context.TBL_DOWN_PAYMENT
-                .FirstOrDefaultAsync(x => x.ID == id);
+                var existing = await context.TBL_DOWN_PAYMENT
+                    .FirstOrDefaultAsync(x => x.ID == id);
 
-            if (existing == null)
-                throw new SecureException("Down payment setup not found");
+                if (existing == null)
+                    throw new SecureException("Down payment setup not found");
 
-            var duplicateExists = await context.TBL_DOWN_PAYMENT.AnyAsync(x =>
-                x.ID != id &&
-                x.PRODUCTID == model.PRODUCTID &&
-                x.EMPLOYMENTTYPEID == model.EMPLOYMENTTYPEID);
+                var duplicateExists = await context.TBL_DOWN_PAYMENT.AnyAsync(x =>
+                    x.ID != id &&
+                    x.PRODUCTID == model.PRODUCTID &&
+                    x.EMPLOYMENTTYPEID == model.EMPLOYMENTTYPEID);
 
-            if (duplicateExists)
-                throw new SecureException("Down payment already setup for this product and employment type");
+                if (duplicateExists)
+                    throw new SecureException("Down payment already setup for this product and employment type");
 
-            existing.PRODUCTID = model.PRODUCTID;
-            existing.EMPLOYMENTTYPEID = model.EMPLOYMENTTYPEID;
-            existing.MINAMOUNT = model.MINAMOUNT;
-            existing.MAXAMOUNT = model.MAXAMOUNT;
-            existing.PERCENTAGE = model.PERCENTAGE;        
+                existing.PRODUCTID = model.PRODUCTID;
+                existing.EMPLOYMENTTYPEID = model.EMPLOYMENTTYPEID;
+                existing.MINAMOUNT = model.MINAMOUNT;
+                existing.MAXAMOUNT = model.MAXAMOUNT;
+                existing.PERCENTAGE = model.PERCENTAGE;
 
-            await context.SaveChangesAsync();
+                await context.SaveChangesAsync();
 
-            return existing;
+                return existing;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public async Task<bool> DeleteDownPaymentSetup(int id)
         {
-            if (id <= 0)
-                throw new SecureException("Invalid down payment id");
+            try
+            {
+                if (id <= 0)
+                    throw new SecureException("Invalid down payment id");
 
-            var existing = await context.TBL_DOWN_PAYMENT
-                .FirstOrDefaultAsync(x => x.ID == id);
+                var existing = await context.TBL_DOWN_PAYMENT
+                    .FirstOrDefaultAsync(x => x.ID == id);
 
-            if (existing == null)
-                throw new SecureException("Down payment setup not found");
+                if (existing == null)
+                    throw new SecureException("Down payment setup not found");
 
-            context.TBL_DOWN_PAYMENT.Remove(existing);
-            await context.SaveChangesAsync();
+                context.TBL_DOWN_PAYMENT.Remove(existing);
+                await context.SaveChangesAsync();
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public async Task<List<TBL_DOWN_PAYMENT>> GetDownPaymentSetups()
         {
-            return await context.TBL_DOWN_PAYMENT
-                .OrderBy(x => x.PRODUCTID)
-                .ThenBy(x => x.EMPLOYMENTTYPEID)
-                .ToListAsync();
+            try
+            {
+                return await context.TBL_DOWN_PAYMENT
+                       .OrderBy(x => x.PRODUCTID)
+                       .ThenBy(x => x.EMPLOYMENTTYPEID)
+                       .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public async Task<TBL_REFINANCE_PERIOD> AddRefinancePeriodSetup(TBL_REFINANCE_PERIOD model)
         {
-            if (model == null)
-                throw new SecureException("Request payload is required");
+            try
+            {
+                if (model == null)
+                    throw new SecureException("Request payload is required");
 
-           
-            if (model.PRODUCTID <= 0)
-                throw new SecureException("Product is required");
 
-            if (model.DURATION <= 0)
-                throw new SecureException("Period is required");
+                if (model.PRODUCTID <= 0)
+                    throw new SecureException("Product is required");
 
-            var exists = await context.TBL_REFINANCE_PERIOD
-                .AnyAsync(x =>
-                    x.PRODUCTID == model.PRODUCTID );
+                if (model.DURATION <= 0)
+                    throw new SecureException("Period is required");
 
-            if (exists)
-                throw new SecureException("Setup already exist for product");
+                var exists = await context.TBL_REFINANCE_PERIOD
+                    .AnyAsync(x =>
+                        x.PRODUCTID == model.PRODUCTID);
 
-            context.TBL_REFINANCE_PERIOD.Add(model);
-            context.SaveChanges();
+                if (exists)
+                    throw new SecureException("Setup already exist for product");
 
-            return model;
+                context.TBL_REFINANCE_PERIOD.Add(model);
+                context.SaveChanges();
+
+                return model;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
 
         public async Task<TBL_REFINANCE_PERIOD> UpdateRefinacePeriodSetup(long id, TBL_REFINANCE_PERIOD model)
         {
-            if (model == null)
-                throw new SecureException("Request payload is required");
+            try
+            {
+                if (model == null)
+                    throw new SecureException("Request payload is required");
 
-            if (id <= 0)
-                throw new SecureException("Invalid down payment id");
+                if (id <= 0)
+                    throw new SecureException("Invalid down payment id");
 
-            if (model.PRODUCTID <= 0)
-                throw new SecureException("Product is required");
+                if (model.PRODUCTID <= 0)
+                    throw new SecureException("Product is required");
 
-            if (model.DURATION <= 0)
-                throw new SecureException("Period is required");
+                if (model.DURATION <= 0)
+                    throw new SecureException("Period is required");
 
-         ;
+                ;
 
-            var existing = await context.TBL_REFINANCE_PERIOD
-                .FirstOrDefaultAsync(x => x.ID == id);
+                var existing = await context.TBL_REFINANCE_PERIOD
+                    .FirstOrDefaultAsync(x => x.ID == id);
 
-            if (existing == null)
-                throw new SecureException("Period setup not found");
+                if (existing == null)
+                    throw new SecureException("Period setup not found");
 
-            var duplicateExists = await context.TBL_REFINANCE_PERIOD.AnyAsync(x =>
-                x.ID != id &&
-                x.PRODUCTID == model.PRODUCTID);
+                var duplicateExists = await context.TBL_REFINANCE_PERIOD.AnyAsync(x =>
+                    x.ID != id &&
+                    x.PRODUCTID == model.PRODUCTID);
 
-            if (duplicateExists)
-                throw new SecureException("Period already setup for this product and employment type");
+                if (duplicateExists)
+                    throw new SecureException("Period already setup for this product and employment type");
 
-            existing.PRODUCTID = model.PRODUCTID;
-            existing.DURATION = model.DURATION;
-            
-            await context.SaveChangesAsync();
+                existing.PRODUCTID = model.PRODUCTID;
+                existing.DURATION = model.DURATION;
 
-            return existing;
-        }
+                await context.SaveChangesAsync();
+
+                return existing;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }        }
 
         public async Task<bool> DeleteRefinancePeriodSetup(int id)
         {
-            if (id <= 0)
-                throw new SecureException("Invalid down payment id");
+            try
+            {
+                if (id <= 0)
+                    throw new SecureException("Invalid down payment id");
 
-            var existing = await context.TBL_REFINANCE_PERIOD
-                .FirstOrDefaultAsync(x => x.ID == id);
+                var existing = await context.TBL_REFINANCE_PERIOD
+                    .FirstOrDefaultAsync(x => x.ID == id);
 
-            if (existing == null)
-                throw new SecureException("setup not found");
+                if (existing == null)
+                    throw new SecureException("setup not found");
 
-            context.TBL_REFINANCE_PERIOD.Remove(existing);
-            await context.SaveChangesAsync();
+                context.TBL_REFINANCE_PERIOD.Remove(existing);
+                await context.SaveChangesAsync();
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public async Task<List<TBL_REFINANCE_PERIOD>> GetRefiancePeriodSetups()
         {
-            return await context.TBL_REFINANCE_PERIOD
-                .OrderBy(x => x.PRODUCTID)
-                .ToListAsync();
+            try
+            {
+                return await context.TBL_REFINANCE_PERIOD
+                       .OrderBy(x => x.PRODUCTID)
+                       .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
-         public async Task<TBL_ORIGINATION_FEE> AddOriginationFeeSetup(TBL_ORIGINATION_FEE model)
+        public async Task<TBL_ORIGINATION_FEE> AddOriginationFeeSetup(TBL_ORIGINATION_FEE model)
         {
-            if (model == null)
-                throw new SecureException("Request payload is required");
+            try
+            {
+                if (model == null)
+                    throw new SecureException("Request payload is required");
 
-           
-            if (model.PRODUCTID <= 0)
-                throw new SecureException("Product is required");
 
-            if (model.PERCENTAGE <= 0)
-                throw new SecureException("Fee percentage is required");
+                if (model.PRODUCTID <= 0)
+                    throw new SecureException("Product is required");
 
-            var exists = await context.TBL_ORIGINATION_FEE
-                .AnyAsync(x =>
-                    x.PRODUCTID == model.PRODUCTID );
+                if (model.PERCENTAGE <= 0)
+                    throw new SecureException("Fee percentage is required");
 
-            if (exists)
-                throw new SecureException("Setup already exist for product");
+                var exists = await context.TBL_ORIGINATION_FEE
+                    .AnyAsync(x =>
+                        x.PRODUCTID == model.PRODUCTID);
 
-            context.TBL_ORIGINATION_FEE.Add(model);
-            context.SaveChanges();
+                if (exists)
+                    throw new SecureException("Setup already exist for product");
 
-            return model;
+                context.TBL_ORIGINATION_FEE.Add(model);
+                context.SaveChanges();
+
+                return model;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
 
-        public async Task<TBL_ORIGINATION_FEE> UpdateOriginationFeeSetup (long id, TBL_ORIGINATION_FEE model)
+        public async Task<TBL_ORIGINATION_FEE> UpdateOriginationFeeSetup(long id, TBL_ORIGINATION_FEE model)
         {
-            if (model == null)
-                throw new SecureException("Request payload is required");
+            try
+            {
+                if (model == null)
+                    throw new SecureException("Request payload is required");
 
-            if (id <= 0)
-                throw new SecureException("Invalid down payment id");
+                if (id <= 0)
+                    throw new SecureException("Invalid down payment id");
 
-            if (model.PRODUCTID <= 0)
-                throw new SecureException("Product is required");
+                if (model.PRODUCTID <= 0)
+                    throw new SecureException("Product is required");
 
-            if (model.PERCENTAGE <= 0)
-                throw new SecureException("Period is required");
+                if (model.PERCENTAGE <= 0)
+                    throw new SecureException("Period is required");
 
-         ;
+                ;
 
-            var existing = await context.TBL_ORIGINATION_FEE
-                .FirstOrDefaultAsync(x => x.ID == id);
+                var existing = await context.TBL_ORIGINATION_FEE
+                    .FirstOrDefaultAsync(x => x.ID == id);
 
-            if (existing == null)
-                throw new SecureException(" setup not found");
+                if (existing == null)
+                    throw new SecureException(" setup not found");
 
-            var duplicateExists = await context.TBL_ORIGINATION_FEE.AnyAsync(x =>
-                x.ID != id &&
-                x.PRODUCTID == model.PRODUCTID);
+                var duplicateExists = await context.TBL_ORIGINATION_FEE.AnyAsync(x =>
+                    x.ID != id &&
+                    x.PRODUCTID == model.PRODUCTID);
 
-            if (duplicateExists)
-                throw new SecureException("setup for this product");
+                if (duplicateExists)
+                    throw new SecureException("setup for this product");
 
-            existing.PRODUCTID = model.PRODUCTID;
-            existing.PERCENTAGE = model.PERCENTAGE;
-            
-            await context.SaveChangesAsync();
+                existing.PRODUCTID = model.PRODUCTID;
+                existing.PERCENTAGE = model.PERCENTAGE;
 
-            return existing;
-        }
+                await context.SaveChangesAsync();
+
+                return existing;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }        }
 
         public async Task<bool> DeleteOriginationFeeSetup(int id)
         {
-            if (id <= 0)
-                throw new SecureException("Invalid id");
+            try
+            {
+                if (id <= 0)
+                    throw new SecureException("Invalid id");
 
-            var existing = await context.TBL_ORIGINATION_FEE
-                .FirstOrDefaultAsync(x => x.ID == id);
+                var existing = await context.TBL_ORIGINATION_FEE
+                    .FirstOrDefaultAsync(x => x.ID == id);
 
-            if (existing == null)
-                throw new SecureException("setup not found");
+                if (existing == null)
+                    throw new SecureException("setup not found");
 
-            context.TBL_ORIGINATION_FEE.Remove(existing);
-            await context.SaveChangesAsync();
+                context.TBL_ORIGINATION_FEE.Remove(existing);
+                await context.SaveChangesAsync();
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public async Task<List<TBL_ORIGINATION_FEE>> GetOriginationFeeSetup()
         {
-            return await context.TBL_ORIGINATION_FEE
-                .OrderBy(x => x.PRODUCTID)
-                .ToListAsync();
+            try
+            {
+                return await context.TBL_ORIGINATION_FEE
+                      .OrderBy(x => x.PRODUCTID)
+                      .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
 
-        public async Task<TBL_SERVICE_FEE> AddServiceFeeSetup (TBL_SERVICE_FEE model)
+        public async Task<TBL_SERVICE_FEE> AddServiceFeeSetup(TBL_SERVICE_FEE model)
         {
-            if (model == null)
-                throw new SecureException("Request payload is required");
+            try
+            {
+                if (model == null)
+                    throw new SecureException("Request payload is required");
 
 
-            if (model.PRODUCTID <= 0)
-                throw new SecureException("Product is required");
+                if (model.PRODUCTID <= 0)
+                    throw new SecureException("Product is required");
 
-            if (model.PERCENTAGE <= 0)
-                throw new SecureException("Fee percentage is required");
+                if (model.PERCENTAGE <= 0)
+                    throw new SecureException("Fee percentage is required");
 
-            var exists = await context.TBL_SERVICE_FEE
-                .AnyAsync(x =>
-                    x.PRODUCTID == model.PRODUCTID);
+                var exists = await context.TBL_SERVICE_FEE
+                    .AnyAsync(x =>
+                        x.PRODUCTID == model.PRODUCTID);
 
-            if (exists)
-                throw new SecureException("Setup already exist for product");
+                if (exists)
+                    throw new SecureException("Setup already exist for product");
 
-            context.TBL_SERVICE_FEE.Add(model);
-            context.SaveChanges();
+                context.TBL_SERVICE_FEE.Add(model);
+                context.SaveChanges();
 
-            return model;
-        }
+                return model;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }        }
 
 
         public async Task<TBL_SERVICE_FEE> UpdateServicefee(long id, TBL_SERVICE_FEE model)
         {
-            if (model == null)
-                throw new SecureException("Request payload is required");
+            try
+            {
+                if (model == null)
+                    throw new SecureException("Request payload is required");
 
-            if (id <= 0)
-                throw new SecureException("Invalid down payment id");
+                if (id <= 0)
+                    throw new SecureException("Invalid down payment id");
 
-            if (model.PRODUCTID <= 0)
-                throw new SecureException("Product is required");
+                if (model.PRODUCTID <= 0)
+                    throw new SecureException("Product is required");
 
-            if (model.PERCENTAGE <= 0)
-                throw new SecureException("Fee is required");
+                if (model.PERCENTAGE <= 0)
+                    throw new SecureException("Fee is required");
 
-            ;
+                ;
 
-            var existing = await context.TBL_SERVICE_FEE
-                .FirstOrDefaultAsync(x => x.ID == id);
+                var existing = await context.TBL_SERVICE_FEE
+                    .FirstOrDefaultAsync(x => x.ID == id);
 
-            if (existing == null)
-                throw new SecureException(" setup not found");
+                if (existing == null)
+                    throw new SecureException(" setup not found");
 
-            var duplicateExists = await context.TBL_SERVICE_FEE.AnyAsync(x =>
-                x.ID != id &&
-                x.PRODUCTID == model.PRODUCTID);
+                var duplicateExists = await context.TBL_SERVICE_FEE.AnyAsync(x =>
+                    x.ID != id &&
+                    x.PRODUCTID == model.PRODUCTID);
 
-            if (duplicateExists)
-                throw new SecureException("setup for this product");
+                if (duplicateExists)
+                    throw new SecureException("setup for this product");
 
-            existing.PRODUCTID = model.PRODUCTID;
-            existing.PERCENTAGE = model.PERCENTAGE;
+                existing.PRODUCTID = model.PRODUCTID;
+                existing.PERCENTAGE = model.PERCENTAGE;
 
-            await context.SaveChangesAsync();
+                await context.SaveChangesAsync();
 
-            return existing;
-        }
+                return existing;
 
-        public async Task<bool> DeleteServiceFeeSetup (int id)
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }        }
+
+        public async Task<bool> DeleteServiceFeeSetup(int id)
         {
-            if (id <= 0)
-                throw new SecureException("Invalid id");
+            try
+            {
+                if (id <= 0)
+                    throw new SecureException("Invalid id");
 
-            var existing = await context.TBL_SERVICE_FEE
-                .FirstOrDefaultAsync(x => x.ID == id);
+                var existing = await context.TBL_SERVICE_FEE
+                    .FirstOrDefaultAsync(x => x.ID == id);
 
-            if (existing == null)
-                throw new SecureException("setup not found");
+                if (existing == null)
+                    throw new SecureException("setup not found");
 
-            context.TBL_SERVICE_FEE.Remove(existing);
-            await context.SaveChangesAsync();
+                context.TBL_SERVICE_FEE.Remove(existing);
+                await context.SaveChangesAsync();
 
-            return true;
-        }
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }        }
 
         public async Task<List<TBL_SERVICE_FEE>> GetServiceFeeSetup()
         {
