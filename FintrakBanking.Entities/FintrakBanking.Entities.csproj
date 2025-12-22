@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FintrakBanking.Entities</RootNamespace>
     <AssemblyName>FintrakBanking.Entities</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="DocumentModels\TBL_DEFERRED_DOC_TRACKER.cs" />
     <Compile Include="DocumentModels\TBL_DOCUMENT_USAGE_FINAL_ARCHIVE.cs" />
+    <Compile Include="Models\TBL_ORIGINATION_FEE.cs" />
     <Compile Include="Models\StNmrcEligibility.cs" />
     <Compile Include="Models\TblCustomerUUS.cs" />
     <Compile Include="Models\TblCustomerUUSDocument.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Models\TBL_COLLATERAL_LIQUIDATION_RECOVERY.cs" />
     <Compile Include="Models\TBL_COLLECTION_RETAIL_COMPUTATION-VARIABLES_SETUP.cs" />
     <Compile Include="Models\TBL_COLLECTION_RETAIL_CRON_SETUP.cs" />
+    <Compile Include="Models\TBL_DOWN_PAYMENT.cs" />
     <Compile Include="Models\TBL_NMRC_CONDITIONPRECEDENTS.cs" />
     <Compile Include="Models\TBL_CONSUMER_PROTECTION.cs" />
     <Compile Include="Models\TBL_CONTRACTOR_CRITERIA.cs" />
@@ -313,8 +315,10 @@
     <Compile Include="DocumentModels\TBL_LOAN_RECOVERY_REPORTING_DOCUMENT.cs" />
     <Compile Include="Models\TBL_RECORD_TRACKING.cs" />
     <Compile Include="Models\TBL_RECOVERY_REPORT_COLLECTION.cs" />
+    <Compile Include="Models\TBL_REFINANCE_PERIOD.cs" />
     <Compile Include="Models\TBL_REPAYMENT_TERM.cs" />
     <Compile Include="Models\TBL_SECTOR_GLOBAL_LIMIT.cs" />
+    <Compile Include="Models\TBL_SERVICE_FEE.cs" />
     <Compile Include="Models\TBL_STAMP_DUTY_CONDITION.cs" />
     <Compile Include="Models\TBL_SUB_BASICTRANSACTION.cs" />
     <Compile Include="Models\TBL_SUPPORTISSUETYPE.cs" />

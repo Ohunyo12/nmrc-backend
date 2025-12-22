@@ -19,6 +19,7 @@ using FintrakBanking.ViewModels.Reports;
 using System.Text;
 using FintrakBanking.ViewModels.SupportUtility;
 using FintrakBanking.Interfaces.Credit;
+using FintrakBanking.Entities.Models;
 
 namespace FintrakBanking.APICore.Controllers
 {
@@ -53,7 +54,7 @@ namespace FintrakBanking.APICore.Controllers
 
         private string username { get { return token.GetUsername; } }
 
-     
+
         #region Users
 
         // AdminController cont = new AdminController();
@@ -107,7 +108,7 @@ namespace FintrakBanking.APICore.Controllers
         [HttpPost]
         [ClaimsAuthorization]
         [Route("user/approval")]
-        public HttpResponseMessage GoForApprovalAsync([FromBody]ApprovalViewModel entity)
+        public HttpResponseMessage GoForApprovalAsync([FromBody] ApprovalViewModel entity)
         {
             try
             {
@@ -134,11 +135,11 @@ namespace FintrakBanking.APICore.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new { success = false, message = ex.Message });
             }
         }
-        
+
         [HttpPost]
         [ClaimsAuthorization]
         [Route("user-account-status-update/approval")]
-        public HttpResponseMessage GoForUserAccountStatusApproval([FromBody]ApprovalViewModel entity)
+        public HttpResponseMessage GoForUserAccountStatusApproval([FromBody] ApprovalViewModel entity)
         {
             try
             {
@@ -220,7 +221,7 @@ namespace FintrakBanking.APICore.Controllers
         [HttpPost]
         [ClaimsAuthorization]
         [Route("user")]
-        public async Task<HttpResponseMessage> AddUserAsync([FromBody]AppUserViewModel user)
+        public async Task<HttpResponseMessage> AddUserAsync([FromBody] AppUserViewModel user)
         {
             try
             {
@@ -270,7 +271,7 @@ namespace FintrakBanking.APICore.Controllers
         [HttpPut]
         [ClaimsAuthorization]
         [Route("user/{id}")]
-        public async Task<HttpResponseMessage> UpdateUser(int id, [FromBody]AppUserViewModel user)
+        public async Task<HttpResponseMessage> UpdateUser(int id, [FromBody] AppUserViewModel user)
         {
             try
             {
@@ -498,7 +499,7 @@ namespace FintrakBanking.APICore.Controllers
             }
             catch (SecureException ex)
             {
-               // this.errorLogger.LogError(ex, HttpContext.Current.Request.Path, token.GetUsername);
+                // this.errorLogger.LogError(ex, HttpContext.Current.Request.Path, token.GetUsername);
                 return Request.CreateResponse(HttpStatusCode.OK,
                   new { success = false, message = $"An unhandled error occured while fetching groups - {ex.Message}" });
             }
@@ -528,11 +529,11 @@ namespace FintrakBanking.APICore.Controllers
         [HttpGet]
         [ClaimsAuthorization]
         [Route("staff-activity/{activity}")]
-        public HttpResponseMessage StaffHasActivity( string activity)
+        public HttpResponseMessage StaffHasActivity(string activity)
         {
             try
             {
-                var res = repo.StaffHasActivity(token.GetStaffId,activity);
+                var res = repo.StaffHasActivity(token.GetStaffId, activity);
                 return Request.CreateResponse(HttpStatusCode.OK,
                   new { success = true, result = res });
             }
@@ -756,13 +757,13 @@ namespace FintrakBanking.APICore.Controllers
                 entity.createdBy = token.GetStaffId;
                 var data = repo.LogUserStatusUpdateRequest(entity, out message);
                 if (data)
-                    return Ok(new { success = true, result = data, message =  $"Account Status Change was successful and currently undergoing approval."  });
+                    return Ok(new { success = true, result = data, message = $"Account Status Change was successful and currently undergoing approval." });
             }
 
             return Ok(new { success = false, message = $"Account Status Change failed" });
             //try
             //{
-                
+
             //}
             //catch (SecureException ex)
             //{
@@ -771,7 +772,7 @@ namespace FintrakBanking.APICore.Controllers
 
         }
 
-       
+
 
         [HttpGet]
         [ClaimsAuthorization]
@@ -816,7 +817,7 @@ namespace FintrakBanking.APICore.Controllers
                 //errorLogger.LogError(ex, Request.RequestUri.Host, token.GetUsername);
                 return Request.CreateResponse(HttpStatusCode.OK, new { success = false, message = ex.Message });
             }
-         
+
         }
         [HttpPost]
         [ClaimsAuthorization]
@@ -867,8 +868,8 @@ namespace FintrakBanking.APICore.Controllers
 
                 if (data.authenticated == true)
                 {
-                       return Request.CreateResponse(HttpStatusCode.OK,
-                       new { success = true, result = data, message = data.message });
+                    return Request.CreateResponse(HttpStatusCode.OK,
+                    new { success = true, result = data, message = data.message });
                 }
 
                 return Request.CreateResponse(HttpStatusCode.OK,
@@ -884,7 +885,7 @@ namespace FintrakBanking.APICore.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK,
                       new { success = false, message = ex.Message });
             }
-           
+
         }
         [HttpGet]
         [ClaimsAuthorization]
@@ -908,21 +909,21 @@ namespace FintrakBanking.APICore.Controllers
                       new { success = false, message = ex.Message });
             }
         }
-     
+
         [HttpGet]
         [ClaimsAuthorization]
         [Route("two-factor-auth-last-approval")]
-        public HttpResponseMessage TwoFactorAuthenticationEnabled(int operationId,int? productClassId, int? productId, decimal levelAmount = 0)
+        public HttpResponseMessage TwoFactorAuthenticationEnabled(int operationId, int? productClassId, int? productId, decimal levelAmount = 0)
         {
-            
-                var data = repo.Enable2FAForLastApproval(token.GetStaffId, operationId, productClassId ,productId, levelAmount);
-                if (!data)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK,
-                       new { success = false, result = data, message = "" });
-                }
+
+            var data = repo.Enable2FAForLastApproval(token.GetStaffId, operationId, productClassId, productId, levelAmount);
+            if (!data)
+            {
                 return Request.CreateResponse(HttpStatusCode.OK,
-                       new { success = true, result = data });
+                   new { success = false, result = data, message = "" });
+            }
+            return Request.CreateResponse(HttpStatusCode.OK,
+                   new { success = true, result = data });
         }
         #endregion
 
@@ -937,7 +938,7 @@ namespace FintrakBanking.APICore.Controllers
                 {
                     string message = string.Empty;
                     var data = _log.GetAPILog(range.startDate, range.endDate, range.loanRefNo);
-                    if (data!=null)
+                    if (data != null)
                         return Request.CreateResponse(HttpStatusCode.OK,
                        new { success = false, result = data, message = "" });
                 }
@@ -990,7 +991,7 @@ namespace FintrakBanking.APICore.Controllers
                 string password = Encoding.UTF8.GetString(pass);
                 string loginUser = token.GetUsername;
 
-                var data = repo.GetStaffActiveDirectoryDetails(staffCode,loginUser, password);
+                var data = repo.GetStaffActiveDirectoryDetails(staffCode, loginUser, password);
 
                 if (data == null)
                 {
@@ -1012,7 +1013,354 @@ namespace FintrakBanking.APICore.Controllers
 
         }
 
-       
+
+
+        [HttpPost]
+        [ClaimsAuthorization]
+        [Route("add-downpayment")]
+        public async Task<HttpResponseMessage> AddDownPaymentSetup([FromBody] TBL_DOWN_PAYMENT model)
+        {
+            try
+            {
+                var result = await repo.AddDownPaymentSetup(model);
+
+
+                return Request.CreateResponse(HttpStatusCode.OK,
+                   new { success = true, result = result, message = "created successfully" });
+            }
+            catch (SecureException ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { success = false, message = ex.Message });
+            }
+
+        }
+
+        [HttpPut]
+        [ClaimsAuthorization]
+        [Route("update-downpayment")]
+        public async Task<HttpResponseMessage> UpdateDownPayment(int id, [FromBody] TBL_DOWN_PAYMENT user)
+        {
+            try
+            {
+
+                var result = await repo.UpdateDownPaymentSetup(id, user);
+                     return Request.CreateResponse(HttpStatusCode.OK,
+                       new { success = true, result = user, message = "User has been updated successfully, now awaiting approval" });
+                                
+            }
+            catch (SecureException ex)
+            {
+                //this.errorLogger.LogError(ex, HttpContext.Current.Request.Path, token.GetUsername);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                   new { success = false, message = $"An unhandled error occured {ex.Message}" });
+            }
+        }
+
+        [HttpGet]
+        [ClaimsAuthorization]
+        [Route("get-downpayments")]
+        public async Task<HttpResponseMessage> GetDownPayments()
+        {
+            try
+            {
+                var act = await repo.GetDownPaymentSetups();
+
+                if (act == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, new { success = false, message = "No record found" });
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, new { success = true, result = act });
+            }
+            catch (SecureException ex)
+            {
+                //errorLogger.LogError(ex, Request.RequestUri.Host, token.GetUsername);
+                return Request.CreateResponse(HttpStatusCode.OK, new { success = false, message = ex.Message });
+            }
+        }
+
+        [HttpDelete]
+        [ClaimsAuthorization]
+        [Route("delete-downpayment/{id}")]
+        public async Task<HttpResponseMessage> DeleteDownPayment(int id)
+        {
+            try
+            {
+
+                var result = await repo.DeleteDownPaymentSetup(id);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                  new { success = true,message = "record deleted successfully" });
+
+            }
+            catch (SecureException ex)
+            {
+                //this.errorLogger.LogError(ex, HttpContext.Current.Request.Path, token.GetUsername);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                   new { success = false, message = $"An unhandled error occured {ex.Message}" });
+            }
+        }
+
+
+
+        [HttpPost]
+        [ClaimsAuthorization]
+        [Route("add-refinanceperiod")]
+        public async Task<HttpResponseMessage> AddRefinancePeriodSetup([FromBody] TBL_REFINANCE_PERIOD model)
+        {
+            try
+            {
+                var result = await repo.AddRefinancePeriodSetup(model);
+
+
+                return Request.CreateResponse(HttpStatusCode.OK,
+                   new { success = true, result = result, message = "created successfully" });
+            }
+            catch (SecureException ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { success = false, message = ex.Message });
+            }
+
+        }
+
+        [HttpPut]
+        [ClaimsAuthorization]
+        [Route("update-refinanceperiod")]
+        public async Task<HttpResponseMessage> UpdaterefinancePeriod(int id, [FromBody] TBL_REFINANCE_PERIOD user)
+        {
+            try
+            {
+
+                var result = await repo.UpdateRefinacePeriodSetup(id, user);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                  new { success = true, result = user, message = "record updated successfully" });
+
+            }
+            catch (SecureException ex)
+            {
+                //this.errorLogger.LogError(ex, HttpContext.Current.Request.Path, token.GetUsername);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                   new { success = false, message = $"An unhandled error occured {ex.Message}" });
+            }
+        }
+
+        [HttpGet]
+        [ClaimsAuthorization]
+        [Route("get-refinanceperiod")]
+        public async Task<HttpResponseMessage> GetRefinancePeriods()
+        {
+            try
+            {
+                var act = await repo.GetRefiancePeriodSetups();
+
+                if (act == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, new { success = false, message = "No record found" });
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, new { success = true, result = act });
+            }
+            catch (SecureException ex)
+            {
+                //errorLogger.LogError(ex, Request.RequestUri.Host, token.GetUsername);
+                return Request.CreateResponse(HttpStatusCode.OK, new { success = false, message = ex.Message });
+            }
+        }
+
+        [HttpDelete]
+        [ClaimsAuthorization]
+        [Route("delete-refinanceperiod/{id}")]
+        public async Task<HttpResponseMessage> DeleteRefinancePeriod (int id)
+        {
+            try
+            {
+
+                var result = await repo.DeleteRefinancePeriodSetup(id);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                  new { success = true, message = "record deleted successfully" });
+
+            }
+            catch (SecureException ex)
+            {
+                //this.errorLogger.LogError(ex, HttpContext.Current.Request.Path, token.GetUsername);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                   new { success = false, message = $"An unhandled error occured {ex.Message}" });
+            }
+        }
+
+
+
+
+        [HttpPost]
+        [ClaimsAuthorization]
+        [Route("add-originationfeesetup")]
+        public async Task<HttpResponseMessage> AddOriginationFeeSetup ([FromBody] TBL_ORIGINATION_FEE model)
+        {
+            try
+            {
+                var result = await repo.AddOriginationFeeSetup(model);
+
+
+                return Request.CreateResponse(HttpStatusCode.OK,
+                   new { success = true, result = result, message = "created successfully" });
+            }
+            catch (SecureException ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { success = false, message = ex.Message });
+            }
+
+        }
+
+        [HttpPut]
+        [ClaimsAuthorization]
+        [Route("update-originationfee")]
+        public async Task<HttpResponseMessage> UpdateOriginationFee (int id, [FromBody] TBL_ORIGINATION_FEE user)
+        {
+            try
+            {
+
+                var result = await repo.UpdateOriginationFeeSetup(id, user);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                  new { success = true, result = user, message = "User has been updated successfully, now awaiting approval" });
+
+            }
+            catch (SecureException ex)
+            {
+                //this.errorLogger.LogError(ex, HttpContext.Current.Request.Path, token.GetUsername);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                   new { success = false, message = $"An unhandled error occured {ex.Message}" });
+            }
+        }
+
+        [HttpGet]
+        [ClaimsAuthorization]
+        [Route("get-originationfee")]
+        public async Task<HttpResponseMessage> GetOriginationFee()
+        {
+            try
+            {
+                var act = await repo.GetOriginationFeeSetup();
+
+                if (act == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, new { success = false, message = "No record found" });
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, new { success = true, result = act });
+            }
+            catch (SecureException ex)
+            {
+                //errorLogger.LogError(ex, Request.RequestUri.Host, token.GetUsername);
+                return Request.CreateResponse(HttpStatusCode.OK, new { success = false, message = ex.Message });
+            }
+        }
+
+        [HttpDelete]
+        [ClaimsAuthorization]
+        [Route("delete-originationfee/{id}")]
+        public async Task<HttpResponseMessage> DeleteOriginationFee (int id)
+        {
+            try
+            {
+
+                var result = await repo.DeleteOriginationFeeSetup(id);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                  new { success = true, message = "record deleted successfully" });
+
+            }
+            catch (SecureException ex)
+            {
+                //this.errorLogger.LogError(ex, HttpContext.Current.Request.Path, token.GetUsername);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                   new { success = false, message = $"An unhandled error occured {ex.Message}" });
+            }
+        }
+
+
+        [HttpPost]
+        [ClaimsAuthorization]
+        [Route("add-servicefee")]
+        public async Task<HttpResponseMessage> AddServiceFeeSetup([FromBody] TBL_SERVICE_FEE model)
+        {
+            try
+            {
+                var result = await repo.AddServiceFeeSetup(model);
+
+
+                return Request.CreateResponse(HttpStatusCode.OK,
+                   new { success = true, result = result, message = "created successfully" });
+            }
+            catch (SecureException ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { success = false, message = ex.Message });
+            }
+
+        }
+
+        [HttpPut]
+        [ClaimsAuthorization]
+        [Route("update-servicefee")]
+        public async Task<HttpResponseMessage> UpdateServiceFee (int id, [FromBody] TBL_SERVICE_FEE user)
+        {
+            try
+            {
+
+                var result = await repo.UpdateServicefee(id, user);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                  new { success = true, result = user, message = "User has been updated successfully, now awaiting approval" });
+
+            }
+            catch (SecureException ex)
+            {
+                //this.errorLogger.LogError(ex, HttpContext.Current.Request.Path, token.GetUsername);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                   new { success = false, message = $"An unhandled error occured {ex.Message}" });
+            }
+        }
+
+        [HttpGet]
+        [ClaimsAuthorization]
+        [Route("get-servicefee")]
+        public async Task<HttpResponseMessage> GetServiceFees()
+        {
+            try
+            {
+                var act = await repo.GetServiceFeeSetup();
+
+                if (act == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, new { success = false, message = "No record found" });
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, new { success = true, result = act });
+            }
+            catch (SecureException ex)
+            {
+                //errorLogger.LogError(ex, Request.RequestUri.Host, token.GetUsername);
+                return Request.CreateResponse(HttpStatusCode.OK, new { success = false, message = ex.Message });
+            }
+        }
+
+        [HttpDelete]
+        [ClaimsAuthorization]
+        [Route("delete-servicefee/{id}")]
+        public async Task<HttpResponseMessage> DeleteServiceFee(int id)
+        {
+            try
+            {
+
+                var result = await repo.DeleteServiceFeeSetup(id);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                  new { success = true, message = "record deleted successfully" });
+
+            }
+            catch (SecureException ex)
+            {
+                //this.errorLogger.LogError(ex, HttpContext.Current.Request.Path, token.GetUsername);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                   new { success = false, message = $"An unhandled error occured {ex.Message}" });
+            }
+        }
+
+
+
+
+
 
     }
 }

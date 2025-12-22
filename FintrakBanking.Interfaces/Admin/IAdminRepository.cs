@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using FintrakBanking.ViewModels.Finance;
+using FintrakBanking.Entities.Models;
 
 namespace FintrakBanking.Interfaces.Admin
 {
@@ -92,5 +93,25 @@ namespace FintrakBanking.Interfaces.Admin
         bool IsSuperAdmin(int staffId);
 
         #endregion
+        Task<TBL_DOWN_PAYMENT> AddDownPaymentSetup(TBL_DOWN_PAYMENT model);
+        Task<TBL_DOWN_PAYMENT> UpdateDownPaymentSetup(long id, TBL_DOWN_PAYMENT model);
+        Task<bool> DeleteDownPaymentSetup(int id);
+        Task<List<TBL_DOWN_PAYMENT>> GetDownPaymentSetups();
+        Task<TBL_REFINANCE_PERIOD> AddRefinancePeriodSetup(TBL_REFINANCE_PERIOD model);
+        Task<TBL_REFINANCE_PERIOD> UpdateRefinacePeriodSetup(long id, TBL_REFINANCE_PERIOD model); 
+        Task<bool> DeleteRefinancePeriodSetup(int id);
+        Task<List<TBL_REFINANCE_PERIOD>> GetRefiancePeriodSetups();
+        Task<TBL_ORIGINATION_FEE> AddOriginationFeeSetup(TBL_ORIGINATION_FEE model);
+        Task<TBL_ORIGINATION_FEE> UpdateOriginationFeeSetup(long id, TBL_ORIGINATION_FEE model);
+        Task<bool> DeleteOriginationFeeSetup(int id);
+        Task<List<TBL_ORIGINATION_FEE>> GetOriginationFeeSetup();
+        Task<TBL_SERVICE_FEE> AddServiceFeeSetup(TBL_SERVICE_FEE model);
+        Task<TBL_SERVICE_FEE> UpdateServicefee(long id, TBL_SERVICE_FEE model);
+        Task<bool> DeleteServiceFeeSetup(int id);
+        Task<List<TBL_SERVICE_FEE>> GetServiceFeeSetup();
+
+
+
+
     }
 }

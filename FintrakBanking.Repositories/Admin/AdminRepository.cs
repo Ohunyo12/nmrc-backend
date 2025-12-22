@@ -54,7 +54,7 @@ namespace FintrakBanking.Repositories.Admin
             workFlow = _workFlow;
             finacle = _finacle;
             this.proSetting = _proSetting;
-           // level = _level;
+            // level = _level;
 
             var globalSetting = context.TBL_SETUP_GLOBAL.FirstOrDefault();
             USE_THIRD_PARTY_INTEGRATION = globalSetting.USE_THIRD_PARTY_INTEGRATION;
@@ -73,8 +73,8 @@ namespace FintrakBanking.Repositories.Admin
                                     where a.ISACTIVE == true //&& a.LASTLOGINDATE != null
                                     //&& (DbFunctions.AddDays(a.LASTLOGINDATE, userInactivePeriod) <= DbFunctions.AddDays(currentDateTime, 0))
                                     && DbFunctions.DiffDays(a.LASTLOGINDATE, currentDateTime) > userInactivePeriod
-                                       select a);
-            
+                                    select a);
+
             var inactiveUsers = inactiveUsersSub.ToList();
 
             foreach (var item in inactiveUsers)
@@ -369,7 +369,7 @@ namespace FintrakBanking.Repositories.Admin
                         join br in context.TBL_BRANCH on c.TBL_STAFF.BRANCHID equals br.BRANCHID
                         join st in context.TBL_STAFF on c.STAFFID equals st.STAFFID
                         join coy in context.TBL_COMPANY on br.COMPANYID equals coy.COMPANYID
-                       // join dept in context.TBL_DEPARTMENT on c.TBL_STAFF.TBL_DEPARTMENT_UNIT.DEPARTMENTID equals dept.DEPARTMENTID
+                        // join dept in context.TBL_DEPARTMENT on c.TBL_STAFF.TBL_DEPARTMENT_UNIT.DEPARTMENTID equals dept.DEPARTMENTID
                         join atrail in context.TBL_APPROVAL_TRAIL on temp.TEMPUSERID equals atrail.TARGETID
                         where atrail.APPROVALSTATUSID == (int)ApprovalStatusEnum.Pending
                               && atrail.RESPONSESTAFFID == null
@@ -492,7 +492,7 @@ namespace FintrakBanking.Repositories.Admin
                                   select new UserActivities
                                   {
                                       activityId = a.ACTIVITYID,
-                                      activityName = context.TBL_PROFILE_ACTIVITY.Where(x=>x.ACTIVITYID == a.ACTIVITYID).Select(g=>g.ACTIVITYNAME).FirstOrDefault(),
+                                      activityName = context.TBL_PROFILE_ACTIVITY.Where(x => x.ACTIVITYID == a.ACTIVITYID).Select(g => g.ACTIVITYNAME).FirstOrDefault(),
                                       userId = a.USERID,
                                       activityParentId = context.TBL_PROFILE_ACTIVITY.Where(x => x.ACTIVITYID == a.ACTIVITYID).Select(g => g.ACTIVITYPARENTID).FirstOrDefault(),
                                       activityParentName = context.TBL_PROFILE_ACTIVITY_PARENT.Where(x => x.ACTIVITYPARENTID == context.TBL_PROFILE_ACTIVITY.Where(b => b.ACTIVITYID == a.ACTIVITYID).Select(g => g.ACTIVITYPARENTID).FirstOrDefault()).Select(p => p.ACTIVITYPARENTNAME).FirstOrDefault(),
@@ -711,7 +711,7 @@ namespace FintrakBanking.Repositories.Admin
         {
             return context.TBL_SETUP_GLOBAL.Select(x => new GlobalSettingViewModel
             {
-                applicationSetupId =x.APPLICATIONSETUPID,
+                applicationSetupId = x.APPLICATIONSETUPID,
                 reportPath = x.REPORTPATH,
                 useActiveDirectory = x.USE_ACTIVE_DIRECTORY,
                 activeDirectoryDomainName = x.ACTIVE_DIRECTORY_DOMAIN_NAME,
@@ -723,7 +723,7 @@ namespace FintrakBanking.Repositories.Admin
                 maxFileUploadSize = x.MAXIMUMUPLOADFILESIZE,
                 applicationURL = x.APPLICATION_URL,
                 supportEmail = x.SUPPORT_EMAIL,
-        }).FirstOrDefault();
+            }).FirstOrDefault();
         }
         #region Group
 
@@ -768,7 +768,7 @@ namespace FintrakBanking.Repositories.Admin
                 STAFFID = (int)group.createdBy,
                 BRANCHID = (short)group.userBranchId,
                 DETAIL = $"Added User group with name : '{group.groupName}' ",
-                URL =  group.applicationUrl,
+                URL = group.applicationUrl,
                 IPADDRESS = CommonHelpers.GetLocalIpAddress(),
                 APPLICATIONDATE = genSetup.GetApplicationDate(),
                 SYSTEMDATETIME = DateTime.Now,
@@ -818,7 +818,7 @@ namespace FintrakBanking.Repositories.Admin
         public IEnumerable<ActivityParent> GetActivities()
         {
             return from p in context.TBL_PROFILE_ACTIVITY_PARENT
-                   select new ActivityParent 
+                   select new ActivityParent
                    {
                        activityParentId = p.ACTIVITYPARENTID,
                        activityParentName = p.ACTIVITYPARENTNAME,
@@ -826,11 +826,11 @@ namespace FintrakBanking.Repositories.Admin
                                       .Where(x => x.ACTIVITYPARENTID == p.ACTIVITYPARENTID)
                                       .Select(x => new ActivityViewModel
                                       {
-                                          activityId = x.ACTIVITYID, 
+                                          activityId = x.ACTIVITYID,
                                           activityName = x.ACTIVITYNAME,
                                           activityParentId = x.ACTIVITYPARENTID,
                                           selected = false,
-                                      }).ToList() 
+                                      }).ToList()
                    };
         }
 
@@ -841,30 +841,30 @@ namespace FintrakBanking.Repositories.Admin
 
                    select new UserActivities
                    {
-                       activityId = x.ACTIVITYID, 
-                        activityName = x.ACTIVITYNAME, 
-                        activityParentId = x.ACTIVITYPARENTID,
+                       activityId = x.ACTIVITYID,
+                       activityName = x.ACTIVITYNAME,
+                       activityParentId = x.ACTIVITYPARENTID,
                        activityParentName = context.TBL_PROFILE_ACTIVITY_PARENT.Where(k => k.ACTIVITYPARENTID == x.ACTIVITYPARENTID).Select(p => p.ACTIVITYPARENTNAME).FirstOrDefault(),
                        selected = false,
-                     
+
                    };
         }
 
         public IEnumerable<UserActivities> GetActivityDetails(int parentId, int staffId)
         {
             var parentActivities = from x in context.TBL_PROFILE_ACTIVITY
-                   where x.ACTIVITYPARENTID == parentId
+                                   where x.ACTIVITYPARENTID == parentId
 
-                   select new UserActivities
-                   {
-                       activityId = x.ACTIVITYID,
-                       activityName = x.ACTIVITYNAME,
-                       activityParentId = x.ACTIVITYPARENTID,
-                       activityParentName = context.TBL_PROFILE_ACTIVITY_PARENT.Where(k => k.ACTIVITYPARENTID == x.ACTIVITYPARENTID).Select(p => p.ACTIVITYPARENTNAME).FirstOrDefault(),
+                                   select new UserActivities
+                                   {
+                                       activityId = x.ACTIVITYID,
+                                       activityName = x.ACTIVITYNAME,
+                                       activityParentId = x.ACTIVITYPARENTID,
+                                       activityParentName = context.TBL_PROFILE_ACTIVITY_PARENT.Where(k => k.ACTIVITYPARENTID == x.ACTIVITYPARENTID).Select(p => p.ACTIVITYPARENTNAME).FirstOrDefault(),
 
-                       selected = false,
+                                       selected = false,
 
-                   };
+                                   };
 
 
 
@@ -927,9 +927,9 @@ namespace FintrakBanking.Repositories.Admin
 
         public bool IsSuperAdmin(int staffId)
         {
-            var userId = (from a in context.TBL_PROFILE_USER                               
-                               where a.STAFFID == staffId
-                               select a.USERID).FirstOrDefault();
+            var userId = (from a in context.TBL_PROFILE_USER
+                          where a.STAFFID == staffId
+                          select a.USERID).FirstOrDefault();
 
             var userActivities = GetUserActivitiesByUser(userId);
 
@@ -938,7 +938,7 @@ namespace FintrakBanking.Repositories.Admin
             if (superAdmin != null)
                 return true;
             else
-                return false;            
+                return false;
         }
         public bool StaffHasActivity(int staffId, string activity)
         {
@@ -1035,7 +1035,8 @@ namespace FintrakBanking.Repositories.Admin
                         join st in context.TBL_STAFF on p.STAFFID equals st.STAFFID
                         join br in context.TBL_BRANCH on st.BRANCHID equals br.BRANCHID
                         join coy in context.TBL_COMPANY on br.COMPANYID equals coy.COMPANYID
-                        where st.COMPANYID == companyId where st.DELETED == false
+                        where st.COMPANYID == companyId
+                        where st.DELETED == false
                         select new ActiveUserDetails
                         {
                             companyId = coy.COMPANYID,
@@ -1107,7 +1108,7 @@ namespace FintrakBanking.Repositories.Admin
                         trans.Rollback();
                         throw new SecureException("Approval Failed");
                     }
-                   
+
                     if (workFlow.NewState == (int)ApprovalState.Ended)
                     {
                         var response = UpdateUserAccountStatus(entity.targetId, (short)workFlow.StatusId, entity);
@@ -1140,7 +1141,7 @@ namespace FintrakBanking.Repositories.Admin
             var tempData = context.TBL_TEMP_PROFILE_USER.Find(userId);
             if (tempData == null) throw new ConditionNotMetException("Could not resolve user account status update.");
 
-            var data = context.TBL_PROFILE_USER.FirstOrDefault(x=>x.USERNAME == tempData.USERNAME);
+            var data = context.TBL_PROFILE_USER.FirstOrDefault(x => x.USERNAME == tempData.USERNAME);
             data.ISACTIVE = tempData.ISACTIVE;
             data.DEACTIVATEDDATE = tempData.DEACTIVATEDDATE;
 
@@ -1148,7 +1149,7 @@ namespace FintrakBanking.Repositories.Admin
             data.FAILEDLOGONATTEMPT = tempData.FAILEDLOGONATTEMPT;
             tempData.ISCURRENT = false;
 
-           //context.TBL_TEMP_PROFILE_USER.Remove(tempData);
+            //context.TBL_TEMP_PROFILE_USER.Remove(tempData);
 
             return context.SaveChanges() > 0;
         }
@@ -1232,8 +1233,8 @@ namespace FintrakBanking.Repositories.Admin
                     trans.Commit();
                     return true;
                 }
-                else 
-                { 
+                else
+                {
                     trans.Rollback();
                     return false;
                 }
@@ -1254,14 +1255,14 @@ namespace FintrakBanking.Repositories.Admin
             {
                 throw new TwoFactorAuthenticationException(ex.Message);
             }
-             
+
         }
         public bool TwoFactorAuthenticationEnabled()
         {
             var output = context.TBL_SETUP_GLOBAL.FirstOrDefault().USE_TWO_FACTOR_AUTHENTICATION;
             return output;
         }
-        
+
         public bool Enable2FAForLastApproval(int staffId, int operationId, int? productClassId, int? productId, decimal levelAmount = 0)
         {
             //return true;  ///TEST ONLY> TO BE REMOVED
@@ -1278,7 +1279,7 @@ namespace FintrakBanking.Repositories.Admin
                                         join y in context.TBL_APPROVAL_GROUP on x.GROUPID equals y.GROUPID
                                         join z in context.TBL_APPROVAL_LEVEL on x.GROUPID equals z.GROUPID
                                         where x.OPERATIONID == operationId && x.PRODUCTCLASSID == null && x.DELETED == false
-                                        && z.MAXIMUMAMOUNT >= levelAmount && z.ISACTIVE == true && z.DELETED == false 
+                                        && z.MAXIMUMAMOUNT >= levelAmount && z.ISACTIVE == true && z.DELETED == false
                                         orderby x.POSITION, z.POSITION ascending
                                         select z.APPROVALLEVELID
                            ).ToList();
@@ -1288,23 +1289,23 @@ namespace FintrakBanking.Repositories.Admin
                     approvalLevelIds = (from x in context.TBL_APPROVAL_GROUP_MAPPING
                                         join y in context.TBL_APPROVAL_GROUP on x.GROUPID equals y.GROUPID
                                         join z in context.TBL_APPROVAL_LEVEL on x.GROUPID equals z.GROUPID
-                                        where x.OPERATIONID == operationId && x.PRODUCTCLASSID == null 
+                                        where x.OPERATIONID == operationId && x.PRODUCTCLASSID == null
                                         && x.DELETED == false && z.ISACTIVE == true && z.DELETED == false
                                         orderby x.POSITION, z.POSITION ascending
                                         select z.APPROVALLEVELID
                                                ).ToList();
                 }
-             
+
 
                 var levelCount = approvalLevelIds.Count;
 
                 var staffApprovalLevelId = (from x in context.TBL_APPROVAL_GROUP_MAPPING
-                                    join y in context.TBL_APPROVAL_GROUP on x.GROUPID equals y.GROUPID
-                                    join z in context.TBL_APPROVAL_LEVEL on x.GROUPID equals z.GROUPID
-                                    join st in context.TBL_APPROVAL_LEVEL_STAFF on z.APPROVALLEVELID equals st.APPROVALLEVELID into aps
-                                    from sub in aps.DefaultIfEmpty()
-                                    where x.OPERATIONID == operationId && ((z.STAFFROLEID == staff.STAFFROLEID) || (sub.STAFFID == staff.STAFFID))
-                                    select z.APPROVALLEVELID).FirstOrDefault();
+                                            join y in context.TBL_APPROVAL_GROUP on x.GROUPID equals y.GROUPID
+                                            join z in context.TBL_APPROVAL_LEVEL on x.GROUPID equals z.GROUPID
+                                            join st in context.TBL_APPROVAL_LEVEL_STAFF on z.APPROVALLEVELID equals st.APPROVALLEVELID into aps
+                                            from sub in aps.DefaultIfEmpty()
+                                            where x.OPERATIONID == operationId && ((z.STAFFROLEID == staff.STAFFROLEID) || (sub.STAFFID == staff.STAFFID))
+                                            select z.APPROVALLEVELID).FirstOrDefault();
 
                 var currentLevel = approvalLevelIds.IndexOf(staffApprovalLevelId) + 1;
 
@@ -1317,7 +1318,7 @@ namespace FintrakBanking.Repositories.Admin
             return output;
         }
         #endregion
-        public Users GetStaffActiveDirectoryDetails(string staffCode,string loginUser, string password)
+        public Users GetStaffActiveDirectoryDetails(string staffCode, string loginUser, string password)
         {
             //var test = ValidateActiveDirectoryCredentials("TMP10004", "!23Helives2");
             var user = GetActiveDirectoryDetails(staffCode, loginUser, password);
@@ -1326,7 +1327,7 @@ namespace FintrakBanking.Repositories.Admin
             {
                 var userRole = finacle.GetUserRoleFinacle(staffCode);
                 if (userRole.staffRole != null)
-                {        
+                {
                     if (userRole.staffRole == "RM" || userRole.staffRole == "BM")
                     {
                         user.staffRole = userRole.staffRole;
@@ -1344,46 +1345,423 @@ namespace FintrakBanking.Repositories.Admin
                     user.staffRole = null;
                     user.staffRoleId = null;
                 }
-               
+
             }
             return user;
 
         }
-       
+
         public Users GetActiveDirectoryDetails(string userName, string loginUser, string password)
         {
-           var appSetup = context.TBL_SETUP_GLOBAL.FirstOrDefault();
+            var appSetup = context.TBL_SETUP_GLOBAL.FirstOrDefault();
             Users lstADUsers = new Users();
 
 
-                using (var pc = new PrincipalContext(ContextType.Domain, appSetup.ACTIVE_DIRECTORY_DOMAIN_NAME, loginUser, password))
+            using (var pc = new PrincipalContext(ContextType.Domain, appSetup.ACTIVE_DIRECTORY_DOMAIN_NAME, loginUser, password))
+            {
+                using (var foundUser = UserPrincipal.FindByIdentity(pc, IdentityType.SamAccountName, userName))
                 {
-                    using (var foundUser = UserPrincipal.FindByIdentity(pc, IdentityType.SamAccountName, userName))
+                    if (foundUser != null)
                     {
-                        if (foundUser != null)
-                        {
-                           
-                            DirectoryEntry directoryEntry = foundUser.GetUnderlyingObject() as DirectoryEntry;
-                            lstADUsers.firstName = foundUser.GivenName;
-                            lstADUsers.middleName = foundUser.MiddleName;
-                            lstADUsers.lastName = foundUser.Surname;
-                            lstADUsers.fullName = foundUser.DisplayName;
-                            //lstADUsers.firstName = directoryEntry.Properties["givenName"].Value.ToString();
-                            //lstADUsers.middleName = directoryEntry.Properties["middleName"].Value.ToString();
-                            //lstADUsers.lastName = directoryEntry.Properties["sn"].Value.ToString();
-                            //lstADUsers.fullName = directoryEntry.Properties["displayName"].Value.ToString();
 
-                            //many details
-                                                  
+                        DirectoryEntry directoryEntry = foundUser.GetUnderlyingObject() as DirectoryEntry;
+                        lstADUsers.firstName = foundUser.GivenName;
+                        lstADUsers.middleName = foundUser.MiddleName;
+                        lstADUsers.lastName = foundUser.Surname;
+                        lstADUsers.fullName = foundUser.DisplayName;
+                        //lstADUsers.firstName = directoryEntry.Properties["givenName"].Value.ToString();
+                        //lstADUsers.middleName = directoryEntry.Properties["middleName"].Value.ToString();
+                        //lstADUsers.lastName = directoryEntry.Properties["sn"].Value.ToString();
+                        //lstADUsers.fullName = directoryEntry.Properties["displayName"].Value.ToString();
+
+                        //many details
+
                     }
-                   
-                    }
+
                 }
+            }
 
 
             return lstADUsers;
 
         }
+
+
+        public async Task<TBL_DOWN_PAYMENT> AddDownPaymentSetup(TBL_DOWN_PAYMENT model)
+        {
+            if (model == null)
+                throw new SecureException("Request payload is required");
+
+            if (model.EMPLOYMENTTYPEID <= 0)
+                throw new SecureException("Employment Type is required");
+
+            if (model.PRODUCTID <= 0)
+                throw new SecureException("Product is required");
+
+            if (model.MINAMOUNT <= 0)
+                throw new SecureException("Min amount is required");
+
+            if (model.MAXAMOUNT <= 0)
+                throw new SecureException("Max amount is required");
+
+            if (model.MINAMOUNT >= model.MAXAMOUNT)
+                throw new SecureException("Min amount cannot be greater than or equal to Max amount");
+
+            if (model.PERCENTAGE <= 0)
+                throw new SecureException("Percentage is required");
+
+            var exists = await context.TBL_DOWN_PAYMENT
+                .AnyAsync(x =>
+                    x.PRODUCTID == model.PRODUCTID &&
+                    x.EMPLOYMENTTYPEID == model.EMPLOYMENTTYPEID);
+
+            if (exists)
+                throw new SecureException("Down payment already setup for this product and employment type");
+
+            context.TBL_DOWN_PAYMENT.Add(model);
+            context.SaveChanges();
+
+            return model;
+        }
+
+        public async Task<TBL_DOWN_PAYMENT> UpdateDownPaymentSetup(long id, TBL_DOWN_PAYMENT model)
+        {
+            if (model == null)
+                throw new SecureException("Request payload is required");
+
+            if (id <= 0)
+                throw new SecureException("Invalid down payment id");
+
+            if (model.EMPLOYMENTTYPEID <= 0)
+                throw new SecureException("Employment Type is required");
+
+            if (model.PRODUCTID <= 0)
+                throw new SecureException("Product is required");
+
+            if (model.MINAMOUNT <= 0)
+                throw new SecureException("Min amount is required");
+
+            if (model.MAXAMOUNT <= 0)
+                throw new SecureException("Max amount is required");
+
+            if (model.MINAMOUNT >= model.MAXAMOUNT)
+                throw new SecureException("Min amount cannot be greater than or equal to Max amount");
+
+            if (model.PERCENTAGE <= 0)
+                throw new SecureException("Percentage is required");
+
+            var existing = await context.TBL_DOWN_PAYMENT
+                .FirstOrDefaultAsync(x => x.ID == id);
+
+            if (existing == null)
+                throw new SecureException("Down payment setup not found");
+
+            var duplicateExists = await context.TBL_DOWN_PAYMENT.AnyAsync(x =>
+                x.ID != id &&
+                x.PRODUCTID == model.PRODUCTID &&
+                x.EMPLOYMENTTYPEID == model.EMPLOYMENTTYPEID);
+
+            if (duplicateExists)
+                throw new SecureException("Down payment already setup for this product and employment type");
+
+            existing.PRODUCTID = model.PRODUCTID;
+            existing.EMPLOYMENTTYPEID = model.EMPLOYMENTTYPEID;
+            existing.MINAMOUNT = model.MINAMOUNT;
+            existing.MAXAMOUNT = model.MAXAMOUNT;
+            existing.PERCENTAGE = model.PERCENTAGE;        
+
+            await context.SaveChangesAsync();
+
+            return existing;
+        }
+
+        public async Task<bool> DeleteDownPaymentSetup(int id)
+        {
+            if (id <= 0)
+                throw new SecureException("Invalid down payment id");
+
+            var existing = await context.TBL_DOWN_PAYMENT
+                .FirstOrDefaultAsync(x => x.ID == id);
+
+            if (existing == null)
+                throw new SecureException("Down payment setup not found");
+
+            context.TBL_DOWN_PAYMENT.Remove(existing);
+            await context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<List<TBL_DOWN_PAYMENT>> GetDownPaymentSetups()
+        {
+            return await context.TBL_DOWN_PAYMENT
+                .OrderBy(x => x.PRODUCTID)
+                .ThenBy(x => x.EMPLOYMENTTYPEID)
+                .ToListAsync();
+        }
+
+        public async Task<TBL_REFINANCE_PERIOD> AddRefinancePeriodSetup(TBL_REFINANCE_PERIOD model)
+        {
+            if (model == null)
+                throw new SecureException("Request payload is required");
+
+           
+            if (model.PRODUCTID <= 0)
+                throw new SecureException("Product is required");
+
+            if (model.DURATION <= 0)
+                throw new SecureException("Period is required");
+
+            var exists = await context.TBL_REFINANCE_PERIOD
+                .AnyAsync(x =>
+                    x.PRODUCTID == model.PRODUCTID );
+
+            if (exists)
+                throw new SecureException("Setup already exist for product");
+
+            context.TBL_REFINANCE_PERIOD.Add(model);
+            context.SaveChanges();
+
+            return model;
+        }
+
+
+        public async Task<TBL_REFINANCE_PERIOD> UpdateRefinacePeriodSetup(long id, TBL_REFINANCE_PERIOD model)
+        {
+            if (model == null)
+                throw new SecureException("Request payload is required");
+
+            if (id <= 0)
+                throw new SecureException("Invalid down payment id");
+
+            if (model.PRODUCTID <= 0)
+                throw new SecureException("Product is required");
+
+            if (model.DURATION <= 0)
+                throw new SecureException("Period is required");
+
+         ;
+
+            var existing = await context.TBL_REFINANCE_PERIOD
+                .FirstOrDefaultAsync(x => x.ID == id);
+
+            if (existing == null)
+                throw new SecureException("Period setup not found");
+
+            var duplicateExists = await context.TBL_REFINANCE_PERIOD.AnyAsync(x =>
+                x.ID != id &&
+                x.PRODUCTID == model.PRODUCTID);
+
+            if (duplicateExists)
+                throw new SecureException("Period already setup for this product and employment type");
+
+            existing.PRODUCTID = model.PRODUCTID;
+            existing.DURATION = model.DURATION;
+            
+            await context.SaveChangesAsync();
+
+            return existing;
+        }
+
+        public async Task<bool> DeleteRefinancePeriodSetup(int id)
+        {
+            if (id <= 0)
+                throw new SecureException("Invalid down payment id");
+
+            var existing = await context.TBL_REFINANCE_PERIOD
+                .FirstOrDefaultAsync(x => x.ID == id);
+
+            if (existing == null)
+                throw new SecureException("setup not found");
+
+            context.TBL_REFINANCE_PERIOD.Remove(existing);
+            await context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<List<TBL_REFINANCE_PERIOD>> GetRefiancePeriodSetups()
+        {
+            return await context.TBL_REFINANCE_PERIOD
+                .OrderBy(x => x.PRODUCTID)
+                .ToListAsync();
+        }
+
+         public async Task<TBL_ORIGINATION_FEE> AddOriginationFeeSetup(TBL_ORIGINATION_FEE model)
+        {
+            if (model == null)
+                throw new SecureException("Request payload is required");
+
+           
+            if (model.PRODUCTID <= 0)
+                throw new SecureException("Product is required");
+
+            if (model.PERCENTAGE <= 0)
+                throw new SecureException("Fee percentage is required");
+
+            var exists = await context.TBL_ORIGINATION_FEE
+                .AnyAsync(x =>
+                    x.PRODUCTID == model.PRODUCTID );
+
+            if (exists)
+                throw new SecureException("Setup already exist for product");
+
+            context.TBL_ORIGINATION_FEE.Add(model);
+            context.SaveChanges();
+
+            return model;
+        }
+
+
+        public async Task<TBL_ORIGINATION_FEE> UpdateOriginationFeeSetup (long id, TBL_ORIGINATION_FEE model)
+        {
+            if (model == null)
+                throw new SecureException("Request payload is required");
+
+            if (id <= 0)
+                throw new SecureException("Invalid down payment id");
+
+            if (model.PRODUCTID <= 0)
+                throw new SecureException("Product is required");
+
+            if (model.PERCENTAGE <= 0)
+                throw new SecureException("Period is required");
+
+         ;
+
+            var existing = await context.TBL_ORIGINATION_FEE
+                .FirstOrDefaultAsync(x => x.ID == id);
+
+            if (existing == null)
+                throw new SecureException(" setup not found");
+
+            var duplicateExists = await context.TBL_ORIGINATION_FEE.AnyAsync(x =>
+                x.ID != id &&
+                x.PRODUCTID == model.PRODUCTID);
+
+            if (duplicateExists)
+                throw new SecureException("setup for this product");
+
+            existing.PRODUCTID = model.PRODUCTID;
+            existing.PERCENTAGE = model.PERCENTAGE;
+            
+            await context.SaveChangesAsync();
+
+            return existing;
+        }
+
+        public async Task<bool> DeleteOriginationFeeSetup(int id)
+        {
+            if (id <= 0)
+                throw new SecureException("Invalid id");
+
+            var existing = await context.TBL_ORIGINATION_FEE
+                .FirstOrDefaultAsync(x => x.ID == id);
+
+            if (existing == null)
+                throw new SecureException("setup not found");
+
+            context.TBL_ORIGINATION_FEE.Remove(existing);
+            await context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<List<TBL_ORIGINATION_FEE>> GetOriginationFeeSetup()
+        {
+            return await context.TBL_ORIGINATION_FEE
+                .OrderBy(x => x.PRODUCTID)
+                .ToListAsync();
+        }
+
+
+        public async Task<TBL_SERVICE_FEE> AddServiceFeeSetup (TBL_SERVICE_FEE model)
+        {
+            if (model == null)
+                throw new SecureException("Request payload is required");
+
+
+            if (model.PRODUCTID <= 0)
+                throw new SecureException("Product is required");
+
+            if (model.PERCENTAGE <= 0)
+                throw new SecureException("Fee percentage is required");
+
+            var exists = await context.TBL_SERVICE_FEE
+                .AnyAsync(x =>
+                    x.PRODUCTID == model.PRODUCTID);
+
+            if (exists)
+                throw new SecureException("Setup already exist for product");
+
+            context.TBL_SERVICE_FEE.Add(model);
+            context.SaveChanges();
+
+            return model;
+        }
+
+
+        public async Task<TBL_SERVICE_FEE> UpdateServicefee(long id, TBL_SERVICE_FEE model)
+        {
+            if (model == null)
+                throw new SecureException("Request payload is required");
+
+            if (id <= 0)
+                throw new SecureException("Invalid down payment id");
+
+            if (model.PRODUCTID <= 0)
+                throw new SecureException("Product is required");
+
+            if (model.PERCENTAGE <= 0)
+                throw new SecureException("Fee is required");
+
+            ;
+
+            var existing = await context.TBL_SERVICE_FEE
+                .FirstOrDefaultAsync(x => x.ID == id);
+
+            if (existing == null)
+                throw new SecureException(" setup not found");
+
+            var duplicateExists = await context.TBL_SERVICE_FEE.AnyAsync(x =>
+                x.ID != id &&
+                x.PRODUCTID == model.PRODUCTID);
+
+            if (duplicateExists)
+                throw new SecureException("setup for this product");
+
+            existing.PRODUCTID = model.PRODUCTID;
+            existing.PERCENTAGE = model.PERCENTAGE;
+
+            await context.SaveChangesAsync();
+
+            return existing;
+        }
+
+        public async Task<bool> DeleteServiceFeeSetup (int id)
+        {
+            if (id <= 0)
+                throw new SecureException("Invalid id");
+
+            var existing = await context.TBL_SERVICE_FEE
+                .FirstOrDefaultAsync(x => x.ID == id);
+
+            if (existing == null)
+                throw new SecureException("setup not found");
+
+            context.TBL_SERVICE_FEE.Remove(existing);
+            await context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<List<TBL_SERVICE_FEE>> GetServiceFeeSetup()
+        {
+            return await context.TBL_SERVICE_FEE
+                .OrderBy(x => x.PRODUCTID)
+                .ToListAsync();
+        }
+
 
     }
 

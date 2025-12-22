@@ -697,6 +697,10 @@ namespace FintrakBanking.Entities.Models
         public virtual DbSet<TblNmrcRefinancingTranches> TblNmrcRefinancingTranches { get; set; }
         public virtual DbSet<TBL_NMRC_LOAN_SCHEDULE_PERIODIC> TBL_NMRC_LOAN_SCHEDULE_PERIODIC { get; set; }
         public virtual DbSet<TBL_NMRC_CONDITIONPRECEDENTS> TBL_NMRC_CONDITIONPRECEDENTS { get; set; }
+        public virtual DbSet<TBL_DOWN_PAYMENT> TBL_DOWN_PAYMENT { get; set; }
+        public virtual DbSet<TBL_ORIGINATION_FEE> TBL_ORIGINATION_FEE { get; set; }
+        public virtual DbSet<TBL_SERVICE_FEE> TBL_SERVICE_FEE { get; set; }
+        public virtual DbSet<TBL_REFINANCE_PERIOD> TBL_REFINANCE_PERIOD { get; set; }
 
 
         //public virtual DbSet<TBL_REPAYMENT_TERMS> TBL_REPAYMENT_TERMS { get; set; }

@@ -20,23 +20,25 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("DeferralWaiver")]
+    [global::System.Xml.Serialization.XmlRootAttribute("StaffInfoDataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class DeferralWaiver : global::System.Data.DataSet {
+    public partial class StaffInfoDataSet : global::System.Data.DataSet {
         
-        private DeferralWaiverDataTable tableDeferralWaiver;
+        private UserGroupChangeReportDataTable tableUserGroupChangeReport;
         
-        private conditionsDataTable tableconditions;
+        private ProfileActivityReportDataTable tableProfileActivityReport;
         
-        private approvalsDataTable tableapprovals;
+        private StaffRoleProfileGroupReportDataTable tableStaffRoleProfileGroupReport;
         
-        private OutstandingDocumentDeferredListDataTable tableOutstandingDocumentDeferredList;
+        private StaffRoleProfileActivityReportDataTable tableStaffRoleProfileActivityReport;
+        
+        private StaffPriviledgeChangeDataTable tableStaffPriviledgeChange;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public DeferralWaiver() {
+        public StaffInfoDataSet() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -47,7 +49,7 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected DeferralWaiver(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected StaffInfoDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -60,17 +62,20 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["DeferralWaiver"] != null)) {
-                    base.Tables.Add(new DeferralWaiverDataTable(ds.Tables["DeferralWaiver"]));
+                if ((ds.Tables["UserGroupChangeReport"] != null)) {
+                    base.Tables.Add(new UserGroupChangeReportDataTable(ds.Tables["UserGroupChangeReport"]));
                 }
-                if ((ds.Tables["conditions"] != null)) {
-                    base.Tables.Add(new conditionsDataTable(ds.Tables["conditions"]));
+                if ((ds.Tables["ProfileActivityReport"] != null)) {
+                    base.Tables.Add(new ProfileActivityReportDataTable(ds.Tables["ProfileActivityReport"]));
                 }
-                if ((ds.Tables["approvals"] != null)) {
-                    base.Tables.Add(new approvalsDataTable(ds.Tables["approvals"]));
+                if ((ds.Tables["StaffRoleProfileGroupReport"] != null)) {
+                    base.Tables.Add(new StaffRoleProfileGroupReportDataTable(ds.Tables["StaffRoleProfileGroupReport"]));
                 }
-                if ((ds.Tables["OutstandingDocumentDeferredList"] != null)) {
-                    base.Tables.Add(new OutstandingDocumentDeferredListDataTable(ds.Tables["OutstandingDocumentDeferredList"]));
+                if ((ds.Tables["StaffRoleProfileActivityReport"] != null)) {
+                    base.Tables.Add(new StaffRoleProfileActivityReportDataTable(ds.Tables["StaffRoleProfileActivityReport"]));
+                }
+                if ((ds.Tables["StaffPriviledgeChange"] != null)) {
+                    base.Tables.Add(new StaffPriviledgeChangeDataTable(ds.Tables["StaffPriviledgeChange"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -94,9 +99,9 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DeferralWaiverDataTable _DeferralWaiver {
+        public UserGroupChangeReportDataTable UserGroupChangeReport {
             get {
-                return this.tableDeferralWaiver;
+                return this.tableUserGroupChangeReport;
             }
         }
         
@@ -104,9 +109,9 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public conditionsDataTable conditions {
+        public ProfileActivityReportDataTable ProfileActivityReport {
             get {
-                return this.tableconditions;
+                return this.tableProfileActivityReport;
             }
         }
         
@@ -114,9 +119,9 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public approvalsDataTable approvals {
+        public StaffRoleProfileGroupReportDataTable StaffRoleProfileGroupReport {
             get {
-                return this.tableapprovals;
+                return this.tableStaffRoleProfileGroupReport;
             }
         }
         
@@ -124,9 +129,19 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public OutstandingDocumentDeferredListDataTable OutstandingDocumentDeferredList {
+        public StaffRoleProfileActivityReportDataTable StaffRoleProfileActivityReport {
             get {
-                return this.tableOutstandingDocumentDeferredList;
+                return this.tableStaffRoleProfileActivityReport;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public StaffPriviledgeChangeDataTable StaffPriviledgeChange {
+            get {
+                return this.tableStaffPriviledgeChange;
             }
         }
         
@@ -172,7 +187,7 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            DeferralWaiver cln = ((DeferralWaiver)(base.Clone()));
+            StaffInfoDataSet cln = ((StaffInfoDataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -197,17 +212,20 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["DeferralWaiver"] != null)) {
-                    base.Tables.Add(new DeferralWaiverDataTable(ds.Tables["DeferralWaiver"]));
+                if ((ds.Tables["UserGroupChangeReport"] != null)) {
+                    base.Tables.Add(new UserGroupChangeReportDataTable(ds.Tables["UserGroupChangeReport"]));
                 }
-                if ((ds.Tables["conditions"] != null)) {
-                    base.Tables.Add(new conditionsDataTable(ds.Tables["conditions"]));
+                if ((ds.Tables["ProfileActivityReport"] != null)) {
+                    base.Tables.Add(new ProfileActivityReportDataTable(ds.Tables["ProfileActivityReport"]));
                 }
-                if ((ds.Tables["approvals"] != null)) {
-                    base.Tables.Add(new approvalsDataTable(ds.Tables["approvals"]));
+                if ((ds.Tables["StaffRoleProfileGroupReport"] != null)) {
+                    base.Tables.Add(new StaffRoleProfileGroupReportDataTable(ds.Tables["StaffRoleProfileGroupReport"]));
                 }
-                if ((ds.Tables["OutstandingDocumentDeferredList"] != null)) {
-                    base.Tables.Add(new OutstandingDocumentDeferredListDataTable(ds.Tables["OutstandingDocumentDeferredList"]));
+                if ((ds.Tables["StaffRoleProfileActivityReport"] != null)) {
+                    base.Tables.Add(new StaffRoleProfileActivityReportDataTable(ds.Tables["StaffRoleProfileActivityReport"]));
+                }
+                if ((ds.Tables["StaffPriviledgeChange"] != null)) {
+                    base.Tables.Add(new StaffPriviledgeChangeDataTable(ds.Tables["StaffPriviledgeChange"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -242,28 +260,34 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableDeferralWaiver = ((DeferralWaiverDataTable)(base.Tables["DeferralWaiver"]));
+            this.tableUserGroupChangeReport = ((UserGroupChangeReportDataTable)(base.Tables["UserGroupChangeReport"]));
             if ((initTable == true)) {
-                if ((this.tableDeferralWaiver != null)) {
-                    this.tableDeferralWaiver.InitVars();
+                if ((this.tableUserGroupChangeReport != null)) {
+                    this.tableUserGroupChangeReport.InitVars();
                 }
             }
-            this.tableconditions = ((conditionsDataTable)(base.Tables["conditions"]));
+            this.tableProfileActivityReport = ((ProfileActivityReportDataTable)(base.Tables["ProfileActivityReport"]));
             if ((initTable == true)) {
-                if ((this.tableconditions != null)) {
-                    this.tableconditions.InitVars();
+                if ((this.tableProfileActivityReport != null)) {
+                    this.tableProfileActivityReport.InitVars();
                 }
             }
-            this.tableapprovals = ((approvalsDataTable)(base.Tables["approvals"]));
+            this.tableStaffRoleProfileGroupReport = ((StaffRoleProfileGroupReportDataTable)(base.Tables["StaffRoleProfileGroupReport"]));
             if ((initTable == true)) {
-                if ((this.tableapprovals != null)) {
-                    this.tableapprovals.InitVars();
+                if ((this.tableStaffRoleProfileGroupReport != null)) {
+                    this.tableStaffRoleProfileGroupReport.InitVars();
                 }
             }
-            this.tableOutstandingDocumentDeferredList = ((OutstandingDocumentDeferredListDataTable)(base.Tables["OutstandingDocumentDeferredList"]));
+            this.tableStaffRoleProfileActivityReport = ((StaffRoleProfileActivityReportDataTable)(base.Tables["StaffRoleProfileActivityReport"]));
             if ((initTable == true)) {
-                if ((this.tableOutstandingDocumentDeferredList != null)) {
-                    this.tableOutstandingDocumentDeferredList.InitVars();
+                if ((this.tableStaffRoleProfileActivityReport != null)) {
+                    this.tableStaffRoleProfileActivityReport.InitVars();
+                }
+            }
+            this.tableStaffPriviledgeChange = ((StaffPriviledgeChangeDataTable)(base.Tables["StaffPriviledgeChange"]));
+            if ((initTable == true)) {
+                if ((this.tableStaffPriviledgeChange != null)) {
+                    this.tableStaffPriviledgeChange.InitVars();
                 }
             }
         }
@@ -271,42 +295,50 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "DeferralWaiver";
+            this.DataSetName = "StaffInfoDataSet";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/DeferralWaiver.xsd";
+            this.Namespace = "http://tempuri.org/StaffInfoDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableDeferralWaiver = new DeferralWaiverDataTable();
-            base.Tables.Add(this.tableDeferralWaiver);
-            this.tableconditions = new conditionsDataTable();
-            base.Tables.Add(this.tableconditions);
-            this.tableapprovals = new approvalsDataTable();
-            base.Tables.Add(this.tableapprovals);
-            this.tableOutstandingDocumentDeferredList = new OutstandingDocumentDeferredListDataTable();
-            base.Tables.Add(this.tableOutstandingDocumentDeferredList);
+            this.tableUserGroupChangeReport = new UserGroupChangeReportDataTable();
+            base.Tables.Add(this.tableUserGroupChangeReport);
+            this.tableProfileActivityReport = new ProfileActivityReportDataTable();
+            base.Tables.Add(this.tableProfileActivityReport);
+            this.tableStaffRoleProfileGroupReport = new StaffRoleProfileGroupReportDataTable();
+            base.Tables.Add(this.tableStaffRoleProfileGroupReport);
+            this.tableStaffRoleProfileActivityReport = new StaffRoleProfileActivityReportDataTable();
+            base.Tables.Add(this.tableStaffRoleProfileActivityReport);
+            this.tableStaffPriviledgeChange = new StaffPriviledgeChangeDataTable();
+            base.Tables.Add(this.tableStaffPriviledgeChange);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerialize_DeferralWaiver() {
+        private bool ShouldSerializeUserGroupChangeReport() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeconditions() {
+        private bool ShouldSerializeProfileActivityReport() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeapprovals() {
+        private bool ShouldSerializeStaffRoleProfileGroupReport() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeOutstandingDocumentDeferredList() {
+        private bool ShouldSerializeStaffRoleProfileActivityReport() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeStaffPriviledgeChange() {
             return false;
         }
         
@@ -321,7 +353,7 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            DeferralWaiver ds = new DeferralWaiver();
+            StaffInfoDataSet ds = new StaffInfoDataSet();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -366,46 +398,39 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void DeferralWaiverRowChangeEventHandler(object sender, DeferralWaiverRowChangeEvent e);
+        public delegate void UserGroupChangeReportRowChangeEventHandler(object sender, UserGroupChangeReportRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void conditionsRowChangeEventHandler(object sender, conditionsRowChangeEvent e);
+        public delegate void ProfileActivityReportRowChangeEventHandler(object sender, ProfileActivityReportRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void approvalsRowChangeEventHandler(object sender, approvalsRowChangeEvent e);
+        public delegate void StaffRoleProfileGroupReportRowChangeEventHandler(object sender, StaffRoleProfileGroupReportRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void OutstandingDocumentDeferredListRowChangeEventHandler(object sender, OutstandingDocumentDeferredListRowChangeEvent e);
+        public delegate void StaffRoleProfileActivityReportRowChangeEventHandler(object sender, StaffRoleProfileActivityReportRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void StaffPriviledgeChangeRowChangeEventHandler(object sender, StaffPriviledgeChangeRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DeferralWaiverDataTable : global::System.Data.TypedTableBase<DeferralWaiverRow> {
+        public partial class UserGroupChangeReportDataTable : global::System.Data.TypedTableBase<UserGroupChangeReportRow> {
             
-            private global::System.Data.DataColumn columncustomerName;
+            private global::System.Data.DataColumn columnUsername;
             
-            private global::System.Data.DataColumn columncurrentDate;
+            private global::System.Data.DataColumn columnGroupName;
             
-            private global::System.Data.DataColumn columnfacilityType;
+            private global::System.Data.DataColumn columnCreatedBy;
             
-            private global::System.Data.DataColumn columnbranchName;
-            
-            private global::System.Data.DataColumn columnapprovedAmount;
-            
-            private global::System.Data.DataColumn columnpreparedBy;
-            
-            private global::System.Data.DataColumn columnrelationshipOfficerName;
-            
-            private global::System.Data.DataColumn columnfromApprovalLevelName;
-            
-            private global::System.Data.DataColumn columnfromStaffName;
+            private global::System.Data.DataColumn columnDateTimeCreated;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DeferralWaiverDataTable() {
-                this.TableName = "DeferralWaiver";
+            public UserGroupChangeReportDataTable() {
+                this.TableName = "UserGroupChangeReport";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -413,7 +438,7 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal DeferralWaiverDataTable(global::System.Data.DataTable table) {
+            internal UserGroupChangeReportDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -430,80 +455,40 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected DeferralWaiverDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected UserGroupChangeReportDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn customerNameColumn {
+            public global::System.Data.DataColumn UsernameColumn {
                 get {
-                    return this.columncustomerName;
+                    return this.columnUsername;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn currentDateColumn {
+            public global::System.Data.DataColumn GroupNameColumn {
                 get {
-                    return this.columncurrentDate;
+                    return this.columnGroupName;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn facilityTypeColumn {
+            public global::System.Data.DataColumn CreatedByColumn {
                 get {
-                    return this.columnfacilityType;
+                    return this.columnCreatedBy;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn branchNameColumn {
+            public global::System.Data.DataColumn DateTimeCreatedColumn {
                 get {
-                    return this.columnbranchName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn approvedAmountColumn {
-                get {
-                    return this.columnapprovedAmount;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn preparedByColumn {
-                get {
-                    return this.columnpreparedBy;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn relationshipOfficerNameColumn {
-                get {
-                    return this.columnrelationshipOfficerName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn fromApprovalLevelNameColumn {
-                get {
-                    return this.columnfromApprovalLevelName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn fromStaffNameColumn {
-                get {
-                    return this.columnfromStaffName;
+                    return this.columnDateTimeCreated;
                 }
             }
             
@@ -518,53 +503,48 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DeferralWaiverRow this[int index] {
+            public UserGroupChangeReportRow this[int index] {
                 get {
-                    return ((DeferralWaiverRow)(this.Rows[index]));
+                    return ((UserGroupChangeReportRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event DeferralWaiverRowChangeEventHandler DeferralWaiverRowChanging;
+            public event UserGroupChangeReportRowChangeEventHandler UserGroupChangeReportRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event DeferralWaiverRowChangeEventHandler DeferralWaiverRowChanged;
+            public event UserGroupChangeReportRowChangeEventHandler UserGroupChangeReportRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event DeferralWaiverRowChangeEventHandler DeferralWaiverRowDeleting;
+            public event UserGroupChangeReportRowChangeEventHandler UserGroupChangeReportRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event DeferralWaiverRowChangeEventHandler DeferralWaiverRowDeleted;
+            public event UserGroupChangeReportRowChangeEventHandler UserGroupChangeReportRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddDeferralWaiverRow(DeferralWaiverRow row) {
+            public void AddUserGroupChangeReportRow(UserGroupChangeReportRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DeferralWaiverRow AddDeferralWaiverRow(string customerName, string currentDate, string facilityType, string branchName, string approvedAmount, string preparedBy, string relationshipOfficerName, string fromApprovalLevelName, string fromStaffName) {
-                DeferralWaiverRow rowDeferralWaiverRow = ((DeferralWaiverRow)(this.NewRow()));
+            public UserGroupChangeReportRow AddUserGroupChangeReportRow(string Username, string GroupName, string CreatedBy, string DateTimeCreated) {
+                UserGroupChangeReportRow rowUserGroupChangeReportRow = ((UserGroupChangeReportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        customerName,
-                        currentDate,
-                        facilityType,
-                        branchName,
-                        approvedAmount,
-                        preparedBy,
-                        relationshipOfficerName,
-                        fromApprovalLevelName,
-                        fromStaffName};
-                rowDeferralWaiverRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDeferralWaiverRow);
-                return rowDeferralWaiverRow;
+                        Username,
+                        GroupName,
+                        CreatedBy,
+                        DateTimeCreated};
+                rowUserGroupChangeReportRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowUserGroupChangeReportRow);
+                return rowUserGroupChangeReportRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                DeferralWaiverDataTable cln = ((DeferralWaiverDataTable)(base.Clone()));
+                UserGroupChangeReportDataTable cln = ((UserGroupChangeReportDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -572,72 +552,55 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new DeferralWaiverDataTable();
+                return new UserGroupChangeReportDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columncustomerName = base.Columns["customerName"];
-                this.columncurrentDate = base.Columns["currentDate"];
-                this.columnfacilityType = base.Columns["facilityType"];
-                this.columnbranchName = base.Columns["branchName"];
-                this.columnapprovedAmount = base.Columns["approvedAmount"];
-                this.columnpreparedBy = base.Columns["preparedBy"];
-                this.columnrelationshipOfficerName = base.Columns["relationshipOfficerName"];
-                this.columnfromApprovalLevelName = base.Columns["fromApprovalLevelName"];
-                this.columnfromStaffName = base.Columns["fromStaffName"];
+                this.columnUsername = base.Columns["Username"];
+                this.columnGroupName = base.Columns["GroupName"];
+                this.columnCreatedBy = base.Columns["CreatedBy"];
+                this.columnDateTimeCreated = base.Columns["DateTimeCreated"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columncustomerName = new global::System.Data.DataColumn("customerName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncustomerName);
-                this.columncurrentDate = new global::System.Data.DataColumn("currentDate", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncurrentDate);
-                this.columnfacilityType = new global::System.Data.DataColumn("facilityType", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfacilityType);
-                this.columnbranchName = new global::System.Data.DataColumn("branchName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnbranchName);
-                this.columnapprovedAmount = new global::System.Data.DataColumn("approvedAmount", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnapprovedAmount);
-                this.columnpreparedBy = new global::System.Data.DataColumn("preparedBy", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpreparedBy);
-                this.columnrelationshipOfficerName = new global::System.Data.DataColumn("relationshipOfficerName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnrelationshipOfficerName);
-                this.columnfromApprovalLevelName = new global::System.Data.DataColumn("fromApprovalLevelName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfromApprovalLevelName);
-                this.columnfromStaffName = new global::System.Data.DataColumn("fromStaffName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfromStaffName);
-                this.ExtendedProperties.Add("Generator_TablePropName", "_DeferralWaiver");
-                this.ExtendedProperties.Add("Generator_UserTableName", "DeferralWaiver");
+                this.columnUsername = new global::System.Data.DataColumn("Username", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsername);
+                this.columnGroupName = new global::System.Data.DataColumn("GroupName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGroupName);
+                this.columnCreatedBy = new global::System.Data.DataColumn("CreatedBy", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCreatedBy);
+                this.columnDateTimeCreated = new global::System.Data.DataColumn("DateTimeCreated", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateTimeCreated);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DeferralWaiverRow NewDeferralWaiverRow() {
-                return ((DeferralWaiverRow)(this.NewRow()));
+            public UserGroupChangeReportRow NewUserGroupChangeReportRow() {
+                return ((UserGroupChangeReportRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DeferralWaiverRow(builder);
+                return new UserGroupChangeReportRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(DeferralWaiverRow);
+                return typeof(UserGroupChangeReportRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.DeferralWaiverRowChanged != null)) {
-                    this.DeferralWaiverRowChanged(this, new DeferralWaiverRowChangeEvent(((DeferralWaiverRow)(e.Row)), e.Action));
+                if ((this.UserGroupChangeReportRowChanged != null)) {
+                    this.UserGroupChangeReportRowChanged(this, new UserGroupChangeReportRowChangeEvent(((UserGroupChangeReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -645,8 +608,8 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.DeferralWaiverRowChanging != null)) {
-                    this.DeferralWaiverRowChanging(this, new DeferralWaiverRowChangeEvent(((DeferralWaiverRow)(e.Row)), e.Action));
+                if ((this.UserGroupChangeReportRowChanging != null)) {
+                    this.UserGroupChangeReportRowChanging(this, new UserGroupChangeReportRowChangeEvent(((UserGroupChangeReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -654,8 +617,8 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.DeferralWaiverRowDeleted != null)) {
-                    this.DeferralWaiverRowDeleted(this, new DeferralWaiverRowChangeEvent(((DeferralWaiverRow)(e.Row)), e.Action));
+                if ((this.UserGroupChangeReportRowDeleted != null)) {
+                    this.UserGroupChangeReportRowDeleted(this, new UserGroupChangeReportRowChangeEvent(((UserGroupChangeReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -663,14 +626,14 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.DeferralWaiverRowDeleting != null)) {
-                    this.DeferralWaiverRowDeleting(this, new DeferralWaiverRowChangeEvent(((DeferralWaiverRow)(e.Row)), e.Action));
+                if ((this.UserGroupChangeReportRowDeleting != null)) {
+                    this.UserGroupChangeReportRowDeleting(this, new UserGroupChangeReportRowChangeEvent(((UserGroupChangeReportRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveDeferralWaiverRow(DeferralWaiverRow row) {
+            public void RemoveUserGroupChangeReportRow(UserGroupChangeReportRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -679,7 +642,7 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DeferralWaiver ds = new DeferralWaiver();
+                StaffInfoDataSet ds = new StaffInfoDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -697,7 +660,7 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DeferralWaiverDataTable";
+                attribute2.FixedValue = "UserGroupChangeReportDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -743,22 +706,20 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class conditionsDataTable : global::System.Data.TypedTableBase<conditionsRow> {
+        public partial class ProfileActivityReportDataTable : global::System.Data.TypedTableBase<ProfileActivityReportRow> {
             
-            private global::System.Data.DataColumn columncondition;
+            private global::System.Data.DataColumn columnActivityName;
             
-            private global::System.Data.DataColumn columnloanInformation;
+            private global::System.Data.DataColumn columnStaffRoleName;
             
-            private global::System.Data.DataColumn columnreason;
+            private global::System.Data.DataColumn columnCreatedBy;
             
-            private global::System.Data.DataColumn columncummulativeDays;
-            
-            private global::System.Data.DataColumn columndeferralDuration;
+            private global::System.Data.DataColumn columnDateTimeCreated;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public conditionsDataTable() {
-                this.TableName = "conditions";
+            public ProfileActivityReportDataTable() {
+                this.TableName = "ProfileActivityReport";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -766,7 +727,7 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal conditionsDataTable(global::System.Data.DataTable table) {
+            internal ProfileActivityReportDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -783,48 +744,40 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected conditionsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ProfileActivityReportDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn conditionColumn {
+            public global::System.Data.DataColumn ActivityNameColumn {
                 get {
-                    return this.columncondition;
+                    return this.columnActivityName;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn loanInformationColumn {
+            public global::System.Data.DataColumn StaffRoleNameColumn {
                 get {
-                    return this.columnloanInformation;
+                    return this.columnStaffRoleName;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn reasonColumn {
+            public global::System.Data.DataColumn CreatedByColumn {
                 get {
-                    return this.columnreason;
+                    return this.columnCreatedBy;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn cummulativeDaysColumn {
+            public global::System.Data.DataColumn DateTimeCreatedColumn {
                 get {
-                    return this.columncummulativeDays;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn deferralDurationColumn {
-                get {
-                    return this.columndeferralDuration;
+                    return this.columnDateTimeCreated;
                 }
             }
             
@@ -839,49 +792,48 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public conditionsRow this[int index] {
+            public ProfileActivityReportRow this[int index] {
                 get {
-                    return ((conditionsRow)(this.Rows[index]));
+                    return ((ProfileActivityReportRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event conditionsRowChangeEventHandler conditionsRowChanging;
+            public event ProfileActivityReportRowChangeEventHandler ProfileActivityReportRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event conditionsRowChangeEventHandler conditionsRowChanged;
+            public event ProfileActivityReportRowChangeEventHandler ProfileActivityReportRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event conditionsRowChangeEventHandler conditionsRowDeleting;
+            public event ProfileActivityReportRowChangeEventHandler ProfileActivityReportRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event conditionsRowChangeEventHandler conditionsRowDeleted;
+            public event ProfileActivityReportRowChangeEventHandler ProfileActivityReportRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddconditionsRow(conditionsRow row) {
+            public void AddProfileActivityReportRow(ProfileActivityReportRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public conditionsRow AddconditionsRow(string condition, string loanInformation, string reason, string cummulativeDays, string deferralDuration) {
-                conditionsRow rowconditionsRow = ((conditionsRow)(this.NewRow()));
+            public ProfileActivityReportRow AddProfileActivityReportRow(string ActivityName, string StaffRoleName, string CreatedBy, string DateTimeCreated) {
+                ProfileActivityReportRow rowProfileActivityReportRow = ((ProfileActivityReportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        condition,
-                        loanInformation,
-                        reason,
-                        cummulativeDays,
-                        deferralDuration};
-                rowconditionsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowconditionsRow);
-                return rowconditionsRow;
+                        ActivityName,
+                        StaffRoleName,
+                        CreatedBy,
+                        DateTimeCreated};
+                rowProfileActivityReportRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowProfileActivityReportRow);
+                return rowProfileActivityReportRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                conditionsDataTable cln = ((conditionsDataTable)(base.Clone()));
+                ProfileActivityReportDataTable cln = ((ProfileActivityReportDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -889,58 +841,55 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new conditionsDataTable();
+                return new ProfileActivityReportDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columncondition = base.Columns["condition"];
-                this.columnloanInformation = base.Columns["loanInformation"];
-                this.columnreason = base.Columns["reason"];
-                this.columncummulativeDays = base.Columns["cummulativeDays"];
-                this.columndeferralDuration = base.Columns["deferralDuration"];
+                this.columnActivityName = base.Columns["ActivityName"];
+                this.columnStaffRoleName = base.Columns["StaffRoleName"];
+                this.columnCreatedBy = base.Columns["CreatedBy"];
+                this.columnDateTimeCreated = base.Columns["DateTimeCreated"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columncondition = new global::System.Data.DataColumn("condition", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncondition);
-                this.columnloanInformation = new global::System.Data.DataColumn("loanInformation", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnloanInformation);
-                this.columnreason = new global::System.Data.DataColumn("reason", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnreason);
-                this.columncummulativeDays = new global::System.Data.DataColumn("cummulativeDays", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncummulativeDays);
-                this.columndeferralDuration = new global::System.Data.DataColumn("deferralDuration", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndeferralDuration);
+                this.columnActivityName = new global::System.Data.DataColumn("ActivityName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnActivityName);
+                this.columnStaffRoleName = new global::System.Data.DataColumn("StaffRoleName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStaffRoleName);
+                this.columnCreatedBy = new global::System.Data.DataColumn("CreatedBy", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCreatedBy);
+                this.columnDateTimeCreated = new global::System.Data.DataColumn("DateTimeCreated", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateTimeCreated);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public conditionsRow NewconditionsRow() {
-                return ((conditionsRow)(this.NewRow()));
+            public ProfileActivityReportRow NewProfileActivityReportRow() {
+                return ((ProfileActivityReportRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new conditionsRow(builder);
+                return new ProfileActivityReportRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(conditionsRow);
+                return typeof(ProfileActivityReportRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.conditionsRowChanged != null)) {
-                    this.conditionsRowChanged(this, new conditionsRowChangeEvent(((conditionsRow)(e.Row)), e.Action));
+                if ((this.ProfileActivityReportRowChanged != null)) {
+                    this.ProfileActivityReportRowChanged(this, new ProfileActivityReportRowChangeEvent(((ProfileActivityReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -948,8 +897,8 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.conditionsRowChanging != null)) {
-                    this.conditionsRowChanging(this, new conditionsRowChangeEvent(((conditionsRow)(e.Row)), e.Action));
+                if ((this.ProfileActivityReportRowChanging != null)) {
+                    this.ProfileActivityReportRowChanging(this, new ProfileActivityReportRowChangeEvent(((ProfileActivityReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -957,8 +906,8 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.conditionsRowDeleted != null)) {
-                    this.conditionsRowDeleted(this, new conditionsRowChangeEvent(((conditionsRow)(e.Row)), e.Action));
+                if ((this.ProfileActivityReportRowDeleted != null)) {
+                    this.ProfileActivityReportRowDeleted(this, new ProfileActivityReportRowChangeEvent(((ProfileActivityReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -966,14 +915,14 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.conditionsRowDeleting != null)) {
-                    this.conditionsRowDeleting(this, new conditionsRowChangeEvent(((conditionsRow)(e.Row)), e.Action));
+                if ((this.ProfileActivityReportRowDeleting != null)) {
+                    this.ProfileActivityReportRowDeleting(this, new ProfileActivityReportRowChangeEvent(((ProfileActivityReportRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveconditionsRow(conditionsRow row) {
+            public void RemoveProfileActivityReportRow(ProfileActivityReportRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -982,7 +931,7 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DeferralWaiver ds = new DeferralWaiver();
+                StaffInfoDataSet ds = new StaffInfoDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1000,7 +949,7 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "conditionsDataTable";
+                attribute2.FixedValue = "ProfileActivityReportDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1046,16 +995,20 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class approvalsDataTable : global::System.Data.TypedTableBase<approvalsRow> {
+        public partial class StaffRoleProfileGroupReportDataTable : global::System.Data.TypedTableBase<StaffRoleProfileGroupReportRow> {
             
-            private global::System.Data.DataColumn columnfromApprovalLevelName;
+            private global::System.Data.DataColumn columngroupName;
             
-            private global::System.Data.DataColumn columnfromStaffName;
+            private global::System.Data.DataColumn columnstaffRoleName;
+            
+            private global::System.Data.DataColumn columncreatedBy;
+            
+            private global::System.Data.DataColumn columndateTimeCreated;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public approvalsDataTable() {
-                this.TableName = "approvals";
+            public StaffRoleProfileGroupReportDataTable() {
+                this.TableName = "StaffRoleProfileGroupReport";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -1063,7 +1016,7 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal approvalsDataTable(global::System.Data.DataTable table) {
+            internal StaffRoleProfileGroupReportDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -1080,24 +1033,40 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected approvalsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected StaffRoleProfileGroupReportDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn fromApprovalLevelNameColumn {
+            public global::System.Data.DataColumn groupNameColumn {
                 get {
-                    return this.columnfromApprovalLevelName;
+                    return this.columngroupName;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn fromStaffNameColumn {
+            public global::System.Data.DataColumn staffRoleNameColumn {
                 get {
-                    return this.columnfromStaffName;
+                    return this.columnstaffRoleName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn createdByColumn {
+                get {
+                    return this.columncreatedBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn dateTimeCreatedColumn {
+                get {
+                    return this.columndateTimeCreated;
                 }
             }
             
@@ -1112,46 +1081,48 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public approvalsRow this[int index] {
+            public StaffRoleProfileGroupReportRow this[int index] {
                 get {
-                    return ((approvalsRow)(this.Rows[index]));
+                    return ((StaffRoleProfileGroupReportRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event approvalsRowChangeEventHandler approvalsRowChanging;
+            public event StaffRoleProfileGroupReportRowChangeEventHandler StaffRoleProfileGroupReportRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event approvalsRowChangeEventHandler approvalsRowChanged;
+            public event StaffRoleProfileGroupReportRowChangeEventHandler StaffRoleProfileGroupReportRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event approvalsRowChangeEventHandler approvalsRowDeleting;
+            public event StaffRoleProfileGroupReportRowChangeEventHandler StaffRoleProfileGroupReportRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event approvalsRowChangeEventHandler approvalsRowDeleted;
+            public event StaffRoleProfileGroupReportRowChangeEventHandler StaffRoleProfileGroupReportRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddapprovalsRow(approvalsRow row) {
+            public void AddStaffRoleProfileGroupReportRow(StaffRoleProfileGroupReportRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public approvalsRow AddapprovalsRow(string fromApprovalLevelName, string fromStaffName) {
-                approvalsRow rowapprovalsRow = ((approvalsRow)(this.NewRow()));
+            public StaffRoleProfileGroupReportRow AddStaffRoleProfileGroupReportRow(string groupName, string staffRoleName, string createdBy, string dateTimeCreated) {
+                StaffRoleProfileGroupReportRow rowStaffRoleProfileGroupReportRow = ((StaffRoleProfileGroupReportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        fromApprovalLevelName,
-                        fromStaffName};
-                rowapprovalsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowapprovalsRow);
-                return rowapprovalsRow;
+                        groupName,
+                        staffRoleName,
+                        createdBy,
+                        dateTimeCreated};
+                rowStaffRoleProfileGroupReportRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowStaffRoleProfileGroupReportRow);
+                return rowStaffRoleProfileGroupReportRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                approvalsDataTable cln = ((approvalsDataTable)(base.Clone()));
+                StaffRoleProfileGroupReportDataTable cln = ((StaffRoleProfileGroupReportDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1159,49 +1130,55 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new approvalsDataTable();
+                return new StaffRoleProfileGroupReportDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnfromApprovalLevelName = base.Columns["fromApprovalLevelName"];
-                this.columnfromStaffName = base.Columns["fromStaffName"];
+                this.columngroupName = base.Columns["groupName"];
+                this.columnstaffRoleName = base.Columns["staffRoleName"];
+                this.columncreatedBy = base.Columns["createdBy"];
+                this.columndateTimeCreated = base.Columns["dateTimeCreated"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnfromApprovalLevelName = new global::System.Data.DataColumn("fromApprovalLevelName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfromApprovalLevelName);
-                this.columnfromStaffName = new global::System.Data.DataColumn("fromStaffName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfromStaffName);
+                this.columngroupName = new global::System.Data.DataColumn("groupName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columngroupName);
+                this.columnstaffRoleName = new global::System.Data.DataColumn("staffRoleName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstaffRoleName);
+                this.columncreatedBy = new global::System.Data.DataColumn("createdBy", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncreatedBy);
+                this.columndateTimeCreated = new global::System.Data.DataColumn("dateTimeCreated", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndateTimeCreated);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public approvalsRow NewapprovalsRow() {
-                return ((approvalsRow)(this.NewRow()));
+            public StaffRoleProfileGroupReportRow NewStaffRoleProfileGroupReportRow() {
+                return ((StaffRoleProfileGroupReportRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new approvalsRow(builder);
+                return new StaffRoleProfileGroupReportRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(approvalsRow);
+                return typeof(StaffRoleProfileGroupReportRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.approvalsRowChanged != null)) {
-                    this.approvalsRowChanged(this, new approvalsRowChangeEvent(((approvalsRow)(e.Row)), e.Action));
+                if ((this.StaffRoleProfileGroupReportRowChanged != null)) {
+                    this.StaffRoleProfileGroupReportRowChanged(this, new StaffRoleProfileGroupReportRowChangeEvent(((StaffRoleProfileGroupReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1209,8 +1186,8 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.approvalsRowChanging != null)) {
-                    this.approvalsRowChanging(this, new approvalsRowChangeEvent(((approvalsRow)(e.Row)), e.Action));
+                if ((this.StaffRoleProfileGroupReportRowChanging != null)) {
+                    this.StaffRoleProfileGroupReportRowChanging(this, new StaffRoleProfileGroupReportRowChangeEvent(((StaffRoleProfileGroupReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1218,8 +1195,8 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.approvalsRowDeleted != null)) {
-                    this.approvalsRowDeleted(this, new approvalsRowChangeEvent(((approvalsRow)(e.Row)), e.Action));
+                if ((this.StaffRoleProfileGroupReportRowDeleted != null)) {
+                    this.StaffRoleProfileGroupReportRowDeleted(this, new StaffRoleProfileGroupReportRowChangeEvent(((StaffRoleProfileGroupReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1227,14 +1204,14 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.approvalsRowDeleting != null)) {
-                    this.approvalsRowDeleting(this, new approvalsRowChangeEvent(((approvalsRow)(e.Row)), e.Action));
+                if ((this.StaffRoleProfileGroupReportRowDeleting != null)) {
+                    this.StaffRoleProfileGroupReportRowDeleting(this, new StaffRoleProfileGroupReportRowChangeEvent(((StaffRoleProfileGroupReportRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveapprovalsRow(approvalsRow row) {
+            public void RemoveStaffRoleProfileGroupReportRow(StaffRoleProfileGroupReportRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1243,7 +1220,7 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DeferralWaiver ds = new DeferralWaiver();
+                StaffInfoDataSet ds = new StaffInfoDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1261,7 +1238,7 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "approvalsDataTable";
+                attribute2.FixedValue = "StaffRoleProfileGroupReportDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1307,34 +1284,20 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class OutstandingDocumentDeferredListDataTable : global::System.Data.TypedTableBase<OutstandingDocumentDeferredListRow> {
+        public partial class StaffRoleProfileActivityReportDataTable : global::System.Data.TypedTableBase<StaffRoleProfileActivityReportRow> {
             
-            private global::System.Data.DataColumn columncustomerCode;
+            private global::System.Data.DataColumn columnactivityName;
             
-            private global::System.Data.DataColumn columncustomerName;
+            private global::System.Data.DataColumn columnstaffRoleName;
             
-            private global::System.Data.DataColumn columnfacilityType;
+            private global::System.Data.DataColumn columncreatedBy;
             
-            private global::System.Data.DataColumn columnfacilityAmount;
-            
-            private global::System.Data.DataColumn columnnumberOfDays;
-            
-            private global::System.Data.DataColumn columnaccountOfficerName;
-            
-            private global::System.Data.DataColumn columnrelationshipManager;
-            
-            private global::System.Data.DataColumn columngroupHead;
-            
-            private global::System.Data.DataColumn columnsbu;
-            
-            private global::System.Data.DataColumn columnreference;
-            
-            private global::System.Data.DataColumn columncondition;
+            private global::System.Data.DataColumn columndateTimeCreated;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OutstandingDocumentDeferredListDataTable() {
-                this.TableName = "OutstandingDocumentDeferredList";
+            public StaffRoleProfileActivityReportDataTable() {
+                this.TableName = "StaffRoleProfileActivityReport";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -1342,7 +1305,7 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal OutstandingDocumentDeferredListDataTable(global::System.Data.DataTable table) {
+            internal StaffRoleProfileActivityReportDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -1359,96 +1322,40 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected OutstandingDocumentDeferredListDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected StaffRoleProfileActivityReportDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn customerCodeColumn {
+            public global::System.Data.DataColumn activityNameColumn {
                 get {
-                    return this.columncustomerCode;
+                    return this.columnactivityName;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn customerNameColumn {
+            public global::System.Data.DataColumn staffRoleNameColumn {
                 get {
-                    return this.columncustomerName;
+                    return this.columnstaffRoleName;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn facilityTypeColumn {
+            public global::System.Data.DataColumn createdByColumn {
                 get {
-                    return this.columnfacilityType;
+                    return this.columncreatedBy;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn facilityAmountColumn {
+            public global::System.Data.DataColumn dateTimeCreatedColumn {
                 get {
-                    return this.columnfacilityAmount;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn numberOfDaysColumn {
-                get {
-                    return this.columnnumberOfDays;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn accountOfficerNameColumn {
-                get {
-                    return this.columnaccountOfficerName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn relationshipManagerColumn {
-                get {
-                    return this.columnrelationshipManager;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn groupHeadColumn {
-                get {
-                    return this.columngroupHead;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn sbuColumn {
-                get {
-                    return this.columnsbu;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn referenceColumn {
-                get {
-                    return this.columnreference;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn conditionColumn {
-                get {
-                    return this.columncondition;
+                    return this.columndateTimeCreated;
                 }
             }
             
@@ -1463,55 +1370,48 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OutstandingDocumentDeferredListRow this[int index] {
+            public StaffRoleProfileActivityReportRow this[int index] {
                 get {
-                    return ((OutstandingDocumentDeferredListRow)(this.Rows[index]));
+                    return ((StaffRoleProfileActivityReportRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event OutstandingDocumentDeferredListRowChangeEventHandler OutstandingDocumentDeferredListRowChanging;
+            public event StaffRoleProfileActivityReportRowChangeEventHandler StaffRoleProfileActivityReportRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event OutstandingDocumentDeferredListRowChangeEventHandler OutstandingDocumentDeferredListRowChanged;
+            public event StaffRoleProfileActivityReportRowChangeEventHandler StaffRoleProfileActivityReportRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event OutstandingDocumentDeferredListRowChangeEventHandler OutstandingDocumentDeferredListRowDeleting;
+            public event StaffRoleProfileActivityReportRowChangeEventHandler StaffRoleProfileActivityReportRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event OutstandingDocumentDeferredListRowChangeEventHandler OutstandingDocumentDeferredListRowDeleted;
+            public event StaffRoleProfileActivityReportRowChangeEventHandler StaffRoleProfileActivityReportRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddOutstandingDocumentDeferredListRow(OutstandingDocumentDeferredListRow row) {
+            public void AddStaffRoleProfileActivityReportRow(StaffRoleProfileActivityReportRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OutstandingDocumentDeferredListRow AddOutstandingDocumentDeferredListRow(string customerCode, string customerName, string facilityType, string facilityAmount, string numberOfDays, string accountOfficerName, string relationshipManager, string groupHead, string sbu, string reference, string condition) {
-                OutstandingDocumentDeferredListRow rowOutstandingDocumentDeferredListRow = ((OutstandingDocumentDeferredListRow)(this.NewRow()));
+            public StaffRoleProfileActivityReportRow AddStaffRoleProfileActivityReportRow(string activityName, string staffRoleName, string createdBy, string dateTimeCreated) {
+                StaffRoleProfileActivityReportRow rowStaffRoleProfileActivityReportRow = ((StaffRoleProfileActivityReportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        customerCode,
-                        customerName,
-                        facilityType,
-                        facilityAmount,
-                        numberOfDays,
-                        accountOfficerName,
-                        relationshipManager,
-                        groupHead,
-                        sbu,
-                        reference,
-                        condition};
-                rowOutstandingDocumentDeferredListRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowOutstandingDocumentDeferredListRow);
-                return rowOutstandingDocumentDeferredListRow;
+                        activityName,
+                        staffRoleName,
+                        createdBy,
+                        dateTimeCreated};
+                rowStaffRoleProfileActivityReportRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowStaffRoleProfileActivityReportRow);
+                return rowStaffRoleProfileActivityReportRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                OutstandingDocumentDeferredListDataTable cln = ((OutstandingDocumentDeferredListDataTable)(base.Clone()));
+                StaffRoleProfileActivityReportDataTable cln = ((StaffRoleProfileActivityReportDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1519,76 +1419,55 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new OutstandingDocumentDeferredListDataTable();
+                return new StaffRoleProfileActivityReportDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columncustomerCode = base.Columns["customerCode"];
-                this.columncustomerName = base.Columns["customerName"];
-                this.columnfacilityType = base.Columns["facilityType"];
-                this.columnfacilityAmount = base.Columns["facilityAmount"];
-                this.columnnumberOfDays = base.Columns["numberOfDays"];
-                this.columnaccountOfficerName = base.Columns["accountOfficerName"];
-                this.columnrelationshipManager = base.Columns["relationshipManager"];
-                this.columngroupHead = base.Columns["groupHead"];
-                this.columnsbu = base.Columns["sbu"];
-                this.columnreference = base.Columns["reference"];
-                this.columncondition = base.Columns["condition"];
+                this.columnactivityName = base.Columns["activityName"];
+                this.columnstaffRoleName = base.Columns["staffRoleName"];
+                this.columncreatedBy = base.Columns["createdBy"];
+                this.columndateTimeCreated = base.Columns["dateTimeCreated"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columncustomerCode = new global::System.Data.DataColumn("customerCode", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncustomerCode);
-                this.columncustomerName = new global::System.Data.DataColumn("customerName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncustomerName);
-                this.columnfacilityType = new global::System.Data.DataColumn("facilityType", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfacilityType);
-                this.columnfacilityAmount = new global::System.Data.DataColumn("facilityAmount", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfacilityAmount);
-                this.columnnumberOfDays = new global::System.Data.DataColumn("numberOfDays", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnumberOfDays);
-                this.columnaccountOfficerName = new global::System.Data.DataColumn("accountOfficerName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnaccountOfficerName);
-                this.columnrelationshipManager = new global::System.Data.DataColumn("relationshipManager", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnrelationshipManager);
-                this.columngroupHead = new global::System.Data.DataColumn("groupHead", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columngroupHead);
-                this.columnsbu = new global::System.Data.DataColumn("sbu", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnsbu);
-                this.columnreference = new global::System.Data.DataColumn("reference", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnreference);
-                this.columncondition = new global::System.Data.DataColumn("condition", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncondition);
+                this.columnactivityName = new global::System.Data.DataColumn("activityName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnactivityName);
+                this.columnstaffRoleName = new global::System.Data.DataColumn("staffRoleName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstaffRoleName);
+                this.columncreatedBy = new global::System.Data.DataColumn("createdBy", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncreatedBy);
+                this.columndateTimeCreated = new global::System.Data.DataColumn("dateTimeCreated", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndateTimeCreated);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OutstandingDocumentDeferredListRow NewOutstandingDocumentDeferredListRow() {
-                return ((OutstandingDocumentDeferredListRow)(this.NewRow()));
+            public StaffRoleProfileActivityReportRow NewStaffRoleProfileActivityReportRow() {
+                return ((StaffRoleProfileActivityReportRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new OutstandingDocumentDeferredListRow(builder);
+                return new StaffRoleProfileActivityReportRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(OutstandingDocumentDeferredListRow);
+                return typeof(StaffRoleProfileActivityReportRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.OutstandingDocumentDeferredListRowChanged != null)) {
-                    this.OutstandingDocumentDeferredListRowChanged(this, new OutstandingDocumentDeferredListRowChangeEvent(((OutstandingDocumentDeferredListRow)(e.Row)), e.Action));
+                if ((this.StaffRoleProfileActivityReportRowChanged != null)) {
+                    this.StaffRoleProfileActivityReportRowChanged(this, new StaffRoleProfileActivityReportRowChangeEvent(((StaffRoleProfileActivityReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1596,8 +1475,8 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.OutstandingDocumentDeferredListRowChanging != null)) {
-                    this.OutstandingDocumentDeferredListRowChanging(this, new OutstandingDocumentDeferredListRowChangeEvent(((OutstandingDocumentDeferredListRow)(e.Row)), e.Action));
+                if ((this.StaffRoleProfileActivityReportRowChanging != null)) {
+                    this.StaffRoleProfileActivityReportRowChanging(this, new StaffRoleProfileActivityReportRowChangeEvent(((StaffRoleProfileActivityReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1605,8 +1484,8 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.OutstandingDocumentDeferredListRowDeleted != null)) {
-                    this.OutstandingDocumentDeferredListRowDeleted(this, new OutstandingDocumentDeferredListRowChangeEvent(((OutstandingDocumentDeferredListRow)(e.Row)), e.Action));
+                if ((this.StaffRoleProfileActivityReportRowDeleted != null)) {
+                    this.StaffRoleProfileActivityReportRowDeleted(this, new StaffRoleProfileActivityReportRowChangeEvent(((StaffRoleProfileActivityReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1614,14 +1493,14 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.OutstandingDocumentDeferredListRowDeleting != null)) {
-                    this.OutstandingDocumentDeferredListRowDeleting(this, new OutstandingDocumentDeferredListRowChangeEvent(((OutstandingDocumentDeferredListRow)(e.Row)), e.Action));
+                if ((this.StaffRoleProfileActivityReportRowDeleting != null)) {
+                    this.StaffRoleProfileActivityReportRowDeleting(this, new StaffRoleProfileActivityReportRowChangeEvent(((StaffRoleProfileActivityReportRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveOutstandingDocumentDeferredListRow(OutstandingDocumentDeferredListRow row) {
+            public void RemoveStaffRoleProfileActivityReportRow(StaffRoleProfileActivityReportRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1630,7 +1509,7 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DeferralWaiver ds = new DeferralWaiver();
+                StaffInfoDataSet ds = new StaffInfoDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1648,7 +1527,338 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "OutstandingDocumentDeferredListDataTable";
+                attribute2.FixedValue = "StaffRoleProfileActivityReportDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class StaffPriviledgeChangeDataTable : global::System.Data.TypedTableBase<StaffPriviledgeChangeRow> {
+            
+            private global::System.Data.DataColumn columnstaffFullName;
+            
+            private global::System.Data.DataColumn columnstaffCreatedByName;
+            
+            private global::System.Data.DataColumn columnstaffCreatedByCode;
+            
+            private global::System.Data.DataColumn columndateTimeCreated;
+            
+            private global::System.Data.DataColumn columntempStaffCode;
+            
+            private global::System.Data.DataColumn columnpreviousStaffRoleName;
+            
+            private global::System.Data.DataColumn columncurrentStaffRoleName;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public StaffPriviledgeChangeDataTable() {
+                this.TableName = "StaffPriviledgeChange";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal StaffPriviledgeChangeDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected StaffPriviledgeChangeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn staffFullNameColumn {
+                get {
+                    return this.columnstaffFullName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn staffCreatedByNameColumn {
+                get {
+                    return this.columnstaffCreatedByName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn staffCreatedByCodeColumn {
+                get {
+                    return this.columnstaffCreatedByCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn dateTimeCreatedColumn {
+                get {
+                    return this.columndateTimeCreated;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn tempStaffCodeColumn {
+                get {
+                    return this.columntempStaffCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn previousStaffRoleNameColumn {
+                get {
+                    return this.columnpreviousStaffRoleName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn currentStaffRoleNameColumn {
+                get {
+                    return this.columncurrentStaffRoleName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public StaffPriviledgeChangeRow this[int index] {
+                get {
+                    return ((StaffPriviledgeChangeRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event StaffPriviledgeChangeRowChangeEventHandler StaffPriviledgeChangeRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event StaffPriviledgeChangeRowChangeEventHandler StaffPriviledgeChangeRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event StaffPriviledgeChangeRowChangeEventHandler StaffPriviledgeChangeRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event StaffPriviledgeChangeRowChangeEventHandler StaffPriviledgeChangeRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddStaffPriviledgeChangeRow(StaffPriviledgeChangeRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public StaffPriviledgeChangeRow AddStaffPriviledgeChangeRow(string staffFullName, string staffCreatedByName, string staffCreatedByCode, string dateTimeCreated, string tempStaffCode, string previousStaffRoleName, string currentStaffRoleName) {
+                StaffPriviledgeChangeRow rowStaffPriviledgeChangeRow = ((StaffPriviledgeChangeRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        staffFullName,
+                        staffCreatedByName,
+                        staffCreatedByCode,
+                        dateTimeCreated,
+                        tempStaffCode,
+                        previousStaffRoleName,
+                        currentStaffRoleName};
+                rowStaffPriviledgeChangeRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowStaffPriviledgeChangeRow);
+                return rowStaffPriviledgeChangeRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                StaffPriviledgeChangeDataTable cln = ((StaffPriviledgeChangeDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new StaffPriviledgeChangeDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnstaffFullName = base.Columns["staffFullName"];
+                this.columnstaffCreatedByName = base.Columns["staffCreatedByName"];
+                this.columnstaffCreatedByCode = base.Columns["staffCreatedByCode"];
+                this.columndateTimeCreated = base.Columns["dateTimeCreated"];
+                this.columntempStaffCode = base.Columns["tempStaffCode"];
+                this.columnpreviousStaffRoleName = base.Columns["previousStaffRoleName"];
+                this.columncurrentStaffRoleName = base.Columns["currentStaffRoleName"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnstaffFullName = new global::System.Data.DataColumn("staffFullName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstaffFullName);
+                this.columnstaffCreatedByName = new global::System.Data.DataColumn("staffCreatedByName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstaffCreatedByName);
+                this.columnstaffCreatedByCode = new global::System.Data.DataColumn("staffCreatedByCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstaffCreatedByCode);
+                this.columndateTimeCreated = new global::System.Data.DataColumn("dateTimeCreated", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndateTimeCreated);
+                this.columntempStaffCode = new global::System.Data.DataColumn("tempStaffCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntempStaffCode);
+                this.columnpreviousStaffRoleName = new global::System.Data.DataColumn("previousStaffRoleName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpreviousStaffRoleName);
+                this.columncurrentStaffRoleName = new global::System.Data.DataColumn("currentStaffRoleName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncurrentStaffRoleName);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public StaffPriviledgeChangeRow NewStaffPriviledgeChangeRow() {
+                return ((StaffPriviledgeChangeRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new StaffPriviledgeChangeRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(StaffPriviledgeChangeRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.StaffPriviledgeChangeRowChanged != null)) {
+                    this.StaffPriviledgeChangeRowChanged(this, new StaffPriviledgeChangeRowChangeEvent(((StaffPriviledgeChangeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.StaffPriviledgeChangeRowChanging != null)) {
+                    this.StaffPriviledgeChangeRowChanging(this, new StaffPriviledgeChangeRowChangeEvent(((StaffPriviledgeChangeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.StaffPriviledgeChangeRowDeleted != null)) {
+                    this.StaffPriviledgeChangeRowDeleted(this, new StaffPriviledgeChangeRowChangeEvent(((StaffPriviledgeChangeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.StaffPriviledgeChangeRowDeleting != null)) {
+                    this.StaffPriviledgeChangeRowDeleting(this, new StaffPriviledgeChangeRowChangeEvent(((StaffPriviledgeChangeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveStaffPriviledgeChangeRow(StaffPriviledgeChangeRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                StaffInfoDataSet ds = new StaffInfoDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "StaffPriviledgeChangeDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1692,828 +1902,734 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class DeferralWaiverRow : global::System.Data.DataRow {
+        public partial class UserGroupChangeReportRow : global::System.Data.DataRow {
             
-            private DeferralWaiverDataTable tableDeferralWaiver;
+            private UserGroupChangeReportDataTable tableUserGroupChangeReport;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal DeferralWaiverRow(global::System.Data.DataRowBuilder rb) : 
+            internal UserGroupChangeReportRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableDeferralWaiver = ((DeferralWaiverDataTable)(this.Table));
+                this.tableUserGroupChangeReport = ((UserGroupChangeReportDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string customerName {
+            public string Username {
                 get {
                     try {
-                        return ((string)(this[this.tableDeferralWaiver.customerNameColumn]));
+                        return ((string)(this[this.tableUserGroupChangeReport.UsernameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'customerName\' in table \'DeferralWaiver\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Username\' in table \'UserGroupChangeReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDeferralWaiver.customerNameColumn] = value;
+                    this[this.tableUserGroupChangeReport.UsernameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string currentDate {
+            public string GroupName {
                 get {
                     try {
-                        return ((string)(this[this.tableDeferralWaiver.currentDateColumn]));
+                        return ((string)(this[this.tableUserGroupChangeReport.GroupNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'currentDate\' in table \'DeferralWaiver\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'GroupName\' in table \'UserGroupChangeReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDeferralWaiver.currentDateColumn] = value;
+                    this[this.tableUserGroupChangeReport.GroupNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string facilityType {
+            public string CreatedBy {
                 get {
                     try {
-                        return ((string)(this[this.tableDeferralWaiver.facilityTypeColumn]));
+                        return ((string)(this[this.tableUserGroupChangeReport.CreatedByColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'facilityType\' in table \'DeferralWaiver\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CreatedBy\' in table \'UserGroupChangeReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDeferralWaiver.facilityTypeColumn] = value;
+                    this[this.tableUserGroupChangeReport.CreatedByColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string branchName {
+            public string DateTimeCreated {
                 get {
                     try {
-                        return ((string)(this[this.tableDeferralWaiver.branchNameColumn]));
+                        return ((string)(this[this.tableUserGroupChangeReport.DateTimeCreatedColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'branchName\' in table \'DeferralWaiver\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'DateTimeCreated\' in table \'UserGroupChangeReport\' is DBNull" +
+                                ".", e);
                     }
                 }
                 set {
-                    this[this.tableDeferralWaiver.branchNameColumn] = value;
+                    this[this.tableUserGroupChangeReport.DateTimeCreatedColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string approvedAmount {
-                get {
-                    try {
-                        return ((string)(this[this.tableDeferralWaiver.approvedAmountColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'approvedAmount\' in table \'DeferralWaiver\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDeferralWaiver.approvedAmountColumn] = value;
-                }
+            public bool IsUsernameNull() {
+                return this.IsNull(this.tableUserGroupChangeReport.UsernameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string preparedBy {
-                get {
-                    try {
-                        return ((string)(this[this.tableDeferralWaiver.preparedByColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'preparedBy\' in table \'DeferralWaiver\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDeferralWaiver.preparedByColumn] = value;
-                }
+            public void SetUsernameNull() {
+                this[this.tableUserGroupChangeReport.UsernameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string relationshipOfficerName {
-                get {
-                    try {
-                        return ((string)(this[this.tableDeferralWaiver.relationshipOfficerNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'relationshipOfficerName\' in table \'DeferralWaiver\' is DBNul" +
-                                "l.", e);
-                    }
-                }
-                set {
-                    this[this.tableDeferralWaiver.relationshipOfficerNameColumn] = value;
-                }
+            public bool IsGroupNameNull() {
+                return this.IsNull(this.tableUserGroupChangeReport.GroupNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string fromApprovalLevelName {
-                get {
-                    try {
-                        return ((string)(this[this.tableDeferralWaiver.fromApprovalLevelNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fromApprovalLevelName\' in table \'DeferralWaiver\' is DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tableDeferralWaiver.fromApprovalLevelNameColumn] = value;
-                }
+            public void SetGroupNameNull() {
+                this[this.tableUserGroupChangeReport.GroupNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string fromStaffName {
-                get {
-                    try {
-                        return ((string)(this[this.tableDeferralWaiver.fromStaffNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fromStaffName\' in table \'DeferralWaiver\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDeferralWaiver.fromStaffNameColumn] = value;
-                }
+            public bool IsCreatedByNull() {
+                return this.IsNull(this.tableUserGroupChangeReport.CreatedByColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IscustomerNameNull() {
-                return this.IsNull(this.tableDeferralWaiver.customerNameColumn);
+            public void SetCreatedByNull() {
+                this[this.tableUserGroupChangeReport.CreatedByColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetcustomerNameNull() {
-                this[this.tableDeferralWaiver.customerNameColumn] = global::System.Convert.DBNull;
+            public bool IsDateTimeCreatedNull() {
+                return this.IsNull(this.tableUserGroupChangeReport.DateTimeCreatedColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IscurrentDateNull() {
-                return this.IsNull(this.tableDeferralWaiver.currentDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetcurrentDateNull() {
-                this[this.tableDeferralWaiver.currentDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsfacilityTypeNull() {
-                return this.IsNull(this.tableDeferralWaiver.facilityTypeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetfacilityTypeNull() {
-                this[this.tableDeferralWaiver.facilityTypeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsbranchNameNull() {
-                return this.IsNull(this.tableDeferralWaiver.branchNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetbranchNameNull() {
-                this[this.tableDeferralWaiver.branchNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsapprovedAmountNull() {
-                return this.IsNull(this.tableDeferralWaiver.approvedAmountColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetapprovedAmountNull() {
-                this[this.tableDeferralWaiver.approvedAmountColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IspreparedByNull() {
-                return this.IsNull(this.tableDeferralWaiver.preparedByColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetpreparedByNull() {
-                this[this.tableDeferralWaiver.preparedByColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsrelationshipOfficerNameNull() {
-                return this.IsNull(this.tableDeferralWaiver.relationshipOfficerNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetrelationshipOfficerNameNull() {
-                this[this.tableDeferralWaiver.relationshipOfficerNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsfromApprovalLevelNameNull() {
-                return this.IsNull(this.tableDeferralWaiver.fromApprovalLevelNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetfromApprovalLevelNameNull() {
-                this[this.tableDeferralWaiver.fromApprovalLevelNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsfromStaffNameNull() {
-                return this.IsNull(this.tableDeferralWaiver.fromStaffNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetfromStaffNameNull() {
-                this[this.tableDeferralWaiver.fromStaffNameColumn] = global::System.Convert.DBNull;
+            public void SetDateTimeCreatedNull() {
+                this[this.tableUserGroupChangeReport.DateTimeCreatedColumn] = global::System.Convert.DBNull;
             }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class conditionsRow : global::System.Data.DataRow {
+        public partial class ProfileActivityReportRow : global::System.Data.DataRow {
             
-            private conditionsDataTable tableconditions;
+            private ProfileActivityReportDataTable tableProfileActivityReport;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal conditionsRow(global::System.Data.DataRowBuilder rb) : 
+            internal ProfileActivityReportRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableconditions = ((conditionsDataTable)(this.Table));
+                this.tableProfileActivityReport = ((ProfileActivityReportDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string condition {
+            public string ActivityName {
                 get {
                     try {
-                        return ((string)(this[this.tableconditions.conditionColumn]));
+                        return ((string)(this[this.tableProfileActivityReport.ActivityNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'condition\' in table \'conditions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ActivityName\' in table \'ProfileActivityReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableconditions.conditionColumn] = value;
+                    this[this.tableProfileActivityReport.ActivityNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string loanInformation {
+            public string StaffRoleName {
                 get {
                     try {
-                        return ((string)(this[this.tableconditions.loanInformationColumn]));
+                        return ((string)(this[this.tableProfileActivityReport.StaffRoleNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'loanInformation\' in table \'conditions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'StaffRoleName\' in table \'ProfileActivityReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableconditions.loanInformationColumn] = value;
+                    this[this.tableProfileActivityReport.StaffRoleNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string reason {
+            public string CreatedBy {
                 get {
                     try {
-                        return ((string)(this[this.tableconditions.reasonColumn]));
+                        return ((string)(this[this.tableProfileActivityReport.CreatedByColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'reason\' in table \'conditions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CreatedBy\' in table \'ProfileActivityReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableconditions.reasonColumn] = value;
+                    this[this.tableProfileActivityReport.CreatedByColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string cummulativeDays {
+            public string DateTimeCreated {
                 get {
                     try {
-                        return ((string)(this[this.tableconditions.cummulativeDaysColumn]));
+                        return ((string)(this[this.tableProfileActivityReport.DateTimeCreatedColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'cummulativeDays\' in table \'conditions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'DateTimeCreated\' in table \'ProfileActivityReport\' is DBNull" +
+                                ".", e);
                     }
                 }
                 set {
-                    this[this.tableconditions.cummulativeDaysColumn] = value;
+                    this[this.tableProfileActivityReport.DateTimeCreatedColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string deferralDuration {
-                get {
-                    try {
-                        return ((string)(this[this.tableconditions.deferralDurationColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'deferralDuration\' in table \'conditions\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableconditions.deferralDurationColumn] = value;
-                }
+            public bool IsActivityNameNull() {
+                return this.IsNull(this.tableProfileActivityReport.ActivityNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsconditionNull() {
-                return this.IsNull(this.tableconditions.conditionColumn);
+            public void SetActivityNameNull() {
+                this[this.tableProfileActivityReport.ActivityNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetconditionNull() {
-                this[this.tableconditions.conditionColumn] = global::System.Convert.DBNull;
+            public bool IsStaffRoleNameNull() {
+                return this.IsNull(this.tableProfileActivityReport.StaffRoleNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsloanInformationNull() {
-                return this.IsNull(this.tableconditions.loanInformationColumn);
+            public void SetStaffRoleNameNull() {
+                this[this.tableProfileActivityReport.StaffRoleNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetloanInformationNull() {
-                this[this.tableconditions.loanInformationColumn] = global::System.Convert.DBNull;
+            public bool IsCreatedByNull() {
+                return this.IsNull(this.tableProfileActivityReport.CreatedByColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsreasonNull() {
-                return this.IsNull(this.tableconditions.reasonColumn);
+            public void SetCreatedByNull() {
+                this[this.tableProfileActivityReport.CreatedByColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetreasonNull() {
-                this[this.tableconditions.reasonColumn] = global::System.Convert.DBNull;
+            public bool IsDateTimeCreatedNull() {
+                return this.IsNull(this.tableProfileActivityReport.DateTimeCreatedColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IscummulativeDaysNull() {
-                return this.IsNull(this.tableconditions.cummulativeDaysColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetcummulativeDaysNull() {
-                this[this.tableconditions.cummulativeDaysColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsdeferralDurationNull() {
-                return this.IsNull(this.tableconditions.deferralDurationColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetdeferralDurationNull() {
-                this[this.tableconditions.deferralDurationColumn] = global::System.Convert.DBNull;
+            public void SetDateTimeCreatedNull() {
+                this[this.tableProfileActivityReport.DateTimeCreatedColumn] = global::System.Convert.DBNull;
             }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class approvalsRow : global::System.Data.DataRow {
+        public partial class StaffRoleProfileGroupReportRow : global::System.Data.DataRow {
             
-            private approvalsDataTable tableapprovals;
+            private StaffRoleProfileGroupReportDataTable tableStaffRoleProfileGroupReport;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal approvalsRow(global::System.Data.DataRowBuilder rb) : 
+            internal StaffRoleProfileGroupReportRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableapprovals = ((approvalsDataTable)(this.Table));
+                this.tableStaffRoleProfileGroupReport = ((StaffRoleProfileGroupReportDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string fromApprovalLevelName {
+            public string groupName {
                 get {
                     try {
-                        return ((string)(this[this.tableapprovals.fromApprovalLevelNameColumn]));
+                        return ((string)(this[this.tableStaffRoleProfileGroupReport.groupNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fromApprovalLevelName\' in table \'approvals\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'groupName\' in table \'StaffRoleProfileGroupReport\' is DBNull" +
+                                ".", e);
                     }
                 }
                 set {
-                    this[this.tableapprovals.fromApprovalLevelNameColumn] = value;
+                    this[this.tableStaffRoleProfileGroupReport.groupNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string fromStaffName {
+            public string staffRoleName {
                 get {
                     try {
-                        return ((string)(this[this.tableapprovals.fromStaffNameColumn]));
+                        return ((string)(this[this.tableStaffRoleProfileGroupReport.staffRoleNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fromStaffName\' in table \'approvals\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'staffRoleName\' in table \'StaffRoleProfileGroupReport\' is DB" +
+                                "Null.", e);
                     }
                 }
                 set {
-                    this[this.tableapprovals.fromStaffNameColumn] = value;
+                    this[this.tableStaffRoleProfileGroupReport.staffRoleNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsfromApprovalLevelNameNull() {
-                return this.IsNull(this.tableapprovals.fromApprovalLevelNameColumn);
+            public string createdBy {
+                get {
+                    try {
+                        return ((string)(this[this.tableStaffRoleProfileGroupReport.createdByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'createdBy\' in table \'StaffRoleProfileGroupReport\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableStaffRoleProfileGroupReport.createdByColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetfromApprovalLevelNameNull() {
-                this[this.tableapprovals.fromApprovalLevelNameColumn] = global::System.Convert.DBNull;
+            public string dateTimeCreated {
+                get {
+                    try {
+                        return ((string)(this[this.tableStaffRoleProfileGroupReport.dateTimeCreatedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dateTimeCreated\' in table \'StaffRoleProfileGroupReport\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStaffRoleProfileGroupReport.dateTimeCreatedColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsfromStaffNameNull() {
-                return this.IsNull(this.tableapprovals.fromStaffNameColumn);
+            public bool IsgroupNameNull() {
+                return this.IsNull(this.tableStaffRoleProfileGroupReport.groupNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetfromStaffNameNull() {
-                this[this.tableapprovals.fromStaffNameColumn] = global::System.Convert.DBNull;
+            public void SetgroupNameNull() {
+                this[this.tableStaffRoleProfileGroupReport.groupNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsstaffRoleNameNull() {
+                return this.IsNull(this.tableStaffRoleProfileGroupReport.staffRoleNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetstaffRoleNameNull() {
+                this[this.tableStaffRoleProfileGroupReport.staffRoleNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IscreatedByNull() {
+                return this.IsNull(this.tableStaffRoleProfileGroupReport.createdByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetcreatedByNull() {
+                this[this.tableStaffRoleProfileGroupReport.createdByColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsdateTimeCreatedNull() {
+                return this.IsNull(this.tableStaffRoleProfileGroupReport.dateTimeCreatedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetdateTimeCreatedNull() {
+                this[this.tableStaffRoleProfileGroupReport.dateTimeCreatedColumn] = global::System.Convert.DBNull;
             }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class OutstandingDocumentDeferredListRow : global::System.Data.DataRow {
+        public partial class StaffRoleProfileActivityReportRow : global::System.Data.DataRow {
             
-            private OutstandingDocumentDeferredListDataTable tableOutstandingDocumentDeferredList;
+            private StaffRoleProfileActivityReportDataTable tableStaffRoleProfileActivityReport;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal OutstandingDocumentDeferredListRow(global::System.Data.DataRowBuilder rb) : 
+            internal StaffRoleProfileActivityReportRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableOutstandingDocumentDeferredList = ((OutstandingDocumentDeferredListDataTable)(this.Table));
+                this.tableStaffRoleProfileActivityReport = ((StaffRoleProfileActivityReportDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string customerCode {
+            public string activityName {
                 get {
                     try {
-                        return ((string)(this[this.tableOutstandingDocumentDeferredList.customerCodeColumn]));
+                        return ((string)(this[this.tableStaffRoleProfileActivityReport.activityNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'customerCode\' in table \'OutstandingDocumentDeferredList\' is" +
+                        throw new global::System.Data.StrongTypingException("The value for column \'activityName\' in table \'StaffRoleProfileActivityReport\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStaffRoleProfileActivityReport.activityNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string staffRoleName {
+                get {
+                    try {
+                        return ((string)(this[this.tableStaffRoleProfileActivityReport.staffRoleNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'staffRoleName\' in table \'StaffRoleProfileActivityReport\' is" +
                                 " DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableOutstandingDocumentDeferredList.customerCodeColumn] = value;
+                    this[this.tableStaffRoleProfileActivityReport.staffRoleNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string customerName {
+            public string createdBy {
                 get {
                     try {
-                        return ((string)(this[this.tableOutstandingDocumentDeferredList.customerNameColumn]));
+                        return ((string)(this[this.tableStaffRoleProfileActivityReport.createdByColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'customerName\' in table \'OutstandingDocumentDeferredList\' is" +
-                                " DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'createdBy\' in table \'StaffRoleProfileActivityReport\' is DBN" +
+                                "ull.", e);
                     }
                 }
                 set {
-                    this[this.tableOutstandingDocumentDeferredList.customerNameColumn] = value;
+                    this[this.tableStaffRoleProfileActivityReport.createdByColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string facilityType {
+            public string dateTimeCreated {
                 get {
                     try {
-                        return ((string)(this[this.tableOutstandingDocumentDeferredList.facilityTypeColumn]));
+                        return ((string)(this[this.tableStaffRoleProfileActivityReport.dateTimeCreatedColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'facilityType\' in table \'OutstandingDocumentDeferredList\' is" +
-                                " DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableOutstandingDocumentDeferredList.facilityTypeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string facilityAmount {
-                get {
-                    try {
-                        return ((string)(this[this.tableOutstandingDocumentDeferredList.facilityAmountColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'facilityAmount\' in table \'OutstandingDocumentDeferredList\' " +
+                        throw new global::System.Data.StrongTypingException("The value for column \'dateTimeCreated\' in table \'StaffRoleProfileActivityReport\' " +
                                 "is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableOutstandingDocumentDeferredList.facilityAmountColumn] = value;
+                    this[this.tableStaffRoleProfileActivityReport.dateTimeCreatedColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string numberOfDays {
+            public bool IsactivityNameNull() {
+                return this.IsNull(this.tableStaffRoleProfileActivityReport.activityNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetactivityNameNull() {
+                this[this.tableStaffRoleProfileActivityReport.activityNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsstaffRoleNameNull() {
+                return this.IsNull(this.tableStaffRoleProfileActivityReport.staffRoleNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetstaffRoleNameNull() {
+                this[this.tableStaffRoleProfileActivityReport.staffRoleNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IscreatedByNull() {
+                return this.IsNull(this.tableStaffRoleProfileActivityReport.createdByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetcreatedByNull() {
+                this[this.tableStaffRoleProfileActivityReport.createdByColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsdateTimeCreatedNull() {
+                return this.IsNull(this.tableStaffRoleProfileActivityReport.dateTimeCreatedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetdateTimeCreatedNull() {
+                this[this.tableStaffRoleProfileActivityReport.dateTimeCreatedColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class StaffPriviledgeChangeRow : global::System.Data.DataRow {
+            
+            private StaffPriviledgeChangeDataTable tableStaffPriviledgeChange;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal StaffPriviledgeChangeRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableStaffPriviledgeChange = ((StaffPriviledgeChangeDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string staffFullName {
                 get {
                     try {
-                        return ((string)(this[this.tableOutstandingDocumentDeferredList.numberOfDaysColumn]));
+                        return ((string)(this[this.tableStaffPriviledgeChange.staffFullNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'numberOfDays\' in table \'OutstandingDocumentDeferredList\' is" +
-                                " DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'staffFullName\' in table \'StaffPriviledgeChange\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableOutstandingDocumentDeferredList.numberOfDaysColumn] = value;
+                    this[this.tableStaffPriviledgeChange.staffFullNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string accountOfficerName {
+            public string staffCreatedByName {
                 get {
                     try {
-                        return ((string)(this[this.tableOutstandingDocumentDeferredList.accountOfficerNameColumn]));
+                        return ((string)(this[this.tableStaffPriviledgeChange.staffCreatedByNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'accountOfficerName\' in table \'OutstandingDocumentDeferredLi" +
-                                "st\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'staffCreatedByName\' in table \'StaffPriviledgeChange\' is DBN" +
+                                "ull.", e);
                     }
                 }
                 set {
-                    this[this.tableOutstandingDocumentDeferredList.accountOfficerNameColumn] = value;
+                    this[this.tableStaffPriviledgeChange.staffCreatedByNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string relationshipManager {
+            public string staffCreatedByCode {
                 get {
                     try {
-                        return ((string)(this[this.tableOutstandingDocumentDeferredList.relationshipManagerColumn]));
+                        return ((string)(this[this.tableStaffPriviledgeChange.staffCreatedByCodeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'relationshipManager\' in table \'OutstandingDocumentDeferredL" +
-                                "ist\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'staffCreatedByCode\' in table \'StaffPriviledgeChange\' is DBN" +
+                                "ull.", e);
                     }
                 }
                 set {
-                    this[this.tableOutstandingDocumentDeferredList.relationshipManagerColumn] = value;
+                    this[this.tableStaffPriviledgeChange.staffCreatedByCodeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string groupHead {
+            public string dateTimeCreated {
                 get {
                     try {
-                        return ((string)(this[this.tableOutstandingDocumentDeferredList.groupHeadColumn]));
+                        return ((string)(this[this.tableStaffPriviledgeChange.dateTimeCreatedColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'groupHead\' in table \'OutstandingDocumentDeferredList\' is DB" +
-                                "Null.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'dateTimeCreated\' in table \'StaffPriviledgeChange\' is DBNull" +
+                                ".", e);
                     }
                 }
                 set {
-                    this[this.tableOutstandingDocumentDeferredList.groupHeadColumn] = value;
+                    this[this.tableStaffPriviledgeChange.dateTimeCreatedColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string sbu {
+            public string tempStaffCode {
                 get {
                     try {
-                        return ((string)(this[this.tableOutstandingDocumentDeferredList.sbuColumn]));
+                        return ((string)(this[this.tableStaffPriviledgeChange.tempStaffCodeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'sbu\' in table \'OutstandingDocumentDeferredList\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'tempStaffCode\' in table \'StaffPriviledgeChange\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableOutstandingDocumentDeferredList.sbuColumn] = value;
+                    this[this.tableStaffPriviledgeChange.tempStaffCodeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string reference {
+            public string previousStaffRoleName {
                 get {
                     try {
-                        return ((string)(this[this.tableOutstandingDocumentDeferredList.referenceColumn]));
+                        return ((string)(this[this.tableStaffPriviledgeChange.previousStaffRoleNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'reference\' in table \'OutstandingDocumentDeferredList\' is DB" +
-                                "Null.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'previousStaffRoleName\' in table \'StaffPriviledgeChange\' is " +
+                                "DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableOutstandingDocumentDeferredList.referenceColumn] = value;
+                    this[this.tableStaffPriviledgeChange.previousStaffRoleNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string condition {
+            public string currentStaffRoleName {
                 get {
                     try {
-                        return ((string)(this[this.tableOutstandingDocumentDeferredList.conditionColumn]));
+                        return ((string)(this[this.tableStaffPriviledgeChange.currentStaffRoleNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'condition\' in table \'OutstandingDocumentDeferredList\' is DB" +
-                                "Null.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'currentStaffRoleName\' in table \'StaffPriviledgeChange\' is D" +
+                                "BNull.", e);
                     }
                 }
                 set {
-                    this[this.tableOutstandingDocumentDeferredList.conditionColumn] = value;
+                    this[this.tableStaffPriviledgeChange.currentStaffRoleNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IscustomerCodeNull() {
-                return this.IsNull(this.tableOutstandingDocumentDeferredList.customerCodeColumn);
+            public bool IsstaffFullNameNull() {
+                return this.IsNull(this.tableStaffPriviledgeChange.staffFullNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetcustomerCodeNull() {
-                this[this.tableOutstandingDocumentDeferredList.customerCodeColumn] = global::System.Convert.DBNull;
+            public void SetstaffFullNameNull() {
+                this[this.tableStaffPriviledgeChange.staffFullNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IscustomerNameNull() {
-                return this.IsNull(this.tableOutstandingDocumentDeferredList.customerNameColumn);
+            public bool IsstaffCreatedByNameNull() {
+                return this.IsNull(this.tableStaffPriviledgeChange.staffCreatedByNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetcustomerNameNull() {
-                this[this.tableOutstandingDocumentDeferredList.customerNameColumn] = global::System.Convert.DBNull;
+            public void SetstaffCreatedByNameNull() {
+                this[this.tableStaffPriviledgeChange.staffCreatedByNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsfacilityTypeNull() {
-                return this.IsNull(this.tableOutstandingDocumentDeferredList.facilityTypeColumn);
+            public bool IsstaffCreatedByCodeNull() {
+                return this.IsNull(this.tableStaffPriviledgeChange.staffCreatedByCodeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetfacilityTypeNull() {
-                this[this.tableOutstandingDocumentDeferredList.facilityTypeColumn] = global::System.Convert.DBNull;
+            public void SetstaffCreatedByCodeNull() {
+                this[this.tableStaffPriviledgeChange.staffCreatedByCodeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsfacilityAmountNull() {
-                return this.IsNull(this.tableOutstandingDocumentDeferredList.facilityAmountColumn);
+            public bool IsdateTimeCreatedNull() {
+                return this.IsNull(this.tableStaffPriviledgeChange.dateTimeCreatedColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetfacilityAmountNull() {
-                this[this.tableOutstandingDocumentDeferredList.facilityAmountColumn] = global::System.Convert.DBNull;
+            public void SetdateTimeCreatedNull() {
+                this[this.tableStaffPriviledgeChange.dateTimeCreatedColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsnumberOfDaysNull() {
-                return this.IsNull(this.tableOutstandingDocumentDeferredList.numberOfDaysColumn);
+            public bool IstempStaffCodeNull() {
+                return this.IsNull(this.tableStaffPriviledgeChange.tempStaffCodeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetnumberOfDaysNull() {
-                this[this.tableOutstandingDocumentDeferredList.numberOfDaysColumn] = global::System.Convert.DBNull;
+            public void SettempStaffCodeNull() {
+                this[this.tableStaffPriviledgeChange.tempStaffCodeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsaccountOfficerNameNull() {
-                return this.IsNull(this.tableOutstandingDocumentDeferredList.accountOfficerNameColumn);
+            public bool IspreviousStaffRoleNameNull() {
+                return this.IsNull(this.tableStaffPriviledgeChange.previousStaffRoleNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetaccountOfficerNameNull() {
-                this[this.tableOutstandingDocumentDeferredList.accountOfficerNameColumn] = global::System.Convert.DBNull;
+            public void SetpreviousStaffRoleNameNull() {
+                this[this.tableStaffPriviledgeChange.previousStaffRoleNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsrelationshipManagerNull() {
-                return this.IsNull(this.tableOutstandingDocumentDeferredList.relationshipManagerColumn);
+            public bool IscurrentStaffRoleNameNull() {
+                return this.IsNull(this.tableStaffPriviledgeChange.currentStaffRoleNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetrelationshipManagerNull() {
-                this[this.tableOutstandingDocumentDeferredList.relationshipManagerColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsgroupHeadNull() {
-                return this.IsNull(this.tableOutstandingDocumentDeferredList.groupHeadColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetgroupHeadNull() {
-                this[this.tableOutstandingDocumentDeferredList.groupHeadColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IssbuNull() {
-                return this.IsNull(this.tableOutstandingDocumentDeferredList.sbuColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetsbuNull() {
-                this[this.tableOutstandingDocumentDeferredList.sbuColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsreferenceNull() {
-                return this.IsNull(this.tableOutstandingDocumentDeferredList.referenceColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetreferenceNull() {
-                this[this.tableOutstandingDocumentDeferredList.referenceColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsconditionNull() {
-                return this.IsNull(this.tableOutstandingDocumentDeferredList.conditionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetconditionNull() {
-                this[this.tableOutstandingDocumentDeferredList.conditionColumn] = global::System.Convert.DBNull;
+            public void SetcurrentStaffRoleNameNull() {
+                this[this.tableStaffPriviledgeChange.currentStaffRoleNameColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2521,22 +2637,22 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class DeferralWaiverRowChangeEvent : global::System.EventArgs {
+        public class UserGroupChangeReportRowChangeEvent : global::System.EventArgs {
             
-            private DeferralWaiverRow eventRow;
+            private UserGroupChangeReportRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DeferralWaiverRowChangeEvent(DeferralWaiverRow row, global::System.Data.DataRowAction action) {
+            public UserGroupChangeReportRowChangeEvent(UserGroupChangeReportRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DeferralWaiverRow Row {
+            public UserGroupChangeReportRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2555,22 +2671,22 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class conditionsRowChangeEvent : global::System.EventArgs {
+        public class ProfileActivityReportRowChangeEvent : global::System.EventArgs {
             
-            private conditionsRow eventRow;
+            private ProfileActivityReportRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public conditionsRowChangeEvent(conditionsRow row, global::System.Data.DataRowAction action) {
+            public ProfileActivityReportRowChangeEvent(ProfileActivityReportRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public conditionsRow Row {
+            public ProfileActivityReportRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2589,22 +2705,22 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class approvalsRowChangeEvent : global::System.EventArgs {
+        public class StaffRoleProfileGroupReportRowChangeEvent : global::System.EventArgs {
             
-            private approvalsRow eventRow;
+            private StaffRoleProfileGroupReportRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public approvalsRowChangeEvent(approvalsRow row, global::System.Data.DataRowAction action) {
+            public StaffRoleProfileGroupReportRowChangeEvent(StaffRoleProfileGroupReportRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public approvalsRow Row {
+            public StaffRoleProfileGroupReportRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2623,22 +2739,56 @@ namespace FintrakBanking.APICore.Reports.ReportDataset {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class OutstandingDocumentDeferredListRowChangeEvent : global::System.EventArgs {
+        public class StaffRoleProfileActivityReportRowChangeEvent : global::System.EventArgs {
             
-            private OutstandingDocumentDeferredListRow eventRow;
+            private StaffRoleProfileActivityReportRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OutstandingDocumentDeferredListRowChangeEvent(OutstandingDocumentDeferredListRow row, global::System.Data.DataRowAction action) {
+            public StaffRoleProfileActivityReportRowChangeEvent(StaffRoleProfileActivityReportRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OutstandingDocumentDeferredListRow Row {
+            public StaffRoleProfileActivityReportRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class StaffPriviledgeChangeRowChangeEvent : global::System.EventArgs {
+            
+            private StaffPriviledgeChangeRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public StaffPriviledgeChangeRowChangeEvent(StaffPriviledgeChangeRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public StaffPriviledgeChangeRow Row {
                 get {
                     return this.eventRow;
                 }
