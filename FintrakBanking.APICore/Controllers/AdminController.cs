@@ -1016,7 +1016,7 @@ namespace FintrakBanking.APICore.Controllers
 
 
         [HttpPost]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("add-downpayment")]
         public async Task<HttpResponseMessage> AddDownPaymentSetup([FromBody] TBL_DOWN_PAYMENT model)
         {
@@ -1036,7 +1036,7 @@ namespace FintrakBanking.APICore.Controllers
         }
 
         [HttpPut]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("update-downpayment")]
         public async Task<HttpResponseMessage> UpdateDownPayment(int id, [FromBody] TBL_DOWN_PAYMENT user)
         {
@@ -1057,7 +1057,7 @@ namespace FintrakBanking.APICore.Controllers
         }
 
         [HttpGet]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("get-downpayments")]
         public async Task<HttpResponseMessage> GetDownPayments()
         {
@@ -1079,7 +1079,7 @@ namespace FintrakBanking.APICore.Controllers
         }
 
         [HttpDelete]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("delete-downpayment/{id}")]
         public async Task<HttpResponseMessage> DeleteDownPayment(int id)
         {
@@ -1102,7 +1102,7 @@ namespace FintrakBanking.APICore.Controllers
 
 
         [HttpPost]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("add-refinanceperiod")]
         public async Task<HttpResponseMessage> AddRefinancePeriodSetup([FromBody] TBL_REFINANCE_PERIOD model)
         {
@@ -1122,7 +1122,7 @@ namespace FintrakBanking.APICore.Controllers
         }
 
         [HttpPut]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("update-refinanceperiod")]
         public async Task<HttpResponseMessage> UpdaterefinancePeriod(int id, [FromBody] TBL_REFINANCE_PERIOD user)
         {
@@ -1143,7 +1143,7 @@ namespace FintrakBanking.APICore.Controllers
         }
 
         [HttpGet]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("get-refinanceperiod")]
         public async Task<HttpResponseMessage> GetRefinancePeriods()
         {
@@ -1165,7 +1165,7 @@ namespace FintrakBanking.APICore.Controllers
         }
 
         [HttpDelete]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("delete-refinanceperiod/{id}")]
         public async Task<HttpResponseMessage> DeleteRefinancePeriod (int id)
         {
@@ -1189,7 +1189,7 @@ namespace FintrakBanking.APICore.Controllers
 
 
         [HttpPost]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("add-originationfeesetup")]
         public async Task<HttpResponseMessage> AddOriginationFeeSetup ([FromBody] TBL_ORIGINATION_FEE model)
         {
@@ -1209,7 +1209,7 @@ namespace FintrakBanking.APICore.Controllers
         }
 
         [HttpPut]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("update-originationfee")]
         public async Task<HttpResponseMessage> UpdateOriginationFee (int id, [FromBody] TBL_ORIGINATION_FEE user)
         {
@@ -1230,7 +1230,7 @@ namespace FintrakBanking.APICore.Controllers
         }
 
         [HttpGet]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("get-originationfee")]
         public async Task<HttpResponseMessage> GetOriginationFee()
         {
@@ -1252,7 +1252,7 @@ namespace FintrakBanking.APICore.Controllers
         }
 
         [HttpDelete]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("delete-originationfee/{id}")]
         public async Task<HttpResponseMessage> DeleteOriginationFee (int id)
         {
@@ -1274,7 +1274,7 @@ namespace FintrakBanking.APICore.Controllers
 
 
         [HttpPost]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("add-servicefee")]
         public async Task<HttpResponseMessage> AddServiceFeeSetup([FromBody] TBL_SERVICE_FEE model)
         {
@@ -1294,7 +1294,7 @@ namespace FintrakBanking.APICore.Controllers
         }
 
         [HttpPut]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("update-servicefee")]
         public async Task<HttpResponseMessage> UpdateServiceFee (int id, [FromBody] TBL_SERVICE_FEE user)
         {
@@ -1315,7 +1315,7 @@ namespace FintrakBanking.APICore.Controllers
         }
 
         [HttpGet]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("get-servicefee")]
         public async Task<HttpResponseMessage> GetServiceFees()
         {
@@ -1337,7 +1337,7 @@ namespace FintrakBanking.APICore.Controllers
         }
 
         [HttpDelete]
-        [ClaimsAuthorization]
+        //[ClaimsAuthorization]
         [Route("delete-servicefee/{id}")]
         public async Task<HttpResponseMessage> DeleteServiceFee(int id)
         {

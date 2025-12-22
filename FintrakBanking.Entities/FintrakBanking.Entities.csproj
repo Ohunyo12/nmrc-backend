@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="DocumentModels\TBL_DEFERRED_DOC_TRACKER.cs" />
     <Compile Include="DocumentModels\TBL_DOCUMENT_USAGE_FINAL_ARCHIVE.cs" />
+    <Compile Include="Enums\EMPLOYMENTTYPE.cs" />
     <Compile Include="Models\TBL_ORIGINATION_FEE.cs" />
     <Compile Include="Models\StNmrcEligibility.cs" />
     <Compile Include="Models\TblCustomerUUS.cs" />

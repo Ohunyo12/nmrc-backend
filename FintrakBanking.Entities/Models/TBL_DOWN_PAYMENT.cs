@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FintrakBanking.Entities.Enums;
 
 namespace FintrakBanking.Entities.Models
 {
@@ -13,7 +14,7 @@ namespace FintrakBanking.Entities.Models
         public int ID { get; set; }
         public decimal MAXAMOUNT { get; set; }
         public decimal MINAMOUNT { get; set; }
-        public int EMPLOYMENTTYPEID { get; set; }
+        public EMPLOYMENTTYPE EMPLOYMENTTYPEID { get; set; }
         public int PRODUCTID { get; set; }
         public decimal PERCENTAGE { get; set; }
 
