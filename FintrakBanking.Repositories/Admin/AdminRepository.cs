@@ -1412,10 +1412,10 @@ namespace FintrakBanking.Repositories.Admin
                 if (model.PERCENTAGE <= 0)
                     throw new SecureException("Percentage is required");
 
-                var exists = await context.TBL_DOWN_PAYMENT
-                    .AnyAsync(x =>
+                var exists = context.TBL_DOWN_PAYMENT
+                    .Where(x =>
                         x.PRODUCTID == model.PRODUCTID &&
-                        x.EMPLOYMENTTYPEID == model.EMPLOYMENTTYPEID);
+                        x.EMPLOYMENTTYPEID == model.EMPLOYMENTTYPEID).Any();
 
                 if (exists)
                     throw new SecureException("Down payment already setup for this product and employment type");
@@ -1461,16 +1461,16 @@ namespace FintrakBanking.Repositories.Admin
                 if (model.PERCENTAGE <= 0)
                     throw new SecureException("Percentage is required");
 
-                var existing = await context.TBL_DOWN_PAYMENT
-                    .FirstOrDefaultAsync(x => x.ID == id);
+                var existing =  context.TBL_DOWN_PAYMENT
+                    .First(x => x.ID == id);
 
                 if (existing == null)
                     throw new SecureException("Down payment setup not found");
 
-                var duplicateExists = await context.TBL_DOWN_PAYMENT.AnyAsync(x =>
+                var duplicateExists = context.TBL_DOWN_PAYMENT.Where(x =>
                     x.ID != id &&
                     x.PRODUCTID == model.PRODUCTID &&
-                    x.EMPLOYMENTTYPEID == model.EMPLOYMENTTYPEID);
+                    x.EMPLOYMENTTYPEID == model.EMPLOYMENTTYPEID).Any();
 
                 if (duplicateExists)
                     throw new SecureException("Down payment already setup for this product and employment type");
@@ -1481,7 +1481,7 @@ namespace FintrakBanking.Repositories.Admin
                 existing.MAXAMOUNT = model.MAXAMOUNT;
                 existing.PERCENTAGE = model.PERCENTAGE;
 
-                await context.SaveChangesAsync();
+                 context.SaveChanges();
 
                 return existing;
 
@@ -1500,14 +1500,14 @@ namespace FintrakBanking.Repositories.Admin
                 if (id <= 0)
                     throw new SecureException("Invalid down payment id");
 
-                var existing = await context.TBL_DOWN_PAYMENT
-                    .FirstOrDefaultAsync(x => x.ID == id);
+                var existing = context.TBL_DOWN_PAYMENT
+                    .FirstOrDefault(x => x.ID == id);
 
                 if (existing == null)
                     throw new SecureException("Down payment setup not found");
 
                 context.TBL_DOWN_PAYMENT.Remove(existing);
-                await context.SaveChangesAsync();
+                 context.SaveChanges();
 
                 return true;
             }
@@ -1522,10 +1522,10 @@ namespace FintrakBanking.Repositories.Admin
         {
             try
             {
-                return await context.TBL_DOWN_PAYMENT
+                return  context.TBL_DOWN_PAYMENT
                        .OrderBy(x => x.PRODUCTID)
                        .ThenBy(x => x.EMPLOYMENTTYPEID)
-                       .ToListAsync();
+                       .ToList();
             }
             catch (Exception ex)
             {
@@ -1548,9 +1548,9 @@ namespace FintrakBanking.Repositories.Admin
                 if (model.DURATION <= 0)
                     throw new SecureException("Period is required");
 
-                var exists = await context.TBL_REFINANCE_PERIOD
-                    .AnyAsync(x =>
-                        x.PRODUCTID == model.PRODUCTID);
+                var exists =  context.TBL_REFINANCE_PERIOD
+                    .Where(x =>
+                        x.PRODUCTID == model.PRODUCTID).Any();
 
                 if (exists)
                     throw new SecureException("Setup already exist for product");
@@ -1586,15 +1586,15 @@ namespace FintrakBanking.Repositories.Admin
 
                 ;
 
-                var existing = await context.TBL_REFINANCE_PERIOD
-                    .FirstOrDefaultAsync(x => x.ID == id);
+                var existing =  context.TBL_REFINANCE_PERIOD
+                    .FirstOrDefault(x => x.ID == id);
 
                 if (existing == null)
                     throw new SecureException("Period setup not found");
 
-                var duplicateExists = await context.TBL_REFINANCE_PERIOD.AnyAsync(x =>
+                var duplicateExists =  context.TBL_REFINANCE_PERIOD.Where(x =>
                     x.ID != id &&
-                    x.PRODUCTID == model.PRODUCTID);
+                    x.PRODUCTID == model.PRODUCTID).Any();
 
                 if (duplicateExists)
                     throw new SecureException("Period already setup for this product and employment type");
@@ -1620,14 +1620,14 @@ namespace FintrakBanking.Repositories.Admin
                 if (id <= 0)
                     throw new SecureException("Invalid down payment id");
 
-                var existing = await context.TBL_REFINANCE_PERIOD
-                    .FirstOrDefaultAsync(x => x.ID == id);
+                var existing =  context.TBL_REFINANCE_PERIOD
+                    .FirstOrDefault(x => x.ID == id);
 
                 if (existing == null)
                     throw new SecureException("setup not found");
 
                 context.TBL_REFINANCE_PERIOD.Remove(existing);
-                await context.SaveChangesAsync();
+                 context.SaveChanges();
 
                 return true;
             }
@@ -1642,9 +1642,9 @@ namespace FintrakBanking.Repositories.Admin
         {
             try
             {
-                return await context.TBL_REFINANCE_PERIOD
+                return context.TBL_REFINANCE_PERIOD
                        .OrderBy(x => x.PRODUCTID)
-                       .ToListAsync();
+                       .ToList();
             }
             catch (Exception ex)
             {
@@ -1667,9 +1667,9 @@ namespace FintrakBanking.Repositories.Admin
                 if (model.PERCENTAGE <= 0)
                     throw new SecureException("Fee percentage is required");
 
-                var exists = await context.TBL_ORIGINATION_FEE
-                    .AnyAsync(x =>
-                        x.PRODUCTID == model.PRODUCTID);
+                var exists =  context.TBL_ORIGINATION_FEE
+                    .Where(x =>
+                        x.PRODUCTID == model.PRODUCTID).Any();
 
                 if (exists)
                     throw new SecureException("Setup already exist for product");
@@ -1705,15 +1705,15 @@ namespace FintrakBanking.Repositories.Admin
 
                 ;
 
-                var existing = await context.TBL_ORIGINATION_FEE
-                    .FirstOrDefaultAsync(x => x.ID == id);
+                var existing =  context.TBL_ORIGINATION_FEE
+                    .FirstOrDefault(x => x.ID == id);
 
                 if (existing == null)
                     throw new SecureException(" setup not found");
 
-                var duplicateExists = await context.TBL_ORIGINATION_FEE.AnyAsync(x =>
+                var duplicateExists =  context.TBL_ORIGINATION_FEE.Where(x =>
                     x.ID != id &&
-                    x.PRODUCTID == model.PRODUCTID);
+                    x.PRODUCTID == model.PRODUCTID).Any();
 
                 if (duplicateExists)
                     throw new SecureException("setup for this product");
@@ -1721,7 +1721,7 @@ namespace FintrakBanking.Repositories.Admin
                 existing.PRODUCTID = model.PRODUCTID;
                 existing.PERCENTAGE = model.PERCENTAGE;
 
-                await context.SaveChangesAsync();
+                context.SaveChanges();
 
                 return existing;
 
@@ -1739,14 +1739,14 @@ namespace FintrakBanking.Repositories.Admin
                 if (id <= 0)
                     throw new SecureException("Invalid id");
 
-                var existing = await context.TBL_ORIGINATION_FEE
-                    .FirstOrDefaultAsync(x => x.ID == id);
+                var existing =  context.TBL_ORIGINATION_FEE
+                    .FirstOrDefault(x => x.ID == id);
 
                 if (existing == null)
                     throw new SecureException("setup not found");
 
                 context.TBL_ORIGINATION_FEE.Remove(existing);
-                await context.SaveChangesAsync();
+                context.SaveChanges();
 
                 return true;
             }
@@ -1761,9 +1761,9 @@ namespace FintrakBanking.Repositories.Admin
         {
             try
             {
-                return await context.TBL_ORIGINATION_FEE
+                return context.TBL_ORIGINATION_FEE
                       .OrderBy(x => x.PRODUCTID)
-                      .ToListAsync();
+                      .ToList();
             }
             catch (Exception ex)
             {
@@ -1787,9 +1787,9 @@ namespace FintrakBanking.Repositories.Admin
                 if (model.PERCENTAGE <= 0)
                     throw new SecureException("Fee percentage is required");
 
-                var exists = await context.TBL_SERVICE_FEE
-                    .AnyAsync(x =>
-                        x.PRODUCTID == model.PRODUCTID);
+                var exists =  context.TBL_SERVICE_FEE
+                    .Where(x =>
+                        x.PRODUCTID == model.PRODUCTID).Any();
 
                 if (exists)
                     throw new SecureException("Setup already exist for product");
@@ -1825,15 +1825,15 @@ namespace FintrakBanking.Repositories.Admin
 
                 ;
 
-                var existing = await context.TBL_SERVICE_FEE
-                    .FirstOrDefaultAsync(x => x.ID == id);
+                var existing =  context.TBL_SERVICE_FEE
+                    .FirstOrDefault(x => x.ID == id);
 
                 if (existing == null)
                     throw new SecureException(" setup not found");
 
-                var duplicateExists = await context.TBL_SERVICE_FEE.AnyAsync(x =>
+                var duplicateExists = context.TBL_SERVICE_FEE.Where(x =>
                     x.ID != id &&
-                    x.PRODUCTID == model.PRODUCTID);
+                    x.PRODUCTID == model.PRODUCTID).Any();
 
                 if (duplicateExists)
                     throw new SecureException("setup for this product");
@@ -1841,7 +1841,7 @@ namespace FintrakBanking.Repositories.Admin
                 existing.PRODUCTID = model.PRODUCTID;
                 existing.PERCENTAGE = model.PERCENTAGE;
 
-                await context.SaveChangesAsync();
+                context.SaveChanges();
 
                 return existing;
 
@@ -1859,14 +1859,14 @@ namespace FintrakBanking.Repositories.Admin
                 if (id <= 0)
                     throw new SecureException("Invalid id");
 
-                var existing = await context.TBL_SERVICE_FEE
-                    .FirstOrDefaultAsync(x => x.ID == id);
+                var existing =  context.TBL_SERVICE_FEE
+                    .FirstOrDefault(x => x.ID == id);
 
                 if (existing == null)
                     throw new SecureException("setup not found");
 
                 context.TBL_SERVICE_FEE.Remove(existing);
-                await context.SaveChangesAsync();
+                context.SaveChanges();
 
                 return true;
 
@@ -1879,9 +1879,9 @@ namespace FintrakBanking.Repositories.Admin
 
         public async Task<List<TBL_SERVICE_FEE>> GetServiceFeeSetup()
         {
-            return await context.TBL_SERVICE_FEE
+            return  context.TBL_SERVICE_FEE
                 .OrderBy(x => x.PRODUCTID)
-                .ToListAsync();
+                .ToList();
         }
 
 
