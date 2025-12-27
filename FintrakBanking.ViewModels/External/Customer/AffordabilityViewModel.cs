@@ -39,6 +39,27 @@ namespace FintrakBanking.ViewModels.External.Customer
     }
 
 
+    public class CustomerUusChecklistDto
+    {
+        public int ChecklistId { get; set; }
+        public string Item { get; set; }
+        public string Description { get; set; }
+        public int CheckTypes { get; set; }
+
+        public int? SystemOption { get; set; }
+        public string SystemComment { get; set; }
+
+        public int? OfficerOption { get; set; }
+        public string OfficerComment { get; set; }
+        public int? ReviewedBy { get; set; }
+        public DateTime? ReviewedAt { get; set; }
+
+        public int? FinalOption =>
+            OfficerOption ?? SystemOption;
+    }
+
+
+
 }
 
 

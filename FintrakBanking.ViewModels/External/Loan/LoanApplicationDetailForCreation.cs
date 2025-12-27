@@ -22,6 +22,7 @@ namespace FintrakBanking.ViewModels.External.Loan
         public decimal requestedAmount { get; set; }
         public decimal? creditScore { get; set; }
         public string creditRating { get; set; }
+        public int loanPurposeId { get; set; }
         public AffordabilityViewModel affordabilityDetails { get; set; }
         // public int crmsFundingSourceId { get; set; }
         //public int crmsPaymentSourceId { get; set; }

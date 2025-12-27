@@ -138,6 +138,7 @@ namespace FintrakBanking.Entities.Models
         public DateTime? DATETIMEDELETED { get; set; }
 
         public short? APROVALSTATUSID { get; set; }
+        public short? ISCHECKED { get; set; }
 
         public virtual TBL_BRANCH TBL_BRANCH { get; set; }
 

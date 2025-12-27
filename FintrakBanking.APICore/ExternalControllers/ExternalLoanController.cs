@@ -110,7 +110,8 @@ namespace FintrakBanking.APICore.ExternalControllers
         }
 
         //[HttpGet] 
-        //[Route("products")]
+        //[Route("
+        //")]
         //public async Task<HttpResponseMessage> GetAllProduct()
         //{
         //    try
@@ -601,13 +602,13 @@ namespace FintrakBanking.APICore.ExternalControllers
         }
          [HttpPost]
         [Route("Post-Customer-uus")]
-        public HttpResponseMessage PostCustomerUus(List<CustomerUusViewModel> Model)
+        public HttpResponseMessage PostCustomerUus(List<CustomerUusViewModel> Model, int officerId)
         {
             try
             {
                 
 
-                var data = repoLoan.PostCustomersUItems(Model);
+                var data = repoLoan.PostCustomersUItems(Model, officerId);
                 if (data == null)
                     return Request.CreateResponse(HttpStatusCode.OK,
                    new { success = false, message = $"There was an error applying for this facility, kindly contact admin." });
@@ -621,11 +622,11 @@ namespace FintrakBanking.APICore.ExternalControllers
 
         [HttpGet]
         [Route("get-obligor-uus")]
-        public async Task<HttpResponseMessage> GetObligorUUS()
+        public async Task<HttpResponseMessage> GetObligorUUS(string NhfNumber)
         {
             try
             {
-                var data = await repoLoan.GetUUSForObligor();
+                var data = await repoLoan.GetUUSForObligor(NhfNumber);
                 if (data.Count < 1)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK,

@@ -701,6 +701,7 @@ namespace FintrakBanking.Entities.Models
         public virtual DbSet<TBL_ORIGINATION_FEE> TBL_ORIGINATION_FEE { get; set; }
         public virtual DbSet<TBL_SERVICE_FEE> TBL_SERVICE_FEE { get; set; }
         public virtual DbSet<TBL_REFINANCE_PERIOD> TBL_REFINANCE_PERIOD { get; set; }
+        public virtual DbSet<TblCustomerUUSReview> TblCustomerUUSReview { get; set; }
 
 
         //public virtual DbSet<TBL_REPAYMENT_TERMS> TBL_REPAYMENT_TERMS { get; set; }
