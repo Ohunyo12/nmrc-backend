@@ -34,6 +34,7 @@ using System.Data;
 using System.Web.Configuration;
 using System.Configuration;
 using Dapper;
+using System.Runtime.Remoting.Contexts;
 
 namespace FintrakBanking.Repositories.External
 {
@@ -2588,6 +2589,12 @@ namespace FintrakBanking.Repositories.External
         {
             try
             {
+                var dbcontext = new FinTrakBankingContext();
+                var customerNhf = from a in dbcontext.TBL_LOAN_APPLICATION join b in dbcontext.TBL_CASA
+                                  on a.CUSTOMERID equals b.CUSTOMERID
+                                  where a.APPLICATIONREFERENCENUMBER == nhfNumber
+                                  select b.PRODUCTACCOUNTNUMBER.FirstOrDefault();
+
                 string connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
                 using (var conn = new SqlConnection(connString))
                 {
@@ -2595,7 +2602,7 @@ namespace FintrakBanking.Repositories.External
 
                     var result = conn.Query<CustomerUusChecklistDto>(
                         LoanQueries.GetCustomerUUS,
-                        new { NhfNumber = nhfNumber }
+                        new { NhfNumber = customerNhf }
                     ).ToList();
                     return result;
                 }
