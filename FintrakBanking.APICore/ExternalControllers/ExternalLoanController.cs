@@ -621,8 +621,8 @@ namespace FintrakBanking.APICore.ExternalControllers
         }
 
         [HttpGet]
-        [Route("get-obligor-uus")]
-        public async Task<HttpResponseMessage> GetObligorUUS(string NhfNumber)
+        [Route("get-obligor-uus/{NhfNumber}")]
+        public async Task<HttpResponseMessage> GetObligorUUS([FromBody] string NhfNumber)
         {
             try
             {
