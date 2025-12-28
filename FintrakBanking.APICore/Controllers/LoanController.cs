@@ -2432,7 +2432,7 @@ namespace FintrakBanking.APICore.Controllers
         }
 
         [HttpGet]
-        [Route("get-obligor-uus")]
+        [Route("get-obligor-uus/{NhfNumber}")]
         public async Task<HttpResponseMessage> GetObligorUUS(string NhfNumber)
         {
             try
