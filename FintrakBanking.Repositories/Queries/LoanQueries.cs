@@ -15,7 +15,7 @@ SELECT
     e.Description,
     e.CheckTypes,
 
-    s.Option          AS SystemOption,
+    s.[Option]        AS SystemOption,
     s.ReviewalComment AS SystemComment,
 
     r.OfficerOption,
@@ -30,8 +30,9 @@ LEFT JOIN TblCustomerUUSReview r
     ON r.ItemId = e.Id
    AND r.EmployeeNhfNumber = @NhfNumber
 WHERE e.IsActive = 1
-ORDER BY e.Id;
-";
+and e.Category = 1
+ORDER BY e.Id";
+
 
     }
 }
