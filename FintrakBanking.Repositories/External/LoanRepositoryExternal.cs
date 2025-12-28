@@ -2589,29 +2589,36 @@ namespace FintrakBanking.Repositories.External
         {
             try
             {
-                var dbcontext = new FinTrakBankingContext();
-                var customerNhf = from a in dbcontext.TBL_LOAN_APPLICATION join b in dbcontext.TBL_CASA
-                                  on a.CUSTOMERID equals b.CUSTOMERID
-                                  where a.APPLICATIONREFERENCENUMBER == nhfNumber
-                                  select b.PRODUCTACCOUNTNUMBER.FirstOrDefault();
-
-                string connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-                using (var conn = new SqlConnection(connString))
+                using (var dbcontext = new FinTrakBankingContext())
                 {
-                    conn.Open();
+                    var productAccountNumber = (
+                        from a in dbcontext.TBL_LOAN_APPLICATION
+                        join b in dbcontext.TBL_CASA
+                            on a.CUSTOMERID equals b.CUSTOMERID
+                        where a.APPLICATIONREFERENCENUMBER == nhfNumber
+                        select b.PRODUCTACCOUNTNUMBER
+                    ).FirstOrDefault();
 
-                    var result = conn.Query<CustomerUusChecklistDto>(
-                        LoanQueries.GetCustomerUUS,
-                        new { NhfNumber = customerNhf }
-                    ).ToList();
-                    return result;
+                    var resolvedNhf = productAccountNumber;
+
+                    string connString =
+                        ConfigurationManager.ConnectionStrings["FinTrakBankingContext"].ConnectionString;
+
+                    using (var conn = new SqlConnection(connString))
+                    {
+                        await conn.OpenAsync();
+
+                        var result = conn.Query<CustomerUusChecklistDto>(
+                            LoanQueries.GetCustomerUUS,
+                            new { NhfNumber = resolvedNhf }
+                        ).ToList();
+
+                        return result;
+                    }
                 }
-
-
             }
-            catch (Exception ex)
+            catch
             {
-
                 throw;
             }
         }
