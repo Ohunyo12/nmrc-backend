@@ -242,6 +242,7 @@
     <Compile Include="Credit\ValuationReportRepository.cs" />
     <Compile Include="Credit\ValuationRequestTypeRepository.cs" />
     <Compile Include="Credit\WorkFlowChangeRepository.cs" />
+    <Compile Include="Enums\Options.cs" />
     <Compile Include="External\CustomerRepositoryExternal.cs" />
     <Compile Include="External\GeneralRepositoryExternal.cs" />
     <Compile Include="External\LoanRepositoryExternal.cs" />

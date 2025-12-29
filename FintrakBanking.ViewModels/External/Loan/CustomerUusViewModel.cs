@@ -14,7 +14,7 @@ namespace FintrakBanking.ViewModels.External.Loan
         public string Description { get; set; }
         public string PmbId { get; set; }
         public DateTime DeferDate { get; set; }
-        public Options Option { get; set; }
+        public int Option { get; set; }
         public string FileName { get; set; }
         public string LoanId { get; set; }
         public string FileType { get; set; }       
@@ -23,13 +23,7 @@ namespace FintrakBanking.ViewModels.External.Loan
         public string OfficerComment { get; set; }
     }
 
-    public enum Options
-    {
-        Yes = 1,
-        No,
-        Waived,
-        Defer
-    }
+
 
     public class UUSReviewalItem
     {

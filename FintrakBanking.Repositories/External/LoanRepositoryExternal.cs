@@ -35,6 +35,8 @@ using System.Web.Configuration;
 using System.Configuration;
 using Dapper;
 using System.Runtime.Remoting.Contexts;
+using Microsoft.Extensions.Options;
+using FintrakBanking.Repositories.Enums;
 
 namespace FintrakBanking.Repositories.External
 {
@@ -2869,21 +2871,24 @@ namespace FintrakBanking.Repositories.External
                             item.DeferDate = new DateTime(1753, 1, 1);
 
                         var systemResult = systemResults.FirstOrDefault(s => s.ItemId == item.ItemId);
-                        if (systemResult == null)
-                        {
-                            systemResult = new TblCustomerUUS
-                            {
-                                EmployeeNhfNumber = nhfNumber,
-                                PmbId = long.Parse(item.PmbId),
-                                Item = item.Item,
-                                Description = item.Description,
-                                Option = (int)item.Option,
-                                ItemId = item.ItemId,
-                                DeferDate = item.DeferDate.Date
-                            };
-                            context.TblCustomerUUS.Add(systemResult);
-                            systemResults.Add(systemResult);
-                        }
+                        //if (systemResult == null)
+                        //{
+                        //    systemResult = new TblCustomerUUS
+                        //    {
+                        //        EmployeeNhfNumber = nhfNumber,
+                        //        PmbId = long.Parse(item.PmbId),
+                        //        Item = item.Item,
+                        //        Description = item.Description,
+                        //        Option = (int)item.Option,
+                        //        ItemId = item.ItemId,
+                        //        DeferDate = item.DeferDate.Date
+                        //    };
+                        //    context.TblCustomerUUS.Add(systemResult);
+                        //    systemResults.Add(systemResult);
+                        //}
+
+                        if (systemResult != null)
+                            continue;
 
                         // Check if officer review exists
                         var review = existingReviews.FirstOrDefault(r => r.ItemId == item.ItemId);
@@ -2893,8 +2898,8 @@ namespace FintrakBanking.Repositories.External
                             {
                                 EmployeeNhfNumber = nhfNumber,
                                 ItemId = item.ItemId,
-                                SystemOption = systemResult.Option,
-                                OfficerOption = (int)item.Option,
+                                //SystemOption = (CheckListOptions)item.Option,
+                                //OfficerOption = (int)item.Option,
                                 OfficerComment = item.OfficerComment,
                                 ReviewedBy = officerId,
                                 ReviewedAt = now,
