@@ -2830,6 +2830,19 @@ namespace FintrakBanking.Repositories.External
         //    }
         //}
 
+        public static CheckListOptionsEnums ParseOption(string option)
+        {
+            return option.Trim().ToLower() switch
+            {
+                "yes" => CheckListOptionsEnums.Yes,
+                "no" => CheckListOptionsEnums.No,
+                "waiver" or "waived" => CheckListOptionsEnums.Waived,
+                "defer" => CheckListOptionsEnums.Defer,
+                _ => throw new ArgumentException($"Invalid checklist option: {option}")
+            };
+        }
+
+
         public async Task<List<CustomerUusViewModel>> PostCustomersUItems(
             List<CustomerUusViewModel> model,
             int officerId)
@@ -2891,6 +2904,8 @@ namespace FintrakBanking.Repositories.External
                             continue;
 
                         // Check if officer review exists
+                        //var officerOptionEnum = ParseOption(item.Option);
+
                         var review = existingReviews.FirstOrDefault(r => r.ItemId == item.ItemId);
                         if (review == null)
                         {
@@ -2898,8 +2913,9 @@ namespace FintrakBanking.Repositories.External
                             {
                                 EmployeeNhfNumber = nhfNumber,
                                 ItemId = item.ItemId,
-                                //SystemOption = (CheckListOptions)item.Option,
-                                //OfficerOption = (int)item.Option,
+                                //SystemOption = Convert.ToInt32((CheckListOptionsEnums)item.Option),
+                                SystemOption = (int)item.Option,
+                                OfficerOption = (int)item.Option,
                                 OfficerComment = item.OfficerComment,
                                 ReviewedBy = officerId,
                                 ReviewedAt = now,

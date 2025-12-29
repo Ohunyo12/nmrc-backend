@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FintrakBanking.Common.Enum;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace FintrakBanking.ViewModels.External.Loan
         public string Description { get; set; }
         public string PmbId { get; set; }
         public DateTime DeferDate { get; set; }
-        public int Option { get; set; }
+        public CheckListOptionsEnums Option { get; set; }
         public string FileName { get; set; }
         public string LoanId { get; set; }
         public string FileType { get; set; }       

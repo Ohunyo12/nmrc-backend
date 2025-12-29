@@ -27,6 +27,13 @@ namespace FintrakBanking.Common.Enum
         WriteOffCheck = 9,
         GreenRating = 10
     }
+     public enum CheckListOptionsEnums
+    {
+        Yes = 1,
+        No,
+        Waived,
+        Defer
+    }
 
     public enum ESGScoreGradeEnum
     {
