@@ -20,6 +20,7 @@ namespace FintrakBanking.ViewModels.External.Loan
         public string FileType { get; set; }       
         public string FileContentBase64 { get; set; }
         public int ItemId { get; set; }
+        public string OfficerComment { get; set; }
     }
 
     public enum Options

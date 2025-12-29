@@ -2895,7 +2895,7 @@ namespace FintrakBanking.Repositories.External
                                 ItemId = item.ItemId,
                                 SystemOption = systemResult.Option,
                                 OfficerOption = (int)item.Option,
-                                OfficerComment = item.Description,
+                                OfficerComment = item.OfficerComment,
                                 ReviewedBy = officerId,
                                 ReviewedAt = now,
                                 DeferDate = item.DeferDate.Date
