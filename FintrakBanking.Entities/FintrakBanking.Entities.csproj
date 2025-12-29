@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FintrakBanking.Entities</RootNamespace>
     <AssemblyName>FintrakBanking.Entities</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
@@ -103,6 +103,8 @@
     <Compile Include="DocumentModels\TBL_DEFERRED_DOC_TRACKER.cs" />
     <Compile Include="DocumentModels\TBL_DOCUMENT_USAGE_FINAL_ARCHIVE.cs" />
     <Compile Include="Enums\EMPLOYMENTTYPE.cs" />
+    <Compile Include="Models\TblCustomerUUSReview.cs" />
+    <Compile Include="Models\TBL_ORIGINATION_FEE.cs" />
     <Compile Include="Models\StNmrcEligibility.cs" />
     <Compile Include="Models\TblCustomerUUS.cs" />
     <Compile Include="Models\TblCustomerUUSDocument.cs" />
@@ -287,7 +289,6 @@
     <Compile Include="Models\TBL_ORIGINAL_DOCUMENT_APPROVAL.cs" />
     <Compile Include="Models\TBL_ORIGINAL_DOCUMENT_RELEASE.cs" />
     <Compile Include="DocumentModels\TBL_DOC_MAPPING.cs" />
-    <Compile Include="Models\TBL_ORIGINATION_FEE.cs" />
     <Compile Include="Models\TBL_PROFILE_BUSINESS_UNIT.cs" />
     <Compile Include="Models\TBL_PROJECT_RISK_RATING.cs" />
     <Compile Include="Models\TBL_PROJECT_RISK_RATING_CATEGORY.cs" />
@@ -304,6 +305,7 @@
     <Compile Include="Models\TBL_PSR_PROJECT_SITE_REPORT.cs" />
     <Compile Include="Models\TBL_PSR_RECOMMENDATION.cs" />
     <Compile Include="Models\TBL_PSR_REPORT_TYPE.cs" />
+    <Compile Include="Models\TBL_PURPOSE.cs" />
     <Compile Include="Models\TBL_RAC_CATEGORY.cs" />
     <Compile Include="Models\TBL_RAC_CATEGORY_TYPE.cs" />
     <Compile Include="Models\TBL_RAC_DEFINITION.cs" />

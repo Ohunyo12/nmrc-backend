@@ -28,6 +28,13 @@ using System.Data.Entity.Migrations;
 using ServiceStack;
 using Microsoft.Office.Interop.Excel;
 using FintrakBanking.ViewModels.Setups.General;
+using System.Data.SqlClient;
+using FintrakBanking.Repositories.Queries;
+using System.Data;
+using System.Web.Configuration;
+using System.Configuration;
+using Dapper;
+using System.Runtime.Remoting.Contexts;
 
 namespace FintrakBanking.Repositories.External
 {
@@ -1674,6 +1681,7 @@ namespace FintrakBanking.Repositories.External
                 //CASAACCOUNTID = entity.casaAccountId,
                 OPERATINGCASAACCOUNTID = accountId,
                 REPAYMENTTERMS = string.Empty,
+                PURPOSEID = entity.loanPurposeId,
 
                 //CRMSFUNDINGSOURCEID = entity.crmsFundingSourceId,
                 // CRMSREPAYMENTSOURCEID = entity.crmsPaymentSourceId,
@@ -2577,21 +2585,40 @@ namespace FintrakBanking.Repositories.External
             }
         }
 
-        public async Task<List<StNmrcEligibility>> GetUUSForObligor()
+        public async Task<List<CustomerUusChecklistDto>> GetUUSForObligor(string nhfNumber)
         {
             try
             {
                 using (var dbcontext = new FinTrakBankingContext())
                 {
-                    var Criterias = dbcontext.StNmrcEligibilities.Where(a => a.Category == 1).ToList();
+                    var productAccountNumber = (
+                        from a in dbcontext.TBL_LOAN_APPLICATION
+                        join b in dbcontext.TBL_CASA
+                            on a.CUSTOMERID equals b.CUSTOMERID
+                        where a.APPLICATIONREFERENCENUMBER == nhfNumber
+                        select b.PRODUCTACCOUNTNUMBER
+                    ).FirstOrDefault();
 
-                    return Criterias;
+                    var resolvedNhf = productAccountNumber;
 
+                    string connString =
+                        ConfigurationManager.ConnectionStrings["FinTrakBankingContext"].ConnectionString;
+
+                    using (var conn = new SqlConnection(connString))
+                    {
+                        await conn.OpenAsync();
+
+                        var result = conn.Query<CustomerUusChecklistDto>(
+                            LoanQueries.GetCustomerUUS,
+                            new { NhfNumber = resolvedNhf }
+                        ).ToList();
+
+                        return result;
+                    }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-
                 throw;
             }
         }
@@ -2801,149 +2828,50 @@ namespace FintrakBanking.Repositories.External
         //    }
         //}
 
-
-        public List<CustomerUusViewModel> PostCustomersUItems(List<CustomerUusViewModel> Model)
+        public async Task<List<CustomerUusViewModel>> PostCustomersUItems(
+            List<CustomerUusViewModel> model,
+            int officerId)
         {
-            using (FinTrakBankingContext context = new FinTrakBankingContext())
+            string nhfNumber = model.FirstOrDefault().NhfNumber;
+            if (string.IsNullOrEmpty(nhfNumber))
+                throw new SecureException("NHF Number cannot be NULL");
+
+            if (model == null || !model.Any())
+                throw new SecureException("No items to process");
+
+            using (var context = new FinTrakBankingContext())
+            using (var trans = context.Database.BeginTransaction())
             {
-                using (var trans = context.Database.BeginTransaction())
+                try
                 {
-                    try
+                    var loan = context.TBL_LOAN_APPLICATION.FirstOrDefault(x => x.APPLICATIONREFERENCENUMBER == nhfNumber);
+                    if (loan != null)
                     {
-                        var message = string.Empty;
-                        var nhfNumber = Model.FirstOrDefault()?.NhfNumber;
-                        if (string.IsNullOrEmpty(nhfNumber))
+                        var casa = context.TBL_CASA.FirstOrDefault(c => c.CUSTOMERID == loan.CUSTOMERID);
+                        if (casa != null)
+                            nhfNumber = casa.PRODUCTACCOUNTNUMBER;
+                    }
+
+                    var itemIds = model.Select(x => x.ItemId).ToList();
+                    var systemResults = context.TblCustomerUUS
+                        .Where(x => x.EmployeeNhfNumber == nhfNumber && itemIds.Contains(x.ItemId))
+                        .ToList();
+
+                    var existingReviews = context.TblCustomerUUSReview
+                        .Where(x => x.EmployeeNhfNumber == nhfNumber && itemIds.Contains(x.ItemId))
+                        .ToList();
+
+                    var now = DateTime.Now;
+
+                    foreach (var item in model)
+                    {
+                        if (item.DeferDate == DateTime.MinValue)
+                            item.DeferDate = new DateTime(1753, 1, 1);
+
+                        var systemResult = systemResults.FirstOrDefault(s => s.ItemId == item.ItemId);
+                        if (systemResult == null)
                         {
-                            message = "Nhf Number cannot be NULL";
-                            throw new SecureException($"{message}");
-                        }
-                        var loan = context.TBL_LOAN_APPLICATION.Where(x => x.APPLICATIONREFERENCENUMBER == nhfNumber).FirstOrDefault();
-                        if (loan != null)
-                        {
-                            nhfNumber = context.TBL_CASA.Where(c => c.CUSTOMERID == loan.CUSTOMERID).FirstOrDefault().PRODUCTACCOUNTNUMBER;
-                        }
-                        var UusItems = context.StNmrcEligibilities.Where(x => x.DocUpload == 1).ToList();
-                        var EmployeeUusItems = context.StNmrcEligibilities.Where(x => x.Category == 1).ToList();
-                        var ExisitngItems = context.TblCustomerUUS.Where(x => x.EmployeeNhfNumber == nhfNumber).ToList();
-
-
-
-                        //if (ExisitngItems.Count() > 0 && ((Model.Count + ExisitngItems.Count) == EmployeeUusItems.Count))
-                        //{
-                        //    var Id = Model.FirstOrDefault().LoanId;
-                        //    var RefinanceMod = context.TblRefinancingLoan.Where(x => x.LoanId == Id).FirstOrDefault();
-                        //    RefinanceMod.Checklisted = 1;
-                        //    RefinanceMod.ApplicationDate = DateTime.Now.Date;
-
-                        //    var output1 = context.SaveChanges() > 0;
-                        //    trans.Commit();
-                        //    trans.Dispose();
-
-
-                        //    return Model;
-
-                        //}
-
-                        //if (ExisitngItems.Count == 0)
-                        //{
-                        //    if (Model.Count < EmployeeUusItems.Count)
-                        //    {
-
-                        //        message = "pls complete all checklist items";
-                        //        throw new SecureException($"{message}");
-
-                        //    }
-                        //}
-
-                        //var NonExisting = new List<CustomerUusViewModel>();
-
-                        //if (ExisitngItems.Count > 0 && (Model.Count > ExisitngItems.Count))
-                        //{
-                        //    foreach (var ExisitngItem in ExisitngItems)
-                        //    {
-                        //        var fil = Model.Where(x => x.ItemId == ExisitngItem.ItemId && x.NhfNumber == ExisitngItem.EmployeeNhfNumber).FirstOrDefault();
-                        //        if (fil == null)
-                        //            NonExisting.Add(fil);
-
-                        //    }
-
-                        //}
-
-                        //if (NonExisting.Count > 0)
-                        //{
-                        //    foreach (var item in NonExisting)
-                        //    {
-
-                        //        var UusItem = UusItems.Where(x => x.Id == item.ItemId).FirstOrDefault();
-                        //        if (item.Option != Options.Defer && UusItem != null && item.FileContentBase64 == null)
-                        //        {
-                        //            message = "Document upload required for item " + item.Item;
-                        //            throw new SecureException($"{message}");
-                        //        }
-                        //        if (item.DeferDate == null || item.DeferDate == DateTime.MinValue)
-                        //        {
-                        //            item.DeferDate = new DateTime(1753, 1, 1);
-                        //        }
-                        //        var CustomerUus = new TblCustomerUUS
-                        //        {
-                        //            EmployeeNhfNumber = item.NhfNumber,
-                        //            PmbId = long.Parse(item.PmbId),
-                        //            Item = item.Item,
-                        //            Description = item.Description,
-                        //            Option = (int)item.Option,
-                        //            ItemId = item.ItemId,
-                        //            DeferDate = item.DeferDate.Date
-                        //        };
-                        //        context.TblCustomerUUS.Add(CustomerUus);
-                        //        if (item.FileContentBase64 != null)
-                        //        {
-                        //            if (item.FileContentBase64.Contains(","))
-                        //            {
-                        //                item.FileContentBase64 = item.FileContentBase64.Split(',')[1];
-                        //            }
-                        //            var fileData = Convert.FromBase64String(item.FileContentBase64);
-
-                        //            var CustomerDoc = new TblCustomerUUSDocument
-                        //            {
-                        //                // FileId = entity.Id,
-                        //                Nhfno = item.NhfNumber,
-                        //                Item = item.Item,
-                        //                Type = item.FileType,
-                        //                Label = item.FileName,
-                        //                Images = item.FileType,
-                        //                Size = fileData.Length,
-                        //                Filedata = fileData,
-                        //                ItemId = item.ItemId
-
-                        //            };
-                        //            context.TblCustomerUUSDocument.Add(CustomerDoc);
-
-                        //        }
-                        //    }
-
-
-                        //}
-
-                        if (Model.Count() != EmployeeUusItems.Count())
-                        {
-                            message = "Pls complete all UUS items";
-                            throw new SecureException($"{message}");
-                        }
-
-                        foreach (var item in Model)
-                        {
-                            //var UusItem = UusItems.Where(x => x.Id == item.ItemId).FirstOrDefault();
-                            //if (item.Option != Options.Defer && UusItem != null && item.FileContentBase64 == null)
-                            //{
-                            //    message = "Document upload required for item " + item.Item;
-                            //    throw new SecureException($"{message}");
-                            //}
-                            if (item.DeferDate == null || item.DeferDate == DateTime.MinValue)
-                            {
-                                item.DeferDate = new DateTime(1753, 1, 1);
-                            }
-
-                            var CustomerUus = new TblCustomerUUS
+                            systemResult = new TblCustomerUUS
                             {
                                 EmployeeNhfNumber = nhfNumber,
                                 PmbId = long.Parse(item.PmbId),
@@ -2951,72 +2879,73 @@ namespace FintrakBanking.Repositories.External
                                 Description = item.Description,
                                 Option = (int)item.Option,
                                 ItemId = item.ItemId,
-                                DeferDate = item.DeferDate.Date,
-
+                                DeferDate = item.DeferDate.Date
                             };
-                            context.TblCustomerUUS.Add(CustomerUus);
-                            if (item.FileContentBase64 != null)
-                            {
-                                if (item.FileContentBase64.Contains(","))
-                                {
-
-
-                                    item.FileContentBase64 = item.FileContentBase64.Split(',')[1];
-
-                                }
-                                var fileData = Convert.FromBase64String(item.FileContentBase64);
-
-                                var CustomerDoc = new TblCustomerUUSDocument
-                                {
-                                    // FileId = entity.Id,
-                                    Nhfno = nhfNumber,
-                                    Item = item.Item,
-                                    Type = item.FileType,
-                                    Label = item.FileName,
-                                    Images = item.FileType,
-                                    Size = fileData.Length,
-                                    Filedata = fileData,
-                                    ItemId = item.ItemId,
-
-
-                                };
-                                context.TblCustomerUUSDocument.Add(CustomerDoc);
-
-                            }
+                            context.TblCustomerUUS.Add(systemResult);
+                            systemResults.Add(systemResult);
                         }
 
-                        var LoanId = Model.FirstOrDefault().LoanId;
-                        //var RefinanceModel = context.TblRefinancingLoan.Where(x => x.LoanId == LoanId).FirstOrDefault();
-                        //RefinanceModel.Checklisted = 1;
-                        //RefinanceModel.ApplicationDate = DateTime.Now.Date;
+                        // Check if officer review exists
+                        var review = existingReviews.FirstOrDefault(r => r.ItemId == item.ItemId);
+                        if (review == null)
+                        {
+                            review = new TblCustomerUUSReview
+                            {
+                                EmployeeNhfNumber = nhfNumber,
+                                ItemId = item.ItemId,
+                                SystemOption = systemResult.Option,
+                                OfficerOption = (int)item.Option,
+                                OfficerComment = item.OfficerComment,
+                                ReviewedBy = officerId,
+                                ReviewedAt = now,
+                                DeferDate = item.DeferDate.Date
+                            };
+                            context.TblCustomerUUSReview.Add(review);
+                            existingReviews.Add(review);
+                        }
+                        else
+                        {
+                            review.OfficerOption = (int)item.Option;
+                            review.OfficerComment = item.Description;
+                            review.ReviewedBy = officerId;
+                            review.ReviewedAt = now;
+                        }
 
+                        // Handle file upload if provided
+                        if (!string.IsNullOrEmpty(item.FileContentBase64))
+                        {
+                            var base64Data = item.FileContentBase64.Contains(",")
+                                ? item.FileContentBase64.Split(',')[1]
+                                : item.FileContentBase64;
+                            var fileData = Convert.FromBase64String(base64Data);
 
-                        var output = context.SaveChanges() > 0;
-                        trans.Commit();
-                        trans.Dispose();
-
-
-                        return Model;
+                            var customerDoc = new TblCustomerUUSDocument
+                            {
+                                Nhfno = nhfNumber,
+                                Item = item.Item,
+                                Type = item.FileType,
+                                Label = item.FileName,
+                                Images = item.FileType,
+                                Size = fileData.Length,
+                                Filedata = fileData,
+                                ItemId = item.ItemId
+                            };
+                            context.TblCustomerUUSDocument.Add(customerDoc);
+                        }
                     }
-                    catch (DbEntityValidationException ex)
-                    {
-                        trans.Rollback();
 
-                        string errorMessages = string.Join("; ",
-                        ex.EntityValidationErrors.SelectMany(x => x.ValidationErrors).Select(x => x.ErrorMessage));
-                        throw new DbEntityValidationException(errorMessages);
-                    }
+                    await context.SaveChangesAsync();
+                    trans.Commit();
 
-
-                    catch (Exception ex)
-                    {
-                        trans.Rollback();
-                        throw new SecureException(ex.Message);
-                    }
+                    return model;
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    throw new SecureException(ex.Message);
                 }
             }
         }
-
 
 
 
@@ -3244,20 +3173,57 @@ namespace FintrakBanking.Repositories.External
         //    }
         //}
 
-        public async Task<List<TblCustomerUUS>> GetCustomerUusItems(string NhfNumber)
+        public async Task<List<CustomerChecklistGridDto>> GetCustomerUusItems(string NhfNumber)
         {
             try
             {
                 using (var dbcontext = new FinTrakBankingContext())
                 {
+                    string acct = "";
                     var loan = dbcontext.TBL_LOAN_APPLICATION.Where(x => x.APPLICATIONREFERENCENUMBER == NhfNumber).FirstOrDefault();
                     if (loan != null)
                     {
                         NhfNumber = dbcontext.TBL_CASA.Where(c => c.CUSTOMERID == loan.CUSTOMERID).FirstOrDefault().PRODUCTACCOUNTNUMBER;
                     }
-                    var Underwritings = dbcontext.TblCustomerUUS.Where(a => a.EmployeeNhfNumber == NhfNumber).ToList();
-                    return Underwritings;
+                    acct = NhfNumber;
 
+
+                    //var underwritings = (from a in dbcontext.TblCustomerUUS 
+                    //                     join b in dbcontext.TblCustomerUUSReview on a.EmployeeNhfNumber equals b.EmployeeNhfNumber
+                    //                     select new CustomerChecklistItems
+                    //                     {
+                    //                         ChecklistId = a.
+                    //                     })
+                    //var Underwritings = dbcontext.TblCustomerUUS.Where(a => a.EmployeeNhfNumber == NhfNumber).ToList();
+                    //return Underwritings;
+
+                    string connString =
+                     ConfigurationManager.ConnectionStrings["FinTrakBankingContext"].ConnectionString;
+
+                    using (var conn = new SqlConnection(connString))
+                    {
+                        await conn.OpenAsync();
+
+                        var result = conn.Query<CustomerChecklistGridDto>(
+                            LoanQueries.GetCustomerUUS,
+                            new { NhfNumber = acct }
+                        ).ToList();
+
+                        return result;
+                    }
+
+                    //using var conn = new SqlConnection(
+                    //                        ConfigurationManager
+                    //                            .ConnectionStrings["FinTrakBankingContext"]
+                    //                            .ConnectionString
+                    //                    );
+
+                    //await conn.OpenAsync();
+
+                    // conn.Query<CustomerChecklistGridDto>(
+                    //    LoanQueries.GetCustomerUUSResults,
+                    //    new { NhfNumber = acct }
+                    //).ToList();
                 }
 
             }

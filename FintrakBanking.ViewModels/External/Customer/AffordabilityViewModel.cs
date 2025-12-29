@@ -35,7 +35,42 @@ namespace FintrakBanking.ViewModels.External.Customer
         public int loanAffordabilityId { get; set; }
         public int loanApplicationDetailId { get; set; }
         public string productName { get; set; }
-        
+
+    }
+
+
+    public class CustomerUusChecklistDto
+    {
+        public int ChecklistId { get; set; }
+        public string Item { get; set; }
+        public string Description { get; set; }
+        public int CheckTypes { get; set; }
+
+        public int? SystemOption { get; set; }
+        public string SystemComment { get; set; }
+
+        public int? OfficerOption { get; set; }
+        public string OfficerComment { get; set; }
+        public int? ReviewedBy { get; set; }
+        public DateTime? ReviewedAt { get; set; }
+
+        public int? FinalOption =>
+            OfficerOption ?? SystemOption;
+    }
+
+
+    public class CustomerChecklistGridDto
+    {
+        public int ChecklistId { get; set; }
+        public string Item { get; set; }
+        public string Description { get; set; }
+        public string CheckTypes { get; set; }
+
+        public int FinalOption { get; set; }
+        public string FinalComment { get; set; }
+
+        public int? ReviewedBy { get; set; }
+        public DateTime? ReviewedAt { get; set; }
     }
 
 

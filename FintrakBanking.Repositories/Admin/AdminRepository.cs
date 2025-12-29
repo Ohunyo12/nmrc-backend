@@ -1602,7 +1602,6 @@ namespace FintrakBanking.Repositories.Admin
                 existing.PRODUCTID = model.PRODUCTID;
                 existing.DURATION = model.DURATION;
 
-                //await context.SaveChangesAsync();
                 context.SaveChanges();
 
                 return existing;

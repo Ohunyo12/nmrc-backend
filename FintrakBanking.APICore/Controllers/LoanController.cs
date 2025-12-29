@@ -26,6 +26,7 @@ using FintrakBanking.ViewModels.External.Loan;
 using FintrakBanking.Interfaces.External;
 using System.ComponentModel.Design;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using Microsoft.Office.Interop.Excel;
 
 namespace FintrakBanking.APICore.Controllers
 {
@@ -2418,8 +2419,11 @@ namespace FintrakBanking.APICore.Controllers
         {
             try
             {
+                TokenDecryptionHelper token = new TokenDecryptionHelper();
 
-                var data = repoLoan.PostCustomersUItems(Model);
+                int officerId = token.GetStaffId;
+                
+                var data = repoLoan.PostCustomersUItems(Model, officerId);
                 if (data == null)
                     return Request.CreateResponse(HttpStatusCode.OK,
                    new { success = false, message = $"There was an error applying for this facility, kindly contact admin." });
@@ -2432,12 +2436,12 @@ namespace FintrakBanking.APICore.Controllers
         }
 
         [HttpGet]
-        [Route("get-obligor-uus")]
-        public async Task<HttpResponseMessage> GetObligorUUS()
+        [Route("get-obligor-uus/{NhfNumber}")]
+        public async Task<HttpResponseMessage> GetObligorUUS(string NhfNumber)
         {
             try
             {
-                var data = await repoLoan.GetUUSForObligor();
+                var data = await repoLoan.GetUUSForObligor(NhfNumber);
                 if (data.Count < 1)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK,
