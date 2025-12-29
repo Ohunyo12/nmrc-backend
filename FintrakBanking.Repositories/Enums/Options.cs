@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace FintrakBanking.Repositories.Enums
 {
     public enum CheckListOptions
+
     {
         Yes = 1,
         No,
