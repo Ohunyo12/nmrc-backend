@@ -2897,14 +2897,14 @@ namespace FintrakBanking.Repositories.External
                                 OfficerOption = (int)item.Option,
                                 OfficerComment = item.Description,
                                 ReviewedBy = officerId,
-                                ReviewedAt = now
+                                ReviewedAt = now,
+                                DeferDate = item.DeferDate.Date
                             };
                             context.TblCustomerUUSReview.Add(review);
                             existingReviews.Add(review);
                         }
                         else
                         {
-                            // Update existing review
                             review.OfficerOption = (int)item.Option;
                             review.OfficerComment = item.Description;
                             review.ReviewedBy = officerId;

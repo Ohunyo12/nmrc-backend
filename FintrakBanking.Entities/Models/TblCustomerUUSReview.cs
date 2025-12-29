@@ -18,6 +18,7 @@ namespace FintrakBanking.Entities.Models
         public string OfficerComment { get; set; }
         public int ReviewedBy { get; set; }
         public DateTime ReviewedAt { get; set; }
+        public DateTime DeferDate { get; set; }
 
     }
 }
