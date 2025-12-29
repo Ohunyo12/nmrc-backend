@@ -34,7 +34,7 @@ namespace FintrakBanking.Interfaces.External
         Task<List<CustomerUusViewModel>> PostCustomersUItems(List<CustomerUusViewModel> model,
             int officerId);
         Task<string> GetCustomerUusItemDoc(string NhfNumber, int ItemId);
-        Task<List<TblCustomerUUS>> GetCustomerUusItems(string NhfNumber);
+        Task<List<CustomerChecklistGridDto>> GetCustomerUusItems(string NhfNumber);
         //List<TblRefinancingLoan> ApprovePmbRefinancing(List<int> Model);
         Task<List<TblRefinancingLoan>> GetPmbsChecklistedLoan(string RefinanceNumber);
         Task<List<TblNmrcRefinancing>> GetAppliedLoanForNmrcRefinance(int companyid, int staffid);

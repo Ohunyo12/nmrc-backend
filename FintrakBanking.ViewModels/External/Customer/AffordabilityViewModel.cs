@@ -35,7 +35,7 @@ namespace FintrakBanking.ViewModels.External.Customer
         public int loanAffordabilityId { get; set; }
         public int loanApplicationDetailId { get; set; }
         public string productName { get; set; }
-        
+
     }
 
 
@@ -58,6 +58,20 @@ namespace FintrakBanking.ViewModels.External.Customer
             OfficerOption ?? SystemOption;
     }
 
+
+    public class CustomerChecklistGridDto
+    {
+        public int ChecklistId { get; set; }
+        public string Item { get; set; }
+        public string Description { get; set; }
+        public string CheckTypes { get; set; }
+
+        public int FinalOption { get; set; }
+        public string FinalComment { get; set; }
+
+        public int? ReviewedBy { get; set; }
+        public DateTime? ReviewedAt { get; set; }
+    }
 
 
 }

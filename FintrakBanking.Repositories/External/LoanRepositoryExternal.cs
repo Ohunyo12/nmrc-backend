@@ -3173,20 +3173,42 @@ namespace FintrakBanking.Repositories.External
         //    }
         //}
 
-        public async Task<List<TblCustomerUUS>> GetCustomerUusItems(string NhfNumber)
+        public async Task<List<CustomerChecklistGridDto>> GetCustomerUusItems(string NhfNumber)
         {
             try
             {
                 using (var dbcontext = new FinTrakBankingContext())
                 {
+                    string acct = "";
                     var loan = dbcontext.TBL_LOAN_APPLICATION.Where(x => x.APPLICATIONREFERENCENUMBER == NhfNumber).FirstOrDefault();
                     if (loan != null)
                     {
                         NhfNumber = dbcontext.TBL_CASA.Where(c => c.CUSTOMERID == loan.CUSTOMERID).FirstOrDefault().PRODUCTACCOUNTNUMBER;
                     }
-                    var Underwritings = dbcontext.TblCustomerUUS.Where(a => a.EmployeeNhfNumber == NhfNumber).ToList();
-                    return Underwritings;
+                    acct = NhfNumber;
 
+
+                    //var underwritings = (from a in dbcontext.TblCustomerUUS 
+                    //                     join b in dbcontext.TblCustomerUUSReview on a.EmployeeNhfNumber equals b.EmployeeNhfNumber
+                    //                     select new CustomerChecklistItems
+                    //                     {
+                    //                         ChecklistId = a.
+                    //                     })
+                    //var Underwritings = dbcontext.TblCustomerUUS.Where(a => a.EmployeeNhfNumber == NhfNumber).ToList();
+                    //return Underwritings;
+
+                    using var conn = new SqlConnection(
+                                            ConfigurationManager
+                                                .ConnectionStrings["FinTrakBankingContext"]
+                                                .ConnectionString
+                                        );
+
+                    await conn.OpenAsync();
+
+                    return conn.Query<CustomerChecklistGridDto>(
+                        LoanQueries.GetCustomerUUSResults,
+                        new { NhfNumber =  acct}
+                    ).ToList();
                 }
 
             }
