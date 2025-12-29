@@ -26,6 +26,7 @@ using FintrakBanking.ViewModels.External.Loan;
 using FintrakBanking.Interfaces.External;
 using System.ComponentModel.Design;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using Microsoft.Office.Interop.Excel;
 
 namespace FintrakBanking.APICore.Controllers
 {
@@ -2414,11 +2415,14 @@ namespace FintrakBanking.APICore.Controllers
 
         [HttpPost]
         [Route("Post-Customer-uus")]
-        public HttpResponseMessage PostCustomerUus(List<CustomerUusViewModel> Model, int officerId)
+        public HttpResponseMessage PostCustomerUus(List<CustomerUusViewModel> Model)
         {
             try
             {
+                TokenDecryptionHelper token = new TokenDecryptionHelper();
 
+                int officerId = token.GetStaffId;
+                
                 var data = repoLoan.PostCustomersUItems(Model, officerId);
                 if (data == null)
                     return Request.CreateResponse(HttpStatusCode.OK,

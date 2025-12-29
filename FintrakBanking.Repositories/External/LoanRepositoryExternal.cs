@@ -3197,18 +3197,33 @@ namespace FintrakBanking.Repositories.External
                     //var Underwritings = dbcontext.TblCustomerUUS.Where(a => a.EmployeeNhfNumber == NhfNumber).ToList();
                     //return Underwritings;
 
-                    using var conn = new SqlConnection(
-                                            ConfigurationManager
-                                                .ConnectionStrings["FinTrakBankingContext"]
-                                                .ConnectionString
-                                        );
+                    string connString =
+                     ConfigurationManager.ConnectionStrings["FinTrakBankingContext"].ConnectionString;
 
-                    await conn.OpenAsync();
+                    using (var conn = new SqlConnection(connString))
+                    {
+                        await conn.OpenAsync();
 
-                    return conn.Query<CustomerChecklistGridDto>(
-                        LoanQueries.GetCustomerUUSResults,
-                        new { NhfNumber =  acct}
-                    ).ToList();
+                        var result = conn.Query<CustomerChecklistGridDto>(
+                            LoanQueries.GetCustomerUUS,
+                            new { NhfNumber = acct }
+                        ).ToList();
+
+                        return result;
+                    }
+
+                    //using var conn = new SqlConnection(
+                    //                        ConfigurationManager
+                    //                            .ConnectionStrings["FinTrakBankingContext"]
+                    //                            .ConnectionString
+                    //                    );
+
+                    //await conn.OpenAsync();
+
+                    // conn.Query<CustomerChecklistGridDto>(
+                    //    LoanQueries.GetCustomerUUSResults,
+                    //    new { NhfNumber = acct }
+                    //).ToList();
                 }
 
             }
