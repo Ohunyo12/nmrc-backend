@@ -1044,9 +1044,9 @@ namespace FintrakBanking.APICore.Controllers
             {
 
                 var result = await repo.UpdateDownPaymentSetup(id, user);
-                     return Request.CreateResponse(HttpStatusCode.OK,
-                       new { success = true, result = user, message = "User has been updated successfully, now awaiting approval" });
-                                
+                return Request.CreateResponse(HttpStatusCode.OK,
+                  new { success = true, result = user, message = "User has been updated successfully, now awaiting approval" });
+
             }
             catch (SecureException ex)
             {
@@ -1088,7 +1088,7 @@ namespace FintrakBanking.APICore.Controllers
 
                 var result = await repo.DeleteDownPaymentSetup(id);
                 return Request.CreateResponse(HttpStatusCode.OK,
-                  new { success = true,message = "record deleted successfully" });
+                  new { success = true, message = "record deleted successfully" });
 
             }
             catch (SecureException ex)
@@ -1167,7 +1167,7 @@ namespace FintrakBanking.APICore.Controllers
         [HttpDelete]
         //[ClaimsAuthorization]
         [Route("delete-refinanceperiod/{id}")]
-        public async Task<HttpResponseMessage> DeleteRefinancePeriod (int id)
+        public async Task<HttpResponseMessage> DeleteRefinancePeriod(int id)
         {
             try
             {
@@ -1191,7 +1191,7 @@ namespace FintrakBanking.APICore.Controllers
         [HttpPost]
         //[ClaimsAuthorization]
         [Route("add-originationfeesetup")]
-        public async Task<HttpResponseMessage> AddOriginationFeeSetup ([FromBody] TBL_ORIGINATION_FEE model)
+        public async Task<HttpResponseMessage> AddOriginationFeeSetup([FromBody] TBL_ORIGINATION_FEE model)
         {
             try
             {
@@ -1211,7 +1211,7 @@ namespace FintrakBanking.APICore.Controllers
         [HttpPut]
         //[ClaimsAuthorization]
         [Route("update-originationfee")]
-        public async Task<HttpResponseMessage> UpdateOriginationFee (int id, [FromBody] TBL_ORIGINATION_FEE user)
+        public async Task<HttpResponseMessage> UpdateOriginationFee(int id, [FromBody] TBL_ORIGINATION_FEE user)
         {
             try
             {
@@ -1254,7 +1254,7 @@ namespace FintrakBanking.APICore.Controllers
         [HttpDelete]
         //[ClaimsAuthorization]
         [Route("delete-originationfee/{id}")]
-        public async Task<HttpResponseMessage> DeleteOriginationFee (int id)
+        public async Task<HttpResponseMessage> DeleteOriginationFee(int id)
         {
             try
             {
@@ -1296,7 +1296,7 @@ namespace FintrakBanking.APICore.Controllers
         [HttpPut]
         //[ClaimsAuthorization]
         [Route("update-servicefee")]
-        public async Task<HttpResponseMessage> UpdateServiceFee (int id, [FromBody] TBL_SERVICE_FEE user)
+        public async Task<HttpResponseMessage> UpdateServiceFee(int id, [FromBody] TBL_SERVICE_FEE user)
         {
             try
             {

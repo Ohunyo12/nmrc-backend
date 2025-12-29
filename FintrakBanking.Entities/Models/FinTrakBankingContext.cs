@@ -90,7 +90,7 @@ namespace FintrakBanking.Entities.Models
 
         public virtual DbSet<TBL_BULK_PREPAYMENTREVERSAL> TBL_BULK_PREPAYMENTREVERSAL { get; set; }
         public virtual DbSet<TBL_BULK_PREPAYMENT> TBL_BULK_PREPAYMENT { get; set; }
-         
+
         public virtual DbSet<TBL_CREDIT_OFFICER_STAFFROLE> TBL_CREDIT_OFFICER_STAFFROLE { get; set; }
         public virtual DbSet<TBL_GLOBAL_EXPOSURE> TBL_GLOBAL_EXPOSURE { get; set; }
         public virtual DbSet<TBL_COLLATERAL_DEPOSIT_ARCHV> TBL_COLLATERAL_DEPOSIT_ARCHV { get; set; }
@@ -112,14 +112,14 @@ namespace FintrakBanking.Entities.Models
         public virtual DbSet<TBL_NEXT_INTEREST_REPAYMENT> TBL_NEXT_INTEREST_REPAYMENT { get; set; }
         public virtual DbSet<TBL_NEXT_PRINCIPAL_REPAYMENT> TBL_NEXT_PRINCIPAL_REPAYMENT { get; set; }
         public virtual DbSet<TBL_ALERT_TEMPLATE_TYPE> TBL_ALERT_TEMPLATE_TYPE { get; set; }
-        public virtual DbSet<TBL_APPROVAL_LEVEL> TBL_APPROVAL_LEVEL { get; set; } 
+        public virtual DbSet<TBL_APPROVAL_LEVEL> TBL_APPROVAL_LEVEL { get; set; }
         public virtual DbSet<TBL_TEMP_APPROVAL_LEVEL> TBL_TEMP_APPROVAL_LEVEL { get; set; }
         public virtual DbSet<TBL_APPROVAL_LEVEL_STAFF> TBL_APPROVAL_LEVEL_STAFF { get; set; }
         public virtual DbSet<TBL_APPROVAL_GRID_LEVEL> TBL_APPROVAL_GRID_LEVEL { get; set; }
         public virtual DbSet<TBL_APPROVAL_BUSINESS_RULE> TBL_APPROVAL_BUSINESS_RULE { get; set; }
         public virtual DbSet<TBL_COLLATERAL_USAGE_STATUS> TBL_COLLATERAL_USAGE_STATUS { get; set; }
         public virtual DbSet<TBL_PSR_PROJECT_SITE_REPORT> TBL_PSR_PROJECT_SITE_REPORT { get; set; }
-        public virtual DbSet<TBL_PSR_REPORT_TYPE> TBL_PSR_REPORT_TYPE { get; set; } 
+        public virtual DbSet<TBL_PSR_REPORT_TYPE> TBL_PSR_REPORT_TYPE { get; set; }
         public virtual DbSet<TBL_CASHBACK> TBL_CASHBACK { get; set; }
         public virtual DbSet<TBL_PSR_COMMENT> TBL_PSR_COMMENT { get; set; }
         public virtual DbSet<TBL_PSR_NEXT_INSPECTION_TASK> TBL_PSR_NEXT_INSPECTION_TASK { get; set; }
@@ -138,7 +138,7 @@ namespace FintrakBanking.Entities.Models
         public virtual DbSet<TBL_LOAN_FULLANDFINAL_STATUS> TBL_LOAN_FULLANDFINAL_STATUS { get; set; }
 
         public virtual DbSet<TBL_APPROVAL_STATUS> TBL_APPROVAL_STATUS { get; set; }
-        public virtual DbSet<TBL_APPROVAL_TRAIL> TBL_APPROVAL_TRAIL { get; set; } 
+        public virtual DbSet<TBL_APPROVAL_TRAIL> TBL_APPROVAL_TRAIL { get; set; }
         public virtual DbSet<TBL_APPROVAL_SETUP> TBL_APPROVAL_SETUP { get; set; }
         public virtual DbSet<TBL_APPROVAL_FLOW_TYPE> TBL_APPROVAL_FLOW_TYPE { get; set; }
         public virtual DbSet<TBL_WORKFLOW_NOTIFICATION> TBL_WORKFLOW_NOTIFICATION { get; set; }
@@ -244,9 +244,9 @@ namespace FintrakBanking.Entities.Models
         public virtual DbSet<TBL_CUSTOM_TEMPORARYOVERDRAFT> TBL_CUSTOM_TEMPORARYOVERDRAFT { get; set; }
         public virtual DbSet<TBL_CUSTOMER> TBL_CUSTOMER { get; set; }
         public virtual DbSet<TBL_DOCUMENT_DEFINITION> TBL_DOCUMENT_DEFINITION { get; set; }
-        
+
         public virtual DbSet<TBL_CUSTOMER_RATIOS> TBL_CUSTOMER_RATIOS { get; set; }
-        
+
         public virtual DbSet<TBL_CUSTOMER_ACCOUNT_KYC_ITEM> TBL_CUSTOMER_ACCOUNT_KYC_ITEM { get; set; }
         public virtual DbSet<TBL_CUSTOMER_ADDRESS> TBL_CUSTOMER_ADDRESS { get; set; }
         public virtual DbSet<TBL_CUSTOMER_ADDRESS_TYPE> TBL_CUSTOMER_ADDRESS_TYPE { get; set; }
@@ -335,7 +335,7 @@ namespace FintrakBanking.Entities.Models
         public virtual DbSet<TBL_KYC_DOCUMENTTYPE> TBL_KYC_DOCUMENTTYPE { get; set; }
         public virtual DbSet<TBL_KYC_ITEM> TBL_KYC_ITEM { get; set; }
         public virtual DbSet<TBL_LANGUAGE> TBL_LANGUAGE { get; set; }
-        public virtual DbSet<TBL_LMSR_APPLICATION> TBL_LMSR_APPLICATION { get; set; } 
+        public virtual DbSet<TBL_LMSR_APPLICATION> TBL_LMSR_APPLICATION { get; set; }
         public virtual DbSet<TBL_LMSR_FLOW_ORDER> TBL_LMSR_FLOW_ORDER { get; set; }
         public virtual DbSet<TBL_LMSR_APPLICATION_DETAIL> TBL_LMSR_APPLICATION_DETAIL { get; set; }
         public virtual DbSet<TBL_LOAN> TBL_LOAN { get; set; }
@@ -411,7 +411,7 @@ namespace FintrakBanking.Entities.Models
         public virtual DbSet<TBL_LOAN_REVIEW_APPLICATN_CAM> TBL_LOAN_REVIEW_APPLICATN_CAM { get; set; }
         public virtual DbSet<TBL_LOAN_REVIEW_OPERATION> TBL_LOAN_REVIEW_OPERATION { get; set; }
         public virtual DbSet<TBL_LOAN_REVIEW_OPRATN_IREG_SC> TBL_LOAN_REVIEW_OPRATN_IREG_SC { get; set; }
-        public virtual DbSet<TBL_LOAN_REVOLVING> TBL_LOAN_REVOLVING { get; set; } 
+        public virtual DbSet<TBL_LOAN_REVOLVING> TBL_LOAN_REVOLVING { get; set; }
         public virtual DbSet<TBL_LOAN_REVOLVING_ARCHIVE> TBL_LOAN_REVOLVING_ARCHIVE { get; set; }
         public virtual DbSet<TBL_LOAN_REVOLVING_TYPE> TBL_LOAN_REVOLVING_TYPE { get; set; }
         public virtual DbSet<TBL_LOAN_SCHEDULE_CATEGORY> TBL_LOAN_SCHEDULE_CATEGORY { get; set; }
@@ -451,7 +451,7 @@ namespace FintrakBanking.Entities.Models
         public virtual DbSet<TBL_PRODUCT> TBL_PRODUCT { get; set; }
         public virtual DbSet<TBL_PRODUCT_BEHAVIOUR> TBL_PRODUCT_BEHAVIOUR { get; set; }
         public virtual DbSet<TBL_LOAN_APPLICATN_FLOW_CHANGE> TBL_LOAN_APPLICATN_FLOW_CHANGE { get; set; }
-        
+
         public virtual DbSet<TBL_PRODUCT_CATEGORY> TBL_PRODUCT_CATEGORY { get; set; }
         public virtual DbSet<TBL_PRODUCT_CHARGE_FEE> TBL_PRODUCT_CHARGE_FEE { get; set; }
         public virtual DbSet<TBL_PRODUCT_CLASS> TBL_PRODUCT_CLASS { get; set; }
@@ -473,7 +473,7 @@ namespace FintrakBanking.Entities.Models
         public virtual DbSet<TBL_PROFILE_GROUP_ACTIVITY> TBL_PROFILE_GROUP_ACTIVITY { get; set; }
         public virtual DbSet<TBL_PROFILE_PRIVILEDGE> TBL_PROFILE_PRIVILEDGE { get; set; }
         public virtual DbSet<TBL_PROFILE_PRIVILEDGE_ACTIVIT> TBL_PROFILE_PRIVILEDGE_ACTIVIT { get; set; }
-        public virtual DbSet<TBL_PROFILE_STAFF_ROLE_ADT_ACT> TBL_PROFILE_STAFF_ROLE_ADT_ACT { get; set; } 
+        public virtual DbSet<TBL_PROFILE_STAFF_ROLE_ADT_ACT> TBL_PROFILE_STAFF_ROLE_ADT_ACT { get; set; }
         public virtual DbSet<TBL_API_URL> TBL_API_URL { get; set; }
         public virtual DbSet<TBL_PROFILE_STAFF_ROLE_GROUP> TBL_PROFILE_STAFF_ROLE_GROUP { get; set; }
         public virtual DbSet<TBL_PROFILE_USER> TBL_PROFILE_USER { get; set; }
@@ -490,7 +490,7 @@ namespace FintrakBanking.Entities.Models
         public virtual DbSet<TBL_SETUP_COMPANY> TBL_SETUP_COMPANY { get; set; }
         public virtual DbSet<TBL_SETUP_GLOBAL> TBL_SETUP_GLOBAL { get; set; }
         public virtual DbSet<TBL_INTEGRATION_CONTROL> TBL_INTEGRATION_CONTROL { get; set; }
-        
+
         public virtual DbSet<TBL_SIGNATURE_DOCUMENT_STAFF> TBL_SIGNATURE_DOCUMENT_STAFF { get; set; }
         public virtual DbSet<TBL_SIGNATURE_DOCUMENT_TYPE> TBL_SIGNATURE_DOCUMENT_TYPE { get; set; }
         public virtual DbSet<TBL_SOURCE_APPLICATION> TBL_SOURCE_APPLICATION { get; set; }
@@ -503,7 +503,7 @@ namespace FintrakBanking.Entities.Models
         public virtual DbSet<TBL_STOCK_COMPANY> TBL_STOCK_COMPANY { get; set; }
         public virtual DbSet<TBL_STOCK_PRICE> TBL_STOCK_PRICE { get; set; }
         public virtual DbSet<TBL_SUB_SECTOR> TBL_SUB_SECTOR { get; set; }
-        public virtual DbSet<TBL_SUGGESTED_CONDITION> TBL_SUGGESTED_CONDITIONS  { get; set; }
+        public virtual DbSet<TBL_SUGGESTED_CONDITION> TBL_SUGGESTED_CONDITIONS { get; set; }
         public virtual DbSet<TBL_TAX> TBL_TAX { get; set; }
         public virtual DbSet<TBL_TEMP_CHARGE_FEE> TBL_TEMP_CHARGE_FEE { get; set; }
         public virtual DbSet<TBL_TEMP_CHARGE_FEE_DETAIL> TBL_TEMP_CHARGE_FEE_DETAIL { get; set; }
@@ -598,9 +598,9 @@ namespace FintrakBanking.Entities.Models
         public virtual DbSet<TBL_RAC_DEFINITION> TBL_RAC_DEFINITION { get; set; }
         public virtual DbSet<TBL_RAC_DETAIL> TBL_RAC_DETAIL { get; set; }
         public virtual DbSet<TBL_RAC_INPUT_TYPE> TBL_RAC_INPUT_TYPE { get; set; }
-        
-             public virtual DbSet<TBL_RAC_CATEGORY_TYPE> TBL_RAC_CATEGORY_TYPE { get; set; }
-        
+
+        public virtual DbSet<TBL_RAC_CATEGORY_TYPE> TBL_RAC_CATEGORY_TYPE { get; set; }
+
 
 
 
@@ -623,7 +623,7 @@ namespace FintrakBanking.Entities.Models
 
 
         public virtual DbSet<TBL_DEFERRED_LOAN_FEE> TBL_DEFERRED_LOAN_FEE { get; set; }
-      //  public virtual DbSet<TBL_CORR_FREQUENCY_SETUP> TBL_CORR_FREQUENCY_SETUP { get; set; }
+        //  public virtual DbSet<TBL_CORR_FREQUENCY_SETUP> TBL_CORR_FREQUENCY_SETUP { get; set; }
         public virtual DbSet<TBL_ORIGINAL_DOCUMENT_APPROVAL> TBL_ORIGINAL_DOCUMENT_APPROVAL { get; set; }
         public virtual DbSet<TBL_LC_ISSUANCE> TBL_LC_ISSUANCE { get; set; }
         public virtual DbSet<TBL_LC_DOCUMENT> TBL_LC_DOCUMENT { get; set; }
@@ -649,13 +649,13 @@ namespace FintrakBanking.Entities.Models
         public virtual DbSet<TBL_AUTHORISED_SIGNATORY> TBL_AUTHORISED_SIGNATORY { get; set; }
         public virtual DbSet<TBL_OPERATION_SIGNATORY> TBL_OPERATION_SIGNATORY { get; set; }
         public virtual DbSet<TBL_OPERATION_CAMSOL_LIST> TBL_OPERATION_CAMSOL_LIST { get; set; }
-        public virtual DbSet<TBL_ALERT_TITLE> TBL_ALERT_TITLE { get; set; } 
+        public virtual DbSet<TBL_ALERT_TITLE> TBL_ALERT_TITLE { get; set; }
         public virtual DbSet<TBL_ALERT_DATA_BINDINGTYPE> TBL_ALERT_DATA_BINDINGTYPE { get; set; }
         public virtual DbSet<TBL_ALERT_SETUP> TBL_ALERT_SETUP { get; set; }
         public virtual DbSet<TBL_ALERT_ROLE_GRP_MAPPING> TBL_ALERT_ROLE_GRP_MAPPING { get; set; }
         public virtual DbSet<TBL_ALERT_ROLE_GROUP> TBL_ALERT_ROLE_GROUP { get; set; }
-        public virtual DbSet<TBL_ALERT_STAFF_ROLE> TBL_ALERT_STAFF_ROLE { get; set; } 
-        public virtual DbSet<TBL_ALERT_FREQUENCY> TBL_ALERT_FREQUENCY { get; set; } 
+        public virtual DbSet<TBL_ALERT_STAFF_ROLE> TBL_ALERT_STAFF_ROLE { get; set; }
+        public virtual DbSet<TBL_ALERT_FREQUENCY> TBL_ALERT_FREQUENCY { get; set; }
         public virtual DbSet<TBL_ALERT_CONDITION> TBL_ALERT_CONDITION { get; set; }
         public virtual DbSet<TBL_COLLATERAL_SWAP_REQUEST> TBL_COLLATERAL_SWAP_REQUEST { get; set; }
         public virtual DbSet<TBL_COLLATERAL_MAPPING_ARCHIVE> TBL_COLLATERAL_MAPPING_ARCHIVE { get; set; }
@@ -688,11 +688,11 @@ namespace FintrakBanking.Entities.Models
 
         public virtual DbSet<TblNmrcRefinancing> TblNmrcRefinancing { get; set; }
         public virtual DbSet<TblNmrcRefinancingLoan> TblNmrcRefinancingLoan { get; set; }
-         public virtual DbSet<TblRefinancing> TblRefinancing { get; set; }
+        public virtual DbSet<TblRefinancing> TblRefinancing { get; set; }
         public virtual DbSet<TblRefinancingLoan> TblRefinancingLoan { get; set; }
 
-        public virtual DbSet<StNmrcEligibility> StNmrcEligibilities { get; set; } 
-        public virtual DbSet<TblCustomerUUS> TblCustomerUUS { get; set; } 
+        public virtual DbSet<StNmrcEligibility> StNmrcEligibilities { get; set; }
+        public virtual DbSet<TblCustomerUUS> TblCustomerUUS { get; set; }
         public virtual DbSet<TblCustomerUUSDocument> TblCustomerUUSDocument { get; set; }
         public virtual DbSet<TblNmrcRefinancingTranches> TblNmrcRefinancingTranches { get; set; }
         public virtual DbSet<TBL_NMRC_LOAN_SCHEDULE_PERIODIC> TBL_NMRC_LOAN_SCHEDULE_PERIODIC { get; set; }
@@ -6906,7 +6906,7 @@ namespace FintrakBanking.Entities.Models
                 .HasMany(e => e.TBL_LOAN)
                 .WithRequired(e => e.TBL_PRODUCT)
                 .WillCascadeOnDelete(false);
-            
+
             modelBuilder.Entity<TBL_PRODUCT>()
                 .HasMany(e => e.TBL_LOAN_APPLICATION_DETAIL)
                 .WithRequired(e => e.TBL_PRODUCT)
@@ -7145,7 +7145,7 @@ namespace FintrakBanking.Entities.Models
                 .HasMany(e => e.TBL_PRODUCT)
                 .WithRequired(e => e.TBL_PRODUCT_TYPE)
                 .WillCascadeOnDelete(false);
-   
+
             modelBuilder.Entity<TBL_PRODUCT_TYPE>()
                 .HasMany(e => e.TBL_TEMP_PRODUCT)
                 .WithRequired(e => e.TBL_PRODUCT_TYPE)
@@ -9142,7 +9142,7 @@ namespace FintrakBanking.Entities.Models
                 .HasMany(e => e.TBL_RAC_DEFINITION)
                 .WithRequired(e => e.TBL_RAC_ITEM)
                 .WillCascadeOnDelete(false);
-            
+
         }
     }
 }

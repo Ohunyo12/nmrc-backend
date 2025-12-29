@@ -34,7 +34,7 @@ namespace FintrakBanking.Interfaces.Admin
         bool GoForApproval(ApprovalViewModel entity);
 
         int GoForUserAccountStatusApproval(ApprovalViewModel entity);
-        
+
 
         IEnumerable<UserViewModel> GetUsersAwaitingApproval(int staffId, int companyId);
         IEnumerable<UserViewModel> GetUsersWithAccountStatusChangeAwaitingApproval(int staffId, int companyId);
@@ -51,7 +51,7 @@ namespace FintrakBanking.Interfaces.Admin
         #endregion Users
 
         #region Group
-        Users GetStaffActiveDirectoryDetails(string staffCode ,string loginUser, string password);
+        Users GetStaffActiveDirectoryDetails(string staffCode, string loginUser, string password);
 
         IEnumerable<AppGroupViewModel> GetAllGroups();
         GlobalSettingViewModel GetAllGlobalSettings();
@@ -89,7 +89,7 @@ namespace FintrakBanking.Interfaces.Admin
         TwoFactorAutheticationOutputViewModel TwoFactorAuthentication(string staffCode, string passCode);
         bool TwoFactorAuthenticationEnabled();
         bool Enable2FAForLastApproval(int staffId, int operationId, int? productClassId, int? productId, decimal levelAmount = 0);
-       // bool Enable2FAForLastApproval(int staffId, int operationId, int? productClassId, int? productId);
+        // bool Enable2FAForLastApproval(int staffId, int operationId, int? productClassId, int? productId);
         bool IsSuperAdmin(int staffId);
 
         #endregion
@@ -98,7 +98,7 @@ namespace FintrakBanking.Interfaces.Admin
         Task<bool> DeleteDownPaymentSetup(int id);
         Task<List<TBL_DOWN_PAYMENT>> GetDownPaymentSetups();
         Task<TBL_REFINANCE_PERIOD> AddRefinancePeriodSetup(TBL_REFINANCE_PERIOD model);
-        Task<TBL_REFINANCE_PERIOD> UpdateRefinacePeriodSetup(long id, TBL_REFINANCE_PERIOD model); 
+        Task<TBL_REFINANCE_PERIOD> UpdateRefinacePeriodSetup(long id, TBL_REFINANCE_PERIOD model);
         Task<bool> DeleteRefinancePeriodSetup(int id);
         Task<List<TBL_REFINANCE_PERIOD>> GetRefiancePeriodSetups();
         Task<TBL_ORIGINATION_FEE> AddOriginationFeeSetup(TBL_ORIGINATION_FEE model);
