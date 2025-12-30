@@ -46,8 +46,8 @@ SELECT
 
     r.ReviewedBy,
     r.ReviewedAt
-FROM StNmrcEligibility e
-LEFT JOIN TblCustomerUUS s
+FROM st_NmrcEligibility e
+LEFT JOIN tbl_CustomerUUS s
     ON s.ItemId = e.Id
    AND s.EmployeeNhfNumber = @NhfNumber
 LEFT JOIN TblCustomerUUSReview r
