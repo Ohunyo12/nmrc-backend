@@ -2944,7 +2944,7 @@ namespace FintrakBanking.Repositories.External
                         }
                     }
 
-                    await context.SaveChangesAsync();
+                    context.SaveChanges();
                     trans.Commit();
 
                     return model;
