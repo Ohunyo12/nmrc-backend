@@ -3198,15 +3198,7 @@ namespace FintrakBanking.Repositories.External
                     acct = NhfNumber;
 
 
-                    //var underwritings = (from a in dbcontext.TblCustomerUUS 
-                    //                     join b in dbcontext.TblCustomerUUSReview on a.EmployeeNhfNumber equals b.EmployeeNhfNumber
-                    //                     select new CustomerChecklistItems
-                    //                     {
-                    //                         ChecklistId = a.
-                    //                     })
-                    //var Underwritings = dbcontext.TblCustomerUUS.Where(a => a.EmployeeNhfNumber == NhfNumber).ToList();
-                    //return Underwritings;
-
+                    
                     string connString =
                      ConfigurationManager.ConnectionStrings["FinTrakBankingContext"].ConnectionString;
 
@@ -3215,25 +3207,20 @@ namespace FintrakBanking.Repositories.External
                         await conn.OpenAsync();
 
                         var result = conn.Query<CustomerChecklistGridDto>(
-                            LoanQueries.GetCustomerUUS,
+                            LoanQueries.GetCustomerUUSResults,
                             new { NhfNumber = acct }
                         ).ToList();
+
+                        foreach (var item in result)
+                        {
+                            item.EmployeeNhfNumber = acct;
+                        }
+
 
                         return result;
                     }
 
-                    //using var conn = new SqlConnection(
-                    //                        ConfigurationManager
-                    //                            .ConnectionStrings["FinTrakBankingContext"]
-                    //                            .ConnectionString
-                    //                    );
-
-                    //await conn.OpenAsync();
-
-                    // conn.Query<CustomerChecklistGridDto>(
-                    //    LoanQueries.GetCustomerUUSResults,
-                    //    new { NhfNumber = acct }
-                    //).ToList();
+                  
                 }
 
             }

@@ -71,6 +71,7 @@ namespace FintrakBanking.ViewModels.External.Customer
 
         public int? ReviewedBy { get; set; }
         public DateTime? ReviewedAt { get; set; }
+        public string EmployeeNhfNumber { get; set; }
     }
 
 
