@@ -700,7 +700,7 @@ namespace FintrakBanking.Entities.Models
         public virtual DbSet<TBL_DOWN_PAYMENT> TBL_DOWN_PAYMENT { get; set; }
         public virtual DbSet<TBL_ORIGINATION_FEE> TBL_ORIGINATION_FEE { get; set; }
         public virtual DbSet<TBL_SERVICE_FEE> TBL_SERVICE_FEE { get; set; }
-        public virtual DbSet<TBL_REFINANCE_PERIOD> TBL_REFINANCE_PERIOD { get; set; }
+        public virtual DbSet<TBL_REFINANCE_PERIOD> TBL_REFINANCE_PERIOD { get; set; }   
         public virtual DbSet<TblCustomerUUSReview> TblCustomerUUSReview { get; set; }
 
 

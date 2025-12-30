@@ -2830,18 +2830,7 @@ namespace FintrakBanking.Repositories.External
         //    }
         //}
 
-        public static CheckListOptionsEnums ParseOption(string option)
-        {
-            return option.Trim().ToLower() switch
-            {
-                "yes" => CheckListOptionsEnums.Yes,
-                "no" => CheckListOptionsEnums.No,
-                "waiver" or "waived" => CheckListOptionsEnums.Waived,
-                "defer" => CheckListOptionsEnums.Defer,
-                _ => throw new ArgumentException($"Invalid checklist option: {option}")
-            };
-        }
-
+        
 
         public async Task<List<CustomerUusViewModel>> PostCustomersUItems(
             List<CustomerUusViewModel> model,
@@ -2914,8 +2903,8 @@ namespace FintrakBanking.Repositories.External
                                 EmployeeNhfNumber = nhfNumber,
                                 ItemId = item.ItemId,
                                 //SystemOption = Convert.ToInt32((CheckListOptionsEnums)item.Option),
-                                SystemOption = (int)item.Option,
-                                OfficerOption = (int)item.Option,
+                                //SystemOption = (int)item.Option,
+                                //OfficerOption = (int)item.Option,
                                 OfficerComment = item.OfficerComment,
                                 ReviewedBy = officerId,
                                 ReviewedAt = now,
