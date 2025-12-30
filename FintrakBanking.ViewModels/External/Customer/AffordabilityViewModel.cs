@@ -64,7 +64,7 @@ namespace FintrakBanking.ViewModels.External.Customer
         public int ChecklistId { get; set; }
         public string Item { get; set; }
         public string Description { get; set; }
-        public int CheckTypes { get; set; }
+        public string CheckTypes { get; set; }
 
         public int FinalOption { get; set; }
         public string FinalComment { get; set; }
