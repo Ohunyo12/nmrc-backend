@@ -56,9 +56,9 @@ LEFT JOIN TblCustomerUUSReview r
 WHERE e.IsActive = 1
 
 AND (
-    (e.CheckTypes = 'AUTO'   AND s.Id IS NOT NULL)
- OR (e.CheckTypes = 'MANUAL' AND r.Id IS NOT NULL)
- OR (e.CheckTypes = 'HYBRID' AND r.Id IS NOT NULL)
+    (e.CheckTypes = 0   AND s.Id IS NOT NULL)
+ OR (e.CheckTypes = 1 AND r.Id IS NOT NULL)
+ OR (e.CheckTypes = 2 AND r.Id IS NOT NULL)
 )
 ORDER BY e.Id";
 
