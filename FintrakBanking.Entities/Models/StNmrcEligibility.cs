@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FintrakBanking.Entities.Enums;
 
 namespace FintrakBanking.Entities.Models
 {
@@ -15,6 +16,9 @@ namespace FintrakBanking.Entities.Models
         public string Item { get; set; }
         public string Description { get; set; }
         public int? DocUpload { get; set; }
+        public CHECK_TYPES CheckTypes { get; set; }
+        public string CheckCode { get; set; }
+        public short IsActive { get; set; }
 
     }
 }

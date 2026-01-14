@@ -37,6 +37,8 @@ using Dapper;
 using System.Runtime.Remoting.Contexts;
 using Microsoft.Extensions.Options;
 using FintrakBanking.Repositories.Enums;
+using System.Windows.Media.Animation;
+using FintrakBanking.Entities.Enums;
 
 namespace FintrakBanking.Repositories.External
 {
@@ -2589,41 +2591,141 @@ namespace FintrakBanking.Repositories.External
 
         public async Task<List<CustomerUusChecklistDto>> GetUUSForObligor(string nhfNumber)
         {
-            try
+            using var dbcontext = new FinTrakBankingContext();
+
+            var resolvedNhf =  (
+                from app in dbcontext.TBL_LOAN_APPLICATION
+                join casa in dbcontext.TBL_CASA
+                    on app.CUSTOMERID equals casa.CUSTOMERID
+                where app.APPLICATIONREFERENCENUMBER == nhfNumber
+                select casa.PRODUCTACCOUNTNUMBER
+            ).FirstOrDefault();
+
+            if (string.IsNullOrEmpty(resolvedNhf))
+                return new List<CustomerUusChecklistDto>();
+
+            var customerId = dbcontext.TBL_CASA
+                .Where(x => x.PRODUCTACCOUNTNUMBER == resolvedNhf)
+                .Select(x => x.CUSTOMERID)
+                .FirstOrDefault();
+
+            if (customerId == 0)
+                return new List<CustomerUusChecklistDto>();
+
+            var creditBureauPassed = dbcontext.TBL_CUSTOMER_CREDIT_BUREAU
+                .Any(x => x.CUSTOMERID == customerId && x.ISREPORTOKAY);
+
+            if (creditBureauPassed)
             {
-                using (var dbcontext = new FinTrakBankingContext())
+                var creditCheck = dbcontext.StNmrcEligibilities
+                    .Where(x => x.CheckCode == "CREDIT_BUREAU")
+                    .Select(x => new { x.Id, x.Item, x.Description })
+                    .FirstOrDefault();
+
+                if (creditCheck != null)
                 {
-                    var productAccountNumber = (
-                        from a in dbcontext.TBL_LOAN_APPLICATION
-                        join b in dbcontext.TBL_CASA
-                            on a.CUSTOMERID equals b.CUSTOMERID
-                        where a.APPLICATIONREFERENCENUMBER == nhfNumber
-                        select b.PRODUCTACCOUNTNUMBER
-                    ).FirstOrDefault();
+                    var exists = dbcontext.TblCustomerUUS.Any(x =>
+                        x.EmployeeNhfNumber == resolvedNhf &&
+                        x.ItemId == creditCheck.Id
+                    );
 
-                    var resolvedNhf = productAccountNumber;
-
-                    string connString =
-                        ConfigurationManager.ConnectionStrings["FinTrakBankingContext"].ConnectionString;
-
-                    using (var conn = new SqlConnection(connString))
+                    if (!exists)
                     {
-                        await conn.OpenAsync();
+                        dbcontext.TblCustomerUUS.Add(new TblCustomerUUS
+                        {
+                            EmployeeNhfNumber = resolvedNhf,
+                            ItemId = creditCheck.Id,
+                            Item = creditCheck.Item,
+                            Description = creditCheck.Description,
+                            ReviewalComment = "Passed for credit bureau",
+                            Option = 1
+                        });
 
-                        var result = conn.Query<CustomerUusChecklistDto>(
-                            LoanQueries.GetCustomerUUS,
-                            new { NhfNumber = resolvedNhf }
-                        ).ToList();
-
-                        return result;
+                        dbcontext.SaveChanges();
                     }
                 }
             }
-            catch
-            {
-                throw;
-            }
+
+            var connString = ConfigurationManager
+                .ConnectionStrings["FinTrakBankingContext"]
+                .ConnectionString;
+
+            using var conn = new SqlConnection(connString);
+            await conn.OpenAsync();
+
+            var result = ( conn.Query<CustomerUusChecklistDto>(
+                LoanQueries.GetCustomerUUS,
+                new { NhfNumber = resolvedNhf }
+            )).ToList();
+
+            return result;
         }
+
+        //public async Task<List<CustomerUusChecklistDto>> GetUUSForObligor(string nhfNumber)
+        //{
+        //    try
+        //    {
+        //        using (var dbcontext = new FinTrakBankingContext())
+        //        {
+
+        //            var productAccountNumber = (
+        //                from a in dbcontext.TBL_LOAN_APPLICATION
+        //                join b in dbcontext.TBL_CASA
+        //                    on a.CUSTOMERID equals b.CUSTOMERID
+        //                where a.APPLICATIONREFERENCENUMBER == nhfNumber
+        //                select b.PRODUCTACCOUNTNUMBER
+        //            ).FirstOrDefault();
+
+        //            var resolvedNhf = productAccountNumber;
+
+        //            var casaInfo = dbcontext.TBL_CASA.Where(x => x.PRODUCTACCOUNTNUMBER == resolvedNhf).Select(x => x.CUSTOMERID);
+        //            var customerId = casaInfo.FirstOrDefault();
+
+        //            var creditBuereau = dbcontext.TBL_CUSTOMER_CREDIT_BUREAU.Where(x => x.CUSTOMERID == customerId && x.ISREPORTOKAY == true).Any();
+
+        //            if (creditBuereau)
+        //            {
+        //                var checkexist = dbcontext.StNmrcEligibilities.Where(x => x.CheckCode == "CREDIT_BUREAU").FirstOrDefault();
+
+        //                var result = dbcontext.TblCustomerUUS.Where(x => x.EmployeeNhfNumber == resolvedNhf && x.ItemId == checkexist.Id).FirstOrDefault();
+
+        //                if (result != null)
+        //                {
+        //                    dbcontext.TblCustomerUUS.Add(new TblCustomerUUS
+        //                    {
+        //                        EmployeeNhfNumber = resolvedNhf,
+        //                        ItemId = checkexist.Id,
+        //                        Item = checkexist.Item,
+        //                        Description = checkexist.Description,
+        //                        ReviewalComment = "Passed for credit bureua",
+        //                        Option = 1
+        //                    });
+        //                    dbcontext.SaveChanges();
+
+        //                }
+        //            }
+
+        //            string connString =
+        //                ConfigurationManager.ConnectionStrings["FinTrakBankingContext"].ConnectionString;
+
+        //            using (var conn = new SqlConnection(connString))
+        //            {
+        //                await conn.OpenAsync();
+
+        //                var result = conn.Query<CustomerUusChecklistDto>(
+        //                    LoanQueries.GetCustomerUUS,
+        //                    new { NhfNumber = resolvedNhf }
+        //                ).ToList();
+
+        //                return result;
+        //            }
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        throw;
+        //    }
+        //}
 
         //public List<CustomerUusViewModel> PostCustomersUItems(List<CustomerUusViewModel> Model)
         //{
@@ -2830,7 +2932,7 @@ namespace FintrakBanking.Repositories.External
         //    }
         //}
 
-        
+
 
         public async Task<List<CustomerUusViewModel>> PostCustomersUItems(
             List<CustomerUusViewModel> model,

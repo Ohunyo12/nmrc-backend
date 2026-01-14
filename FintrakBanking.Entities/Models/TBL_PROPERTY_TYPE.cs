@@ -15,6 +15,7 @@ namespace FintrakBanking.Entities.Models
         [Key]
         public short PROPERTYTYPEID { get; set; }
         public string PROPERTYNAME { get; set; }
+        public int PRODUCTID { get; set; }
 
     }
 }
