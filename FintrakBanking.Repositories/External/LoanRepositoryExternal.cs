@@ -3344,59 +3344,119 @@ namespace FintrakBanking.Repositories.External
         //    return result;
         //}
 
-
-        public async Task<List<CustomerChecklistGridDto>> GetCustomerUusItems(string NhfNumber)
+        public async Task<List<CustomerChecklistGridDto>> GetCustomerUusItems(string nhfNumber)
         {
-            try
+            var dbcontext = new FinTrakBankingContext();
+
+            var resolvedAccountNumber =
+                (from loan in dbcontext.TBL_LOAN_APPLICATION
+                 join casa in dbcontext.TBL_CASA
+                     on loan.CUSTOMERID equals casa.CUSTOMERID
+                 where loan.APPLICATIONREFERENCENUMBER == nhfNumber
+                 select casa.PRODUCTACCOUNTNUMBER)
+                .FirstOrDefault()
+                ?? nhfNumber;
+
+            var connString = ConfigurationManager
+                .ConnectionStrings["FinTrakBankingContext"]
+                .ConnectionString;
+
+            List<CustomerChecklistGridDto> result;
+
+            using (var conn = new SqlConnection(connString))
             {
-                using (var dbcontext = new FinTrakBankingContext())
+                await conn.OpenAsync();
+
+                result = conn.Query<CustomerChecklistGridDto>(
+                    LoanQueries.GetCustomerUUSResults,
+                    new { NhfNumber = resolvedAccountNumber }
+                ).ToList();
+            }
+
+            if (!result.Any())
+                return result;
+
+            var reviewerIds = result
+                .Where(x => x.ReviewedBy.HasValue)
+                .Select(x => x.ReviewedBy.Value)
+                .Distinct()
+                .ToList();
+
+            var staffLookup = dbcontext.TBL_STAFF
+                .Where(s => reviewerIds.Contains(s.STAFFID))
+                .ToDictionary(
+                    s => s.STAFFID,
+                    s => $"{s.FIRSTNAME} {s.LASTNAME}"
+                );
+
+            foreach (var item in result)
+            {
+                item.EmployeeNhfNumber = resolvedAccountNumber;
+
+                if (item.ReviewedBy.HasValue &&
+                    staffLookup.TryGetValue(item.ReviewedBy.Value, out var name))
                 {
-                    string acct = "";
-                    var loan = dbcontext.TBL_LOAN_APPLICATION.Where(x => x.APPLICATIONREFERENCENUMBER == NhfNumber).FirstOrDefault();
-                    if (loan != null)
-                    {
-                        NhfNumber = dbcontext.TBL_CASA.Where(c => c.CUSTOMERID == loan.CUSTOMERID).FirstOrDefault().PRODUCTACCOUNTNUMBER;
-                    }
-                    acct = NhfNumber;
-
-
-
-                    string connString =
-                     ConfigurationManager.ConnectionStrings["FinTrakBankingContext"].ConnectionString;
-
-                    using (var conn = new SqlConnection(connString))
-                    {
-                        await conn.OpenAsync();
-
-                        var result = conn.Query<CustomerChecklistGridDto>(
-                            LoanQueries.GetCustomerUUSResults,
-                            new { NhfNumber = acct }
-                        ).ToList();
-
-                        foreach (var item in result)
-                        {
-                            item.EmployeeNhfNumber = acct;
-                            if (item.ReviewedBy != null)
-                            {
-                                item.ReviewersName = dbcontext.TBL_STAFF.Where(x => x.STAFFID == item.ReviewedBy).FirstOrDefault().FIRSTNAME + " " + dbcontext.TBL_STAFF.Where(x => x.STAFFID == item.ReviewedBy).FirstOrDefault().LASTNAME;
-
-                            }
-                        }
-
-
-                        return result;
-                    }
-
-
+                    item.ReviewersName = name;
                 }
-
             }
-            catch (Exception ex)
-            {
 
-                throw;
-            }
+            return result;
         }
+
+
+
+        //public async Task<List<CustomerChecklistGridDto>> GetCustomerUusItems(string NhfNumber)
+        //{
+        //    try
+        //    {
+        //        using (var dbcontext = new FinTrakBankingContext())
+        //        {
+        //            string acct = "";
+        //            var loan = dbcontext.TBL_LOAN_APPLICATION.Where(x => x.APPLICATIONREFERENCENUMBER == NhfNumber).FirstOrDefault();
+        //            if (loan != null)
+        //            {
+        //                NhfNumber = dbcontext.TBL_CASA.Where(c => c.CUSTOMERID == loan.CUSTOMERID).FirstOrDefault().PRODUCTACCOUNTNUMBER;
+        //            }
+        //            acct = NhfNumber;
+
+
+
+        //            string connString =
+        //             ConfigurationManager.ConnectionStrings["FinTrakBankingContext"].ConnectionString;
+
+        //            using (var conn = new SqlConnection(connString))
+        //            {
+        //                await conn.OpenAsync();
+
+        //                var result = conn.Query<CustomerChecklistGridDto>(
+        //                    LoanQueries.GetCustomerUUSResults,
+        //                    new { NhfNumber = acct }
+        //                ).ToList();
+
+        //                foreach (var item in result)
+        //                {
+        //                    item.EmployeeNhfNumber = acct;
+        //                    if (item.ReviewedBy != null)
+        //                    {
+        //                        item.ReviewersName = dbcontext.TBL_STAFF.Where(x => x.STAFFID == item.ReviewedBy).FirstOrDefault().FIRSTNAME + " " + dbcontext.TBL_STAFF.Where(x => x.STAFFID == item.ReviewedBy).FirstOrDefault().LASTNAME;
+
+        //                    }
+        //                }
+
+
+        //                return result;
+        //            }
+
+
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw;
+        //    }
+        //}
 
         public async Task<string> GetCustomerUusItemDoc(string NhfNumber, int ItemId)
         {
