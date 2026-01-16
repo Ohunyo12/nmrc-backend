@@ -1451,202 +1451,204 @@ namespace FintrakBanking.Repositories.Credit
 
         private string AddTermLoan(LoanViewModel entity)
         {
-            var systemDate = generalSetup.GetApplicationDate();
-            var application = context.TBL_LOAN_APPLICATION.Find(entity.loanApplicationId);
-            var applicationDetail = context.TBL_LOAN_APPLICATION_DETAIL.Find(entity.loanApplicationDetailId);
-            var defaultCurrencyId = context.TBL_COMPANY.Where(x => x.COMPANYID == entity.companyId).Select(x => x).FirstOrDefault().CURRENCYID;
-
-            var request = context.TBL_LOAN_BOOKING_REQUEST.Find(entity.loanBookingRequestId);
-            var company = context.TBL_COMPANY.Find(entity.companyId);
-
-            entity.effectiveDate = entity.loanScheduleInput.effectiveDate;
-            entity.maturityDate = entity.loanScheduleInput.maturityDate;
-
-            var maximumMaturityDate = entity.effectiveDate.AddDays(applicationDetail.APPROVEDTENOR);
-            if (entity.maturityDate.Date > maximumMaturityDate.Date) { throw new ConditionNotMetException("You can not exceed the maximum maturity date"); }
-
-            loanBookingValidation(entity);
-            var principalAmount = from a in context.TBL_LOAN
-                                  where a.LOANAPPLICATIONDETAILID == entity.loanApplicationDetailId
-                                  //let sumPrincipalAmount = context.TBL_LOAN.Where(x => x.LOANAPPLICATIONDETAILID == entity.loanApplicationDetailId).Sum(x => x.PRINCIPALAMOUNT)
-                                  select a.PRINCIPALAMOUNT;
-
-            //var productCurrencyIndex = context.TBL_PRODUCT_PRICE_INDEX_CURNCY.Where(x => x.CURRENCYID == applicationDetail.CURRENCYID).FirstOrDefault();
-            //var priceIndex = (from a in context.TBL_PRODUCT_PRICE_INDEX where a.PRODUCTPRICEINDEXID == productCurrencyIndex.PRODUCTPRICEINDEXID select a).FirstOrDefault();
-            //if(entity.productPriceIndexId == null)
-            //{
-
-            //}
-            var interestRate = Convert.ToDouble(applicationDetail.APPROVEDINTERESTRATE);
-            var priceIndex = new TBL_PRODUCT_PRICE_INDEX();
-            if (entity.productPriceIndexId > 0)
+            try
             {
-                priceIndex = (from a in context.TBL_PRODUCT_PRICE_INDEX where a.PRODUCTPRICEINDEXID == entity.productPriceIndexId select a).FirstOrDefault();
-                if (priceIndex != null)
+                var systemDate = generalSetup.GetApplicationDate();
+                var application = context.TBL_LOAN_APPLICATION.Find(entity.loanApplicationId);
+                var applicationDetail = context.TBL_LOAN_APPLICATION_DETAIL.Find(entity.loanApplicationDetailId);
+                var defaultCurrencyId = context.TBL_COMPANY.Where(x => x.COMPANYID == entity.companyId).Select(x => x).FirstOrDefault().CURRENCYID;
+
+                var request = context.TBL_LOAN_BOOKING_REQUEST.Find(entity.loanBookingRequestId);
+                var company = context.TBL_COMPANY.Find(entity.companyId);
+
+                entity.effectiveDate = entity.loanScheduleInput.effectiveDate;
+                entity.maturityDate = entity.loanScheduleInput.maturityDate;
+
+                var maximumMaturityDate = entity.effectiveDate.AddDays(applicationDetail.APPROVEDTENOR);
+                if (entity.maturityDate.Date > maximumMaturityDate.Date) { throw new ConditionNotMetException("You can not exceed the maximum maturity date"); }
+
+                loanBookingValidation(entity);
+                var principalAmount = from a in context.TBL_LOAN
+                                      where a.LOANAPPLICATIONDETAILID == entity.loanApplicationDetailId
+                                      //let sumPrincipalAmount = context.TBL_LOAN.Where(x => x.LOANAPPLICATIONDETAILID == entity.loanApplicationDetailId).Sum(x => x.PRINCIPALAMOUNT)
+                                      select a.PRINCIPALAMOUNT;
+
+                //var productCurrencyIndex = context.TBL_PRODUCT_PRICE_INDEX_CURNCY.Where(x => x.CURRENCYID == applicationDetail.CURRENCYID).FirstOrDefault();
+                //var priceIndex = (from a in context.TBL_PRODUCT_PRICE_INDEX where a.PRODUCTPRICEINDEXID == productCurrencyIndex.PRODUCTPRICEINDEXID select a).FirstOrDefault();
+                //if(entity.productPriceIndexId == null)
+                //{
+
+                //}
+                var interestRate = Convert.ToDouble(applicationDetail.APPROVEDINTERESTRATE);
+                var priceIndex = new TBL_PRODUCT_PRICE_INDEX();
+                if (entity.productPriceIndexId > 0)
                 {
-                    interestRate = priceIndex.PRICEINDEXRATE + interestRate;
+                    priceIndex = (from a in context.TBL_PRODUCT_PRICE_INDEX where a.PRODUCTPRICEINDEXID == entity.productPriceIndexId select a).FirstOrDefault();
+                    if (priceIndex != null)
+                    {
+                        interestRate = priceIndex.PRICEINDEXRATE + interestRate;
+                    }
                 }
-            }
 
-            var currentExchangeRate = financeTransaction.GetExchangeRate(DateTime.Now, (short)entity.currencyId, entity.companyId).sellingRate;
+                var currentExchangeRate = financeTransaction.GetExchangeRate(DateTime.Now, (short)entity.currencyId, entity.companyId).sellingRate;
 
-            var loanReferenceNumber = GenerateLoanReferenceNumber(application.BRANCHID, entity.productId, (short)LoanSystemTypeEnum.TermDisbursedFacility);
+                var loanReferenceNumber = GenerateLoanReferenceNumber(application.BRANCHID, entity.productId, (short)LoanSystemTypeEnum.TermDisbursedFacility);
 
-            var approvedAmount = context.TBL_LOAN_APPLICATION_DETAIL.Where(x => x.LOANAPPLICATIONDETAILID == entity.loanApplicationDetailId).FirstOrDefault().APPROVEDAMOUNT;
+                var approvedAmount = context.TBL_LOAN_APPLICATION_DETAIL.Where(x => x.LOANAPPLICATIONDETAILID == entity.loanApplicationDetailId).FirstOrDefault().APPROVEDAMOUNT;
 
-            var totalPreviouslyBookedAmount = principalAmount.FirstOrDefault();
+                var totalPreviouslyBookedAmount = principalAmount.FirstOrDefault();
 
-            var totalPrincipalAmount = (decimal)(totalPreviouslyBookedAmount + (decimal)entity.loanScheduleInput.principalAmount);
+                var totalPrincipalAmount = (decimal)(totalPreviouslyBookedAmount + (decimal)entity.loanScheduleInput.principalAmount);
 
-            decimal lineReleasePrincipalAmount = 0;
+                decimal lineReleasePrincipalAmount = 0;
 
-            if (applicationDetail.ISLINEFACILITY == true)
-            {
-                var lineFacilities = context.TBL_LOAN.Where(a => a.LOANAPPLICATIONDETAILID == entity.loanApplicationDetailId).ToList();
-                lineReleasePrincipalAmount = lineFacilities.Count() > 0 ? lineFacilities.Sum(x => x.PRINCIPALAMOUNT) : 0;
-            }
+                if (applicationDetail.ISLINEFACILITY == true)
+                {
+                    var lineFacilities = context.TBL_LOAN.Where(a => a.LOANAPPLICATIONDETAILID == entity.loanApplicationDetailId).ToList();
+                    lineReleasePrincipalAmount = lineFacilities.Count() > 0 ? lineFacilities.Sum(x => x.PRINCIPALAMOUNT) : 0;
+                }
 
-            //if ((totalPrincipalAmount - (decimal)lineReleasePrincipalAmount) > (decimal)approvedAmount)
-            if ((totalPrincipalAmount) > (decimal)approvedAmount)
-                throw new ConditionNotMetException("The loan amount cannot be greater than the availiable amount");
+                //if ((totalPrincipalAmount - (decimal)lineReleasePrincipalAmount) > (decimal)approvedAmount)
+                if ((totalPrincipalAmount) > (decimal)approvedAmount)
+                    throw new ConditionNotMetException("The loan amount cannot be greater than the availiable amount");
 
-            if (entity.loanScheduleInput.scheduleMethodId == (short)LoanScheduleTypeEnum.BulletPayment)
-            {
-                entity.loanScheduleInput.principalFrequency = null;
-                entity.loanScheduleInput.interestFrequency = null;
-            }
+                if (entity.loanScheduleInput.scheduleMethodId == (short)LoanScheduleTypeEnum.BulletPayment)
+                {
+                    entity.loanScheduleInput.principalFrequency = null;
+                    entity.loanScheduleInput.interestFrequency = null;
+                }
 
-            if (applicationDetail.ISLINEFACILITY == true)
-            {
-                entity.customerId = request.CUSTOMERID != null ? (int)request.CUSTOMERID : entity.customerId;
-            }
+                if (applicationDetail.ISLINEFACILITY == true)
+                {
+                    entity.customerId = request.CUSTOMERID != null ? (int)request.CUSTOMERID : entity.customerId;
+                }
 
-            entity.casaAccountId2 = (entity.casaAccountId2 == 0 || entity.casaAccountId2 == null) ? entity.casaAccountId : entity.casaAccountId2;
-            //var repricingIndexId = entity.loanScheduleInput.repricingModeId != 0 ? entity.loanScheduleInput.repricingModeId :  null;
-            //var repricingIndexDuration = entity.loanScheduleInput.repricingDuration != 0 ? entity.loanScheduleInput.repricingDuration : null;
-            DateTime defaultDate = new DateTime(1753, 1, 1);
+                entity.casaAccountId2 = (entity.casaAccountId2 == 0 || entity.casaAccountId2 == null) ? entity.casaAccountId : entity.casaAccountId2;
+                //var repricingIndexId = entity.loanScheduleInput.repricingModeId != 0 ? entity.loanScheduleInput.repricingModeId :  null;
+                //var repricingIndexDuration = entity.loanScheduleInput.repricingDuration != 0 ? entity.loanScheduleInput.repricingDuration : null;
+                DateTime defaultDate = new DateTime(1753, 1, 1);
 
-            var data = new TBL_LOAN
-            {
-                LOAN_BOOKING_REQUESTID = entity.loanBookingRequestId,
-                LOANAPPLICATIONDETAILID = entity.loanApplicationDetailId,
-                LOANREFERENCENUMBER = loanReferenceNumber,
-                RELATED_LOAN_REFERENCE_NUMBER = loanReferenceNumber,
-                LOANSTATUSID = (short)LoanStatusEnum.Inactive,
-                ISDISBURSED = false,
-                PRINCIPALNUMBEROFINSTALLMENT = 0,
-                INTERESTNUMBEROFINSTALLMENT = 0,
-                SCHEDULEDPREPAYMENTAMOUNT = entity.scheduledPrepaymentAmount,
-                SCH_PREPAYMENT_FREQUENCY_TYPID = null,
+                var data = new TBL_LOAN
+                {
+                    LOAN_BOOKING_REQUESTID = entity.loanBookingRequestId,
+                    LOANAPPLICATIONDETAILID = entity.loanApplicationDetailId,
+                    LOANREFERENCENUMBER = loanReferenceNumber,
+                    RELATED_LOAN_REFERENCE_NUMBER = loanReferenceNumber,
+                    LOANSTATUSID = (short)LoanStatusEnum.Inactive,
+                    ISDISBURSED = false,
+                    PRINCIPALNUMBEROFINSTALLMENT = 0,
+                    INTERESTNUMBEROFINSTALLMENT = 0,
+                    SCHEDULEDPREPAYMENTAMOUNT = entity.scheduledPrepaymentAmount,
+                    SCH_PREPAYMENT_FREQUENCY_TYPID = null,
 
-                SUBSECTORID = entity.subSectorId,
-                CURRENCYID = (short)entity.currencyId,
-                EXCHANGERATE = currentExchangeRate,
+                    SUBSECTORID = entity.subSectorId,
+                    CURRENCYID = (short)entity.currencyId,
+                    EXCHANGERATE = currentExchangeRate,
 
-                DISCHARGELETTER = false,
-                SUSPENDINTEREST = false,
+                    DISCHARGELETTER = false,
+                    SUSPENDINTEREST = false,
 
-                CUSTOMERID = entity.customerId,
-                PRODUCTID = request.PRODUCTID,
-                COMPANYID = entity.companyId,
-                CASAACCOUNTID = entity.casaAccountId,
-                CASAACCOUNTID2 = entity.casaAccountId2,
-                BRANCHID = application.BRANCHID,
-                SHOULD_DISBURSE = entity.loanScheduleInput.shouldDisburse,
+                    CUSTOMERID = entity.customerId,
+                    PRODUCTID = request.PRODUCTID,
+                    COMPANYID = entity.companyId,
+                    CASAACCOUNTID = entity.casaAccountId,
+                    CASAACCOUNTID2 = entity.casaAccountId2,
+                    BRANCHID = application.BRANCHID,
+                    SHOULD_DISBURSE = entity.loanScheduleInput.shouldDisburse,
 
-                PRINCIPALFREQUENCYTYPEID = entity.loanScheduleInput.principalFrequency,
-                INTERESTFREQUENCYTYPEID = entity.loanScheduleInput.interestFrequency,
+                    PRINCIPALFREQUENCYTYPEID = entity.loanScheduleInput.principalFrequency,
+                    INTERESTFREQUENCYTYPEID = entity.loanScheduleInput.interestFrequency,
 
-                RELATIONSHIPOFFICERID = application.RELATIONSHIPOFFICERID,
-                RELATIONSHIPMANAGERID = application.RELATIONSHIPMANAGERID,
-                MISCODE = application.MISCODE,
-                TEAMMISCODE = application.TEAMMISCODE,
-                INTERESTRATE = interestRate,
+                    RELATIONSHIPOFFICERID = application.RELATIONSHIPOFFICERID,
+                    RELATIONSHIPMANAGERID = application.RELATIONSHIPMANAGERID,
+                    MISCODE = application.MISCODE,
+                    TEAMMISCODE = application.TEAMMISCODE,
+                    INTERESTRATE = interestRate,
 
-                PRINCIPALINSTALLMENTLEFT = 0,
-                INTERESTINSTALLMENTLEFT = 0,
+                    PRINCIPALINSTALLMENTLEFT = 0,
+                    INTERESTINSTALLMENTLEFT = 0,
 
-                SCHEDULETYPEID = entity.loanScheduleInput.scheduleMethodId,
+                    SCHEDULETYPEID = entity.loanScheduleInput.scheduleMethodId,
 
-                PRINCIPALAMOUNT = Convert.ToDecimal(entity.loanScheduleInput.principalAmount),
+                    PRINCIPALAMOUNT = Convert.ToDecimal(entity.loanScheduleInput.principalAmount),
 
-                OPERATIONID = entity.operationId = (int)OperationsEnum.TermLoanBooking,
-                LOANSYSTEMTYPEID = (short)LoanSystemTypeEnum.TermDisbursedFacility,
-                EQUITYCONTRIBUTION = 0,
-                OUTSTANDINGPRINCIPAL = Convert.ToDecimal(entity.loanScheduleInput.principalAmount),
-                PRINCIPALADDITIONCOUNT = 0,
-                PRINCIPALREDUCTIONCOUNT = 0,
-                FIXEDPRINCIPAL = false,
-                PROFILELOAN = false,
+                    OPERATIONID = entity.operationId = (int)OperationsEnum.TermLoanBooking,
+                    LOANSYSTEMTYPEID = (short)LoanSystemTypeEnum.TermDisbursedFacility,
+                    EQUITYCONTRIBUTION = 0,
+                    OUTSTANDINGPRINCIPAL = Convert.ToDecimal(entity.loanScheduleInput.principalAmount),
+                    PRINCIPALADDITIONCOUNT = 0,
+                    PRINCIPALREDUCTIONCOUNT = 0,
+                    FIXEDPRINCIPAL = false,
+                    PROFILELOAN = false,
 
-                APPROVALSTATUSID = (int)ApprovalStatusEnum.Pending,
+                    APPROVALSTATUSID = (int)ApprovalStatusEnum.Pending,
 
-                BOOKINGDATE = generalSetup.GetApplicationDate(),
-                CREATEDBY = entity.createdBy,
-                DATETIMECREATED = DateTime.Now,
-                EFFECTIVEDATE = entity.loanScheduleInput.effectiveDate,
-                MATURITYDATE = entity.loanScheduleInput.maturityDate,
-                LASTRESTRUCTUREDATE = entity.loanScheduleInput.effectiveDate,
-                FIRSTPRINCIPALPAYMENTDATE = entity.loanScheduleInput.principalFirstpaymentDate < defaultDate ? defaultDate : entity.loanScheduleInput.principalFirstpaymentDate,
-                FIRSTINTERESTPAYMENTDATE = entity.loanScheduleInput.interestFirstpaymentDate < defaultDate ? defaultDate : entity.loanScheduleInput.interestFirstpaymentDate,
-                ALLOWFORCEDEBITREPAYMENT = false,
-                SCHEDULEDAYCOUNTCONVENTIONID = entity.loanScheduleInput.accrualBasis,
-                USER_PRUDENTIAL_GUIDE_STATUSID = (short)LoanPrudentialStatusEnum.Performing,
-                EXT_PRUDENT_GUIDELINE_STATUSID = (short)LoanPrudentialStatusEnum.Performing,
-                INT_PRUDENT_GUIDELINE_STATUSID = (short)LoanPrudentialStatusEnum.Performing,
-                //CRMSREPAYMENTAGREEMENTID = entity.crmsRepaymentAgreementTypeId,
-                REPRICINGMODEID = entity.loanScheduleInput.repricingModeId != 0 ? entity.loanScheduleInput.repricingModeId : null,
-                REPRICINGDURATION = entity.loanScheduleInput.repricingDuration != 0 ? entity.loanScheduleInput.repricingDuration : null,
+                    BOOKINGDATE = generalSetup.GetApplicationDate(),
+                    CREATEDBY = entity.createdBy,
+                    DATETIMECREATED = DateTime.Now,
+                    EFFECTIVEDATE = entity.loanScheduleInput.effectiveDate,
+                    MATURITYDATE = entity.loanScheduleInput.maturityDate,
+                    LASTRESTRUCTUREDATE = entity.loanScheduleInput.effectiveDate,
+                    FIRSTPRINCIPALPAYMENTDATE = entity.loanScheduleInput.principalFirstpaymentDate < defaultDate ? defaultDate : entity.loanScheduleInput.principalFirstpaymentDate,
+                    FIRSTINTERESTPAYMENTDATE = entity.loanScheduleInput.interestFirstpaymentDate < defaultDate ? defaultDate : entity.loanScheduleInput.interestFirstpaymentDate,
+                    ALLOWFORCEDEBITREPAYMENT = false,
+                    SCHEDULEDAYCOUNTCONVENTIONID = entity.loanScheduleInput.accrualBasis,
+                    USER_PRUDENTIAL_GUIDE_STATUSID = (short)LoanPrudentialStatusEnum.Performing,
+                    EXT_PRUDENT_GUIDELINE_STATUSID = (short)LoanPrudentialStatusEnum.Performing,
+                    INT_PRUDENT_GUIDELINE_STATUSID = (short)LoanPrudentialStatusEnum.Performing,
+                    //CRMSREPAYMENTAGREEMENTID = entity.crmsRepaymentAgreementTypeId,
+                    REPRICINGMODEID = entity.loanScheduleInput.repricingModeId != 0 ? entity.loanScheduleInput.repricingModeId : null,
+                    REPRICINGDURATION = entity.loanScheduleInput.repricingDuration != 0 ? entity.loanScheduleInput.repricingDuration : null,
 
-            };
-            if (priceIndex.PRODUCTPRICEINDEXID > 0)
-            {
-                data.PRODUCTPRICEINDEXID = priceIndex.PRODUCTPRICEINDEXID;
-                data.PRODUCTPRICEINDEXRATE = priceIndex.PRICEINDEXRATE > 0 ? priceIndex.PRICEINDEXRATE : 0;
-            }
+                };
+                if (priceIndex.PRODUCTPRICEINDEXID > 0)
+                {
+                    data.PRODUCTPRICEINDEXID = priceIndex.PRODUCTPRICEINDEXID;
+                    data.PRODUCTPRICEINDEXRATE = priceIndex.PRICEINDEXRATE > 0 ? priceIndex.PRICEINDEXRATE : 0;
+                }
 
-            //FOREIGN LOANS 'NOSTRO - INTEREST-CAP-ACCOUNT' BEHAVIOUR
-            //if (entity.currencyId != company.CURRENCYID && application.PRODUCTCLASSID != (short)ProductClassEnum.InvoiceDiscountingFacility)
-            //{
-            //    var nostroAccount = context.TBL_CUSTOM_CHART_OF_ACCOUNT.Find(entity.casaAccountId2);
-            //    var nostroAccountNumber = nostroAccount.ACCOUNTID;
-            //    var nostroCurrencyId = context.TBL_CURRENCY.FirstOrDefault(c => c.CURRENCYCODE == nostroAccount.CURRENCYCODE).CURRENCYID;
+                //FOREIGN LOANS 'NOSTRO - INTEREST-CAP-ACCOUNT' BEHAVIOUR
+                //if (entity.currencyId != company.CURRENCYID && application.PRODUCTCLASSID != (short)ProductClassEnum.InvoiceDiscountingFacility)
+                //{
+                //    var nostroAccount = context.TBL_CUSTOM_CHART_OF_ACCOUNT.Find(entity.casaAccountId2);
+                //    var nostroAccountNumber = nostroAccount.ACCOUNTID;
+                //    var nostroCurrencyId = context.TBL_CURRENCY.FirstOrDefault(c => c.CURRENCYCODE == nostroAccount.CURRENCYCODE).CURRENCYID;
 
-            //    data.CASAACCOUNTID2 = applicationDetail.CASAACCOUNTID;
-            //    data.NOSTROACCOUNTID = nostroAccountNumber;
-            //    data.NOSTRORATECODEID = entity.nostroRateCodeId;
-            //    data.NOSTRORATEAMOUNT = entity.nostroRateAmount;
-            //    data.NOSTROCURRENCYID = nostroCurrencyId;
-            //}
+                //    data.CASAACCOUNTID2 = applicationDetail.CASAACCOUNTID;
+                //    data.NOSTROACCOUNTID = nostroAccountNumber;
+                //    data.NOSTRORATECODEID = entity.nostroRateCodeId;
+                //    data.NOSTRORATEAMOUNT = entity.nostroRateAmount;
+                //    data.NOSTROCURRENCYID = nostroCurrencyId;
+                //}
 
 
-            ////Audit Section ---------------------------
-            var audit = new TBL_AUDIT
-            {
-                AUDITTYPEID = (short)AuditTypeEnum.LoanBookingAdded,
-                STAFFID = entity.createdBy,
-                BRANCHID = (short)entity.userBranchId,
-                DETAIL = $"Applied for loan with reference number: {loanReferenceNumber}",
-                IPADDRESS = CommonHelpers.GetLocalIpAddress(),
-                URL = entity.applicationUrl,
-                DEVICENAME = CommonHelpers.GetDeviceName(),
-                OSNAME = CommonHelpers.FriendlyName(),
-                APPLICATIONDATE = generalSetup.GetApplicationDate(),
-                SYSTEMDATETIME = DateTime.Now
-            };
-            ////end of Audit section -------------------------------
+                ////Audit Section ---------------------------
+                var audit = new TBL_AUDIT
+                {
+                    AUDITTYPEID = (short)AuditTypeEnum.LoanBookingAdded,
+                    STAFFID = entity.createdBy,
+                    BRANCHID = (short)entity.userBranchId,
+                    DETAIL = $"Applied for loan with reference number: {loanReferenceNumber}",
+                    IPADDRESS = CommonHelpers.GetLocalIpAddress(),
+                    URL = entity.applicationUrl,
+                    DEVICENAME = CommonHelpers.GetDeviceName(),
+                    OSNAME = CommonHelpers.FriendlyName(),
+                    APPLICATIONDATE = generalSetup.GetApplicationDate(),
+                    SYSTEMDATETIME = DateTime.Now
+                };
+                ////end of Audit section -------------------------------
 
-            using (var trans = context.Database.BeginTransaction())
-            {
-                //confirmCustomerAccountFunded(entity.loanChargeFee, entity.casaAccountId, entity.companyId, entity.customerId, loanReferenceNumber);
-                entity.feeOverride = true;
+                using (var trans = context.Database.BeginTransaction())
+                {
+                    //confirmCustomerAccountFunded(entity.loanChargeFee, entity.casaAccountId, entity.companyId, entity.customerId, loanReferenceNumber);
+                    entity.feeOverride = true;
 
-                var loan = context.TBL_LOAN.Add(data);
+                    var loan = context.TBL_LOAN.Add(data);
 
-                request.APPROVALSTATUSID = (short)ApprovalStatusEnum.Approved;
-                request.ISUSED = true;
-                application.APPLICATIONSTATUSID = (short)LoanApplicationStatusEnum.LoanBookingInProgress;
-                
+                    request.APPROVALSTATUSID = (short)ApprovalStatusEnum.Approved;
+                    request.ISUSED = true;
+                    application.APPLICATIONSTATUSID = (short)LoanApplicationStatusEnum.LoanBookingInProgress;
+
                     var dataCount = context.SaveChanges();
 
                     if (dataCount > 0)
@@ -1695,26 +1697,47 @@ namespace FintrakBanking.Repositories.Credit
                             //if (!entity.feeOverride) PostLoanFees(entity);
                             context.SaveChanges();
 
-                        if (applicationDetail.STAMPDUTYAPPLICABLE)
-                        {
-                            var apiResult = new PostingResult();
-                            var stampDuty = context.TBL_FACILITY_STAMP_DUTY.Where(f => f.LOANAPPLICATIONDETAILID == applicationDetail.LOANAPPLICATIONDETAILID && f.DELETED == false).FirstOrDefault();
-                            var appCol = context.TBL_LOAN_APPLICATION_COLLATERL.Where(c => c.LOANAPPLICATIONDETAILID == stampDuty.LOANAPPLICATIONDETAILID && c.DELETED == false).FirstOrDefault();
-                            var col = context.TBL_COLLATERAL_CUSTOMER.Where(co => co.COLLATERALCUSTOMERID == stampDuty.COLLATERALCUSTOMERID).FirstOrDefault();
-                            var stampCon = context.TBL_STAMP_DUTY_CONDITION.Where(s => s.COLLATERALSUBTYPEID == col.COLLATERALSUBTYPEID).FirstOrDefault();
-                            var stampFeeId = context.TBL_CHARGE_FEE.Where(s => s.CHARGEFEENAME.ToLower().Contains("(fixed)") && s.DELETED == false).FirstOrDefault().CHARGEFEEID;
-                            var stampFee = context.TBL_LOAN_APPLICATION_DETL_FEE.Where(f => f.LOANAPPLICATIONDETAILID == applicationDetail.LOANAPPLICATIONDETAILID && f.CHARGEFEEID == stampFeeId).FirstOrDefault()?.RECOMMENDED_FEERATEVALUE;
-                            var stampDutyAmount = applicationDetail.APPROVEDAMOUNT * (stampCon.DUTIABLEVALUE / 100);
-                            decimal bankShare = 0;
-                            decimal customerShare = stampDutyAmount * (stampDuty.CUSTOMERPERCENTAGE / 100) + (decimal)stampFee;
-                            if(stampDuty.COLLECTED == false)
+                            if (applicationDetail.STAMPDUTYAPPLICABLE)
                             {
-                                if (stampDuty.ISSHARED)
+                                var apiResult = new PostingResult();
+                                var stampDuty = context.TBL_FACILITY_STAMP_DUTY.Where(f => f.LOANAPPLICATIONDETAILID == applicationDetail.LOANAPPLICATIONDETAILID && f.DELETED == false).FirstOrDefault();
+                                var appCol = context.TBL_LOAN_APPLICATION_COLLATERL.Where(c => c.LOANAPPLICATIONDETAILID == stampDuty.LOANAPPLICATIONDETAILID && c.DELETED == false).FirstOrDefault();
+                                var col = context.TBL_COLLATERAL_CUSTOMER.Where(co => co.COLLATERALCUSTOMERID == stampDuty.COLLATERALCUSTOMERID).FirstOrDefault();
+                                var stampCon = context.TBL_STAMP_DUTY_CONDITION.Where(s => s.COLLATERALSUBTYPEID == col.COLLATERALSUBTYPEID).FirstOrDefault();
+                                var stampFeeId = context.TBL_CHARGE_FEE.Where(s => s.CHARGEFEENAME.ToLower().Contains("(fixed)") && s.DELETED == false).FirstOrDefault().CHARGEFEEID;
+                                var stampFee = context.TBL_LOAN_APPLICATION_DETL_FEE.Where(f => f.LOANAPPLICATIONDETAILID == applicationDetail.LOANAPPLICATIONDETAILID && f.CHARGEFEEID == stampFeeId).FirstOrDefault()?.RECOMMENDED_FEERATEVALUE;
+                                var stampDutyAmount = applicationDetail.APPROVEDAMOUNT * (stampCon.DUTIABLEVALUE / 100);
+                                decimal bankShare = 0;
+                                decimal customerShare = stampDutyAmount * (stampDuty.CUSTOMERPERCENTAGE / 100) + (decimal)stampFee;
+                                if (stampDuty.COLLECTED == false)
                                 {
-                                    bankShare = stampDutyAmount * (stampDuty.BANKPERCENTAGE / 100);
-                                    //customerShare = stampDutyAmount * (stampDuty.CUSTOMERPERCENTAGE / 100);
+                                    if (stampDuty.ISSHARED)
+                                    {
+                                        bankShare = stampDutyAmount * (stampDuty.BANKPERCENTAGE / 100);
+                                        //customerShare = stampDutyAmount * (stampDuty.CUSTOMERPERCENTAGE / 100);
 
-                                    StampDutyPostingViewModel stampDutySharedModel = new StampDutyPostingViewModel()
+                                        StampDutyPostingViewModel stampDutySharedModel = new StampDutyPostingViewModel()
+                                        {
+                                            reference = application.APPLICATIONREFERENCENUMBER,
+                                            appId = "FINTRAK",
+                                            userId = "STAMPDUTY",
+                                            currency = "NGN",
+                                            branchCode = entity.branchCode,
+                                            tranCode = "LSD",
+                                            custAccNumber = context.TBL_CHART_OF_ACCOUNT.Where(c => c.ACCOUNTNAME == "STAMP DUTY ON LOANS COLLECTION GL").FirstOrDefault().ACCOUNTCODE,
+                                            custAccName = "STAMP DUTY ON LOANS COLLECTION GL",
+                                            bankTillName = "STAMP DUTY PAYABLE",
+                                            bankTillAccount = context.TBL_CHART_OF_ACCOUNT.Where(c => c.ACCOUNTNAME == "STAMP DUTY ON LOANS PAYABLE GL").FirstOrDefault().ACCOUNTCODE,//To be provided,
+                                            amount = bankShare,
+                                        };
+
+                                        if (USE_THIRD_PARTY_INTEGRATION)
+                                        {
+                                            apiResult = integration.PostStampDutyInputs(stampDutySharedModel);
+                                        }
+                                    }
+
+                                    StampDutyPostingViewModel stampDutyModel = new StampDutyPostingViewModel()
                                     {
                                         reference = application.APPLICATIONREFERENCENUMBER,
                                         appId = "FINTRAK",
@@ -1722,44 +1745,23 @@ namespace FintrakBanking.Repositories.Credit
                                         currency = "NGN",
                                         branchCode = entity.branchCode,
                                         tranCode = "LSD",
-                                        custAccNumber = context.TBL_CHART_OF_ACCOUNT.Where(c => c.ACCOUNTNAME == "STAMP DUTY ON LOANS COLLECTION GL").FirstOrDefault().ACCOUNTCODE,
-                                        custAccName = "STAMP DUTY ON LOANS COLLECTION GL",
+                                        custAccNumber = context.TBL_CASA.Where(c => c.CASAACCOUNTID == entity.casaAccountId).FirstOrDefault().PRODUCTACCOUNTNUMBER,// entity.casaAccountNumber,
+                                        custAccName = context.TBL_CASA.Where(c => c.CASAACCOUNTID == entity.casaAccountId).FirstOrDefault().PRODUCTACCOUNTNAME,//   entity.casaAccountDetails,
                                         bankTillName = "STAMP DUTY PAYABLE",
                                         bankTillAccount = context.TBL_CHART_OF_ACCOUNT.Where(c => c.ACCOUNTNAME == "STAMP DUTY ON LOANS PAYABLE GL").FirstOrDefault().ACCOUNTCODE,//To be provided,
-                                        amount = bankShare,
+                                        amount = customerShare,
                                     };
-
+                                    //var apiResult = new PostingResult();
                                     if (USE_THIRD_PARTY_INTEGRATION)
                                     {
-                                        apiResult = integration.PostStampDutyInputs(stampDutySharedModel);
+                                        apiResult = integration.PostStampDutyInputs(stampDutyModel);
+                                        stampDuty.COLLECTED = true;
                                     }
-                                }
 
-                                StampDutyPostingViewModel stampDutyModel = new StampDutyPostingViewModel()
-                                {
-                                    reference = application.APPLICATIONREFERENCENUMBER,
-                                    appId = "FINTRAK",
-                                    userId = "STAMPDUTY",
-                                    currency = "NGN",
-                                    branchCode = entity.branchCode,
-                                    tranCode = "LSD",
-                                    custAccNumber = context.TBL_CASA.Where(c => c.CASAACCOUNTID == entity.casaAccountId).FirstOrDefault().PRODUCTACCOUNTNUMBER,// entity.casaAccountNumber,
-                                    custAccName = context.TBL_CASA.Where(c => c.CASAACCOUNTID == entity.casaAccountId).FirstOrDefault().PRODUCTACCOUNTNAME,//   entity.casaAccountDetails,
-                                    bankTillName = "STAMP DUTY PAYABLE",
-                                    bankTillAccount = context.TBL_CHART_OF_ACCOUNT.Where(c => c.ACCOUNTNAME == "STAMP DUTY ON LOANS PAYABLE GL").FirstOrDefault().ACCOUNTCODE,//To be provided,
-                                    amount = customerShare,
-                                };
-                                //var apiResult = new PostingResult();
-                                if (USE_THIRD_PARTY_INTEGRATION)
-                                {
-                                    apiResult = integration.PostStampDutyInputs(stampDutyModel);
-                                    stampDuty.COLLECTED = true;
-                                }
 
+                                }
 
                             }
-
-                        }
 
                             trans.Commit();
                         }
@@ -1770,7 +1772,13 @@ namespace FintrakBanking.Repositories.Credit
                     {
                         return "";
                     }
-                
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
         }
 
