@@ -174,6 +174,8 @@ namespace FintrakBanking.Entities.Models
         public decimal? PROPERTYPRICE { get; set; }
         public decimal? DOWNPAYMENT { get; set; }
         public int? PURPOSEID { get; set; }
+        public decimal? HOUSINGEXPENSE { get; set; }
+        public decimal? TOTALMONTHLYDEBT { get; set; }
 
         //[StringLength(3999)]
         //public string REPAYMENTDATE { get; set; }

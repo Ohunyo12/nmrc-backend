@@ -46,6 +46,8 @@ namespace FintrakBanking.ViewModels.External.Loan
         public string propertyTitle { get; set; }
         public decimal? propertyPrice { get; set; }
         public decimal? downPayment { get; set; }
+        public decimal? HousingExpense { get; set; }
+        public decimal? TotalMonthlyDebt { get; set; }
 
     }
 }

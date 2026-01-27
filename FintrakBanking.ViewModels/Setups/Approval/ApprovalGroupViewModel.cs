@@ -11,4 +11,13 @@ namespace FintrakBanking.ViewModels.Setups.Approval
         public int roleId { get; set; }
         public bool branchFilter { get; set; }
     }
+
+
+    public class ApprovalGroupViewModel1
+    {
+        public int groupId { get; set; }
+        public string groupName { get; set; }
+        public int roleId { get; set; }
+        public bool branchFilter { get; set; }
+    }
 }

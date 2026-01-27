@@ -21,6 +21,8 @@ namespace FintrakBanking.ViewModels.Setups.Approval
         public string comment { get; set; }
         public string systemOperationType { get; set; }
         public string operation { get; set; }
-        public bool allowMultipleInitiator { get; set; }
+        public string allowMultipleInitiator { get; set; }
+        public string productName { get; set; }
+        public string GroupName  { get; set; }
     }
 }

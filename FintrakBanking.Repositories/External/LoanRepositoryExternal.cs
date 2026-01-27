@@ -1710,6 +1710,8 @@ namespace FintrakBanking.Repositories.External
                 PROPERTYTITLE = entity.propertyTitle,
                 PROPERTYPRICE = entity.propertyPrice,
                 DOWNPAYMENT = entity.downPayment,
+                HOUSINGEXPENSE = entity.HousingExpense,
+                TOTALMONTHLYDEBT = entity.TotalMonthlyDebt,
                 //REQUESTEDAMOUNT = entity.requestedAmount,
                 //REPAYMENTDATE = entity.repaymentDate,
                 //CREDITSCORE = entity.creditScore,
