@@ -683,7 +683,7 @@ namespace FintrakBanking.APICore.ExternalControllers
 
         [HttpGet]
         //[ClaimsAuthorization]
-        [Route("approval-group-mapping-flow/{productId}/{productClassId}/{operationId}")]
+        [Route("approval-group-mapping-flow/")]
         public HttpResponseMessage GetApprovalGroup(short productId, short productClassId, int operationId)
         {
             try
