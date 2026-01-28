@@ -38,7 +38,6 @@ namespace FintrakBanking.APICore.ExternalControllers
         private ILoanPrincipalRepository loanPrincipalRepository;
         private IGeneralSetupRepository generalSetupRepository;
         private ILoanScheduleRepository scheduleRepo;
-        private IApprovalGroupRepository repoGroup;
 
 
         public ExternalLoanController(IProductRepository _repoProduct, ILoanRepositoryExternal _repoLoan, 
@@ -683,26 +682,6 @@ namespace FintrakBanking.APICore.ExternalControllers
             return Request.CreateResponse(HttpStatusCode.OK, new { success = true, result = data });
         }
 
-        [HttpGet]
-        [Route("approval-group-mapping-flow/{productId}/{productClassId}/{operationId}")]
-        public HttpResponseMessage GetApprovalGroup(short productId, short productClassId, int operationId)
-        {
-            try
-            {
-                var token = new TokenDecryptionHelper();
-                var data = repoGroup.GetApprovalGroupPerProd(productId, operationId, productClassId);
-                return Request.CreateResponse(HttpStatusCode.OK,
-                  new { success = true, result = data, count = 1 });
-            }
-            catch (SecureException ex)
-            {
-
-                return Request.CreateResponse(HttpStatusCode.OK,
-                  new { success = false, message = $"There was an error updating this record {ex.Message}" });
-            }
-
-
-        }
-
+        
     }
 }

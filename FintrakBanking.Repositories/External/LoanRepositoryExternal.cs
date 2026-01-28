@@ -39,6 +39,7 @@ using Microsoft.Extensions.Options;
 using FintrakBanking.Repositories.Enums;
 using System.Windows.Media.Animation;
 using FintrakBanking.Entities.Enums;
+using FintrakBanking.ViewModels.Setups.Approval;
 
 namespace FintrakBanking.Repositories.External
 {
@@ -2552,6 +2553,33 @@ namespace FintrakBanking.Repositories.External
 
                 throw;
             }
+        }
+
+        public List<ApprovalGroupMappingViewModel> GetApprovalGroupPerProd(short ProductId, int OperationId, short ProductClassId)
+        {
+            var operationGroups = (from a in context.TBL_APPROVAL_GROUP_MAPPING
+                                   join b in context.TBL_APPROVAL_GROUP on a.GROUPID equals b.GROUPID
+                                   join c in context.TBL_OPERATIONS on a.OPERATIONID equals c.OPERATIONID
+                                   join d in context.TBL_PRODUCT on a.PRODUCTID equals d.PRODUCTID
+                                   where a.DELETED == false
+                                       && a.OPERATIONID == OperationId
+                                   && a.PRODUCTCLASSID == ProductClassId
+                                       && a.PRODUCTID == ProductId
+
+                                   select new ApprovalGroupMappingViewModel
+                                   {
+                                       operation = c.OPERATIONNAME,
+                                       operationName = c.OPERATIONNAME,
+                                       position = a.POSITION,
+                                       productName = d.PRODUCTNAME,
+                                       groupName = b.GROUPNAME,
+
+                                   })
+                                              .OrderBy(x => x.position).ToList();
+
+            return operationGroups;
+
+
         }
 
 
