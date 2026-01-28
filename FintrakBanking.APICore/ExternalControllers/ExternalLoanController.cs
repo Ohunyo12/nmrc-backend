@@ -1,8 +1,10 @@
 ﻿using FintrakBanking.APICore.core;
 using FintrakBanking.APICore.Filters;
+using FintrakBanking.APICore.JWTAuth;
 using FintrakBanking.Common.CustomException;
 using FintrakBanking.Interfaces.Credit;
 using FintrakBanking.Interfaces.External;
+using FintrakBanking.Interfaces.Setups.Approval;
 using FintrakBanking.Interfaces.Setups.General;
 using FintrakBanking.ViewModels.Credit;
 using FintrakBanking.ViewModels.External.Customer;
@@ -36,10 +38,12 @@ namespace FintrakBanking.APICore.ExternalControllers
         private ILoanPrincipalRepository loanPrincipalRepository;
         private IGeneralSetupRepository generalSetupRepository;
         private ILoanScheduleRepository scheduleRepo;
+        private IApprovalGroupRepository repoGroup;
+
 
         public ExternalLoanController(IProductRepository _repoProduct, ILoanRepositoryExternal _repoLoan, 
             ILoanApplicationRepository _loanApplicationRepository, ILoanPrincipalRepository _loanPrincipalRepository,
-            IGeneralSetupRepository _generalSetupRepository, ILoanScheduleRepository _scheduleRepo
+            IGeneralSetupRepository _generalSetupRepository, ILoanScheduleRepository _scheduleRepo, IApprovalGroupRepository _repoGroup
 )
         {
             this.repoProduct = _repoProduct;
@@ -48,6 +52,7 @@ namespace FintrakBanking.APICore.ExternalControllers
             this.loanPrincipalRepository = _loanPrincipalRepository;
             this.generalSetupRepository = _generalSetupRepository;     
             this.scheduleRepo = _scheduleRepo;
+            this.repoGroup = _repoGroup;
         }
 
         [HttpGet]
@@ -676,6 +681,27 @@ namespace FintrakBanking.APICore.ExternalControllers
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, new { success = true, result = data });
+        }
+
+        [HttpGet]
+        [Route("approval-group-mapping-flow/{productId}/{productClassId}/{operationId}")]
+        public HttpResponseMessage GetApprovalGroup(short productId, short productClassId, int operationId)
+        {
+            try
+            {
+                var token = new TokenDecryptionHelper();
+                var data = repoGroup.GetApprovalGroupPerProd(productId, operationId, productClassId);
+                return Request.CreateResponse(HttpStatusCode.OK,
+                  new { success = true, result = data, count = 1 });
+            }
+            catch (SecureException ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.OK,
+                  new { success = false, message = $"There was an error updating this record {ex.Message}" });
+            }
+
+
         }
 
     }
