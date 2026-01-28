@@ -3868,7 +3868,7 @@ namespace FintrakBanking.Repositories.Credit
                 dateTimeCreated = x.a.DATETIMECREATED,
                 apiRequestId = x.a.APIREQUESTID,
                 creditGradeId = x.a.CREDITGRADEID,
-
+                productId = (short)x.a.PRODUCTID
                 //approvalLevelStaff = context.TBL_APPROVAL_LEVEL_STAFF.Where(s=>s.STAFFID == staffId && s.APPROVALLEVELID == x.b.TOAPPROVALLEVELID && s.DELETED == false).FirstOrDefault(),
                 //approvalLevelStaff = x.b.TBL_APPROVAL_LEVEL.TBL_APPROVAL_LEVEL_STAFF.FirstOrDefault(f => f.STAFFID == staffId)
             }).ToList();
