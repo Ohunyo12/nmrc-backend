@@ -51,7 +51,6 @@ namespace FintrakBanking.APICore.ExternalControllers
             this.loanPrincipalRepository = _loanPrincipalRepository;
             this.generalSetupRepository = _generalSetupRepository;     
             this.scheduleRepo = _scheduleRepo;
-            this.repoGroup = _repoGroup;
         }
 
         [HttpGet]

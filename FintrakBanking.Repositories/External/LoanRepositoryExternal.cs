@@ -2555,34 +2555,6 @@ namespace FintrakBanking.Repositories.External
             }
         }
 
-        public List<ApprovalGroupMappingViewModel> GetApprovalGroupPerProd(short ProductId, int OperationId, short ProductClassId)
-        {
-            var operationGroups = (from a in context.TBL_APPROVAL_GROUP_MAPPING
-                                   join b in context.TBL_APPROVAL_GROUP on a.GROUPID equals b.GROUPID
-                                   join c in context.TBL_OPERATIONS on a.OPERATIONID equals c.OPERATIONID
-                                   join d in context.TBL_PRODUCT on a.PRODUCTID equals d.PRODUCTID
-                                   where a.DELETED == false
-                                       && a.OPERATIONID == OperationId
-                                   && a.PRODUCTCLASSID == ProductClassId
-                                       && a.PRODUCTID == ProductId
-
-                                   select new ApprovalGroupMappingViewModel
-                                   {
-                                       operation = c.OPERATIONNAME,
-                                       operationName = c.OPERATIONNAME,
-                                       position = a.POSITION,
-                                       productName = d.PRODUCTNAME,
-                                       groupName = b.GROUPNAME,
-
-                                   })
-                                              .OrderBy(x => x.position).ToList();
-
-            return operationGroups;
-
-
-        }
-
-
 
         public async Task<List<TblRefinancingLoan>> GetLoanForRefinance1(string RefinanceNumbr)
         {
@@ -2623,7 +2595,7 @@ namespace FintrakBanking.Repositories.External
         {
             var dbcontext = new FinTrakBankingContext();
 
-            var resolvedNhf =  (
+            var resolvedNhf = (
                 from app in dbcontext.TBL_LOAN_APPLICATION
                 join casa in dbcontext.TBL_CASA
                     on app.CUSTOMERID equals casa.CUSTOMERID
@@ -2683,7 +2655,7 @@ namespace FintrakBanking.Repositories.External
             var conn = new SqlConnection(connString);
             await conn.OpenAsync();
 
-            var result = ( conn.Query<CustomerUusChecklistDto>(
+            var result = (conn.Query<CustomerUusChecklistDto>(
                 LoanQueries.GetCustomerUUS,
                 new { NhfNumber = resolvedNhf }
             )).ToList();
@@ -3796,6 +3768,36 @@ namespace FintrakBanking.Repositories.External
             }
         }
 
+
+        public List<ApprovalGroupMappingViewModel> GetApprovalGroupPerProd(short ProductId, int OperationId, short ProductClassId)
+        {
+            using (FinTrakBankingContext context = new FinTrakBankingContext())
+            {
+
+                var operationGroups = (from a in context.TBL_APPROVAL_GROUP_MAPPING
+                                       join b in context.TBL_APPROVAL_GROUP on a.GROUPID equals b.GROUPID
+                                       join c in context.TBL_OPERATIONS on a.OPERATIONID equals c.OPERATIONID
+                                       join d in context.TBL_PRODUCT on a.PRODUCTID equals d.PRODUCTID
+                                       where a.DELETED == false
+                                           && a.OPERATIONID == OperationId
+                                       && a.PRODUCTCLASSID == ProductClassId
+                                           && a.PRODUCTID == ProductId
+
+                                       select new ApprovalGroupMappingViewModel
+                                       {
+                                           operation = c.OPERATIONNAME,
+                                           operationName = c.OPERATIONNAME,
+                                           position = a.POSITION,
+                                           productName = d.PRODUCTNAME,
+                                           groupName = b.GROUPNAME,
+
+                                       })
+                                              .OrderBy(x => x.position).ToList();
+
+                return operationGroups;
+            }
+
+        }
 
 
 

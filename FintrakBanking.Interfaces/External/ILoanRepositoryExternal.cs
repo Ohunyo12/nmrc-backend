@@ -3,6 +3,7 @@ using FintrakBanking.ViewModels.Credit;
 using FintrakBanking.ViewModels.External.Customer;
 using FintrakBanking.ViewModels.External.Document;
 using FintrakBanking.ViewModels.External.Loan;
+using FintrakBanking.ViewModels.Setups.Approval;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,5 +65,6 @@ namespace FintrakBanking.Interfaces.External
         TblNmrcRefinancing NmrcSendReviewForFinalApproval(string RefinanceNumber);
         List<TblNmrcRefinancingLoan> NmrcDisapproveReviewed(List<int> Model);
         TblNmrcRefinancing NmrcSendAprovedForTranch(string RefinanceNumber);
+        List<ApprovalGroupMappingViewModel> GetApprovalGroupPerProd(short ProductId, int OperationId, short ProductClassId);
     }
 }
