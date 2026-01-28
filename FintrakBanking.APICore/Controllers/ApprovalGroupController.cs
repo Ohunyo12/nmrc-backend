@@ -12,9 +12,13 @@ using System.Net;
 using FintrakBanking.APICore.core;
 using System.Web;
 using FintrakBanking.Common.CustomException;
+using FintrakBanking.APICore.Filters;
+using System.Web.Http.Cors;
 
 namespace FintrakBanking.APICore.Controllers
-{     
+{
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [MiddlewareAuthorizeAttribute]
     [RoutePrefix("api/v1/setups")]
     public class ApprovalGroupController : ApiControllerBase
     {
