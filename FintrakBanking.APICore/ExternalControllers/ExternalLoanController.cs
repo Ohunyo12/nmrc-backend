@@ -681,6 +681,7 @@ namespace FintrakBanking.APICore.ExternalControllers
             return Request.CreateResponse(HttpStatusCode.OK, new { success = true, result = data });
         }
 
+        [AllowAnonymous]
         [HttpGet]
         //[ClaimsAuthorization]
         [Route("approval-group-mapping-flow")]
