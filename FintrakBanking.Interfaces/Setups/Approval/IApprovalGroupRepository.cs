@@ -13,6 +13,5 @@ namespace FintrakBanking.Interfaces.Setups.Approval
         bool AddApprovalGroup(ApprovalGroupViewModel model);
         bool UpdateApprovalGroup(int GroupId, ApprovalGroupViewModel model);
         bool DeleteApprovalGroup(int GroupId, UserInfo user);
-        List<ApprovalGroupMappingViewModel> GetApprovalGroupPerProd(short ProductId, int OperationId, short ProductClassId);
     }
 }

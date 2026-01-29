@@ -59,34 +59,6 @@ namespace FintrakBanking.Repositories.Setups.Approval
             return GetApprovalGroup(companyId).Where(c => c.companyId == companyId);
         }
 
-        public List<ApprovalGroupMappingViewModel> GetApprovalGroupPerProd(short ProductId, int OperationId, short ProductClassId)
-        {
-            var operationGroups = (from a in context.TBL_APPROVAL_GROUP_MAPPING
-                                   join b in context.TBL_APPROVAL_GROUP on a.GROUPID equals b.GROUPID
-                                   join c in context.TBL_OPERATIONS on a.OPERATIONID equals c.OPERATIONID
-                                   join d in context.TBL_PRODUCT on a.PRODUCTID equals d.PRODUCTID
-                                   where a.DELETED == false
-                                       && a.OPERATIONID == OperationId
-                                   && a.PRODUCTCLASSID == ProductClassId
-                                       && a.PRODUCTID == ProductId
-
-                                   select new ApprovalGroupMappingViewModel
-                                   {
-                                       operation = c.OPERATIONNAME,
-                                       operationName = c.OPERATIONNAME,
-                                       position = a.POSITION,
-                                       productName = d.PRODUCTNAME,
-                                       groupName = b.GROUPNAME,
-
-                                   })
-                                              .OrderBy(x => x.position).ToList();
-
-            return operationGroups;
-
-
-        }
-
-
         public bool AddApprovalGroup(ApprovalGroupViewModel model)
         {
             var data = new TBL_APPROVAL_GROUP

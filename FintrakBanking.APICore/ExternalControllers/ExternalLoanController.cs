@@ -683,12 +683,14 @@ namespace FintrakBanking.APICore.ExternalControllers
 
         [HttpGet]
         //[ClaimsAuthorization]
-        [Route("approval-group-mapping-flow/")]
-        public HttpResponseMessage GetApprovalGroup(short productId, short productClassId, int operationId)
+        [Route("approval-group-mapping-flow")]
+        public HttpResponseMessage GetApprovalGroup([FromUri] short productId,
+    [FromUri] int operationId,
+    [FromUri] short productClassId)
         {
             try
             {
-                var token = new TokenDecryptionHelper();
+                //var token = new TokenDecryptionHelper();
                 var data = repoLoan.GetApprovalGroupPerProd(productId, operationId, productClassId);
                 return Request.CreateResponse(HttpStatusCode.OK,
                   new { success = true, result = data, count = 1 });
