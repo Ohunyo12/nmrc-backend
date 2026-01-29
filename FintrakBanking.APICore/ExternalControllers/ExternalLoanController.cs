@@ -681,31 +681,7 @@ namespace FintrakBanking.APICore.ExternalControllers
             return Request.CreateResponse(HttpStatusCode.OK, new { success = true, result = data });
         }
 
-        [AllowAnonymous]
-        [HttpGet]
-        //[ClaimsAuthorization]
-        [Route("approval-group-mapping-flow")]
-        public HttpResponseMessage GetApprovalGroup([FromUri] short productId,
-    [FromUri] int operationId,
-    [FromUri] short productClassId)
-        {
-            try
-            {
-                //var token = new TokenDecryptionHelper();
-                var data = repoLoan.GetApprovalGroupPerProd(productId, operationId, productClassId);
-                return Request.CreateResponse(HttpStatusCode.OK,
-                  new { success = true, result = data, count = 1 });
-            }
-            catch (SecureException ex)
-            {
-
-                return Request.CreateResponse(HttpStatusCode.OK,
-                  new { success = false, message = $"There was an error updating this record {ex.Message}" });
-            }
-
-
-        }
-
+       
 
     }
 }
