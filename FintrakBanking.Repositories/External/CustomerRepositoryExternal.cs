@@ -1715,6 +1715,31 @@ namespace FintrakBanking.Repositories.External
                             ////add to table
                             //dbContext.TBL_CUSTOMER_NEXTOFKIN.Add(nextOfKin);
 
+                            if (entity.AdditionalIncome.Any())
+                            {
+                                foreach (var item in entity.AdditionalIncome)
+                                {
+                                    var AddIncome = new TBL_CUSTOMER_ADDITIONAL_INCOME();
+                                    AddIncome.CUSTOMERID = customer.CUSTOMERID;
+                                    AddIncome.EMPLOYER = item.Employer;
+                                    AddIncome.AMOUNT = item.Amount;
+                                    AddIncome.SOURCE = item.Source;
+                                    dbContext.TBL_CUSTOMER_ADDITIONAL_INCOME.Add(AddIncome);
+                                }
+                            }
+                            if (entity.AdditionalLiability.Any())
+                            {
+                                foreach (var item in entity.AdditionalLiability)
+                                {
+                                    var AddLiability = new TBL_CUSTOMER_ADDITIONAL_LIABILITY();
+                                    AddLiability.CUSTOMERID = customer.CUSTOMERID;
+                                    AddLiability.LIABILITY_TYPE = item.LoanType;
+                                    AddLiability.OUTSTANDING = item.Outstanding;
+                                    AddLiability.MONTHLY_REPAYMENT = item.MonthlyRepayment;
+                                    dbContext.TBL_CUSTOMER_ADDITIONAL_LIABILITY.Add(AddLiability);
+                                }
+                            }
+
 
                             // initiate auit table
                             var audit = new TBL_AUDIT

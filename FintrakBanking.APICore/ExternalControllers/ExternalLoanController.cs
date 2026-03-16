@@ -226,7 +226,6 @@ namespace FintrakBanking.APICore.ExternalControllers
         }
 
 
-
         [HttpPost]
         [Route("loan-application")]
         public async Task<HttpResponseMessage> LoanApplication(LoanApplicationForCreation loan)

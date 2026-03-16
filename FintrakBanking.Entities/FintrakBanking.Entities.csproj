@@ -105,6 +105,8 @@
     <Compile Include="Enums\CHECK_TYPES.cs" />
     <Compile Include="Enums\EMPLOYMENTTYPE.cs" />
     <Compile Include="Models\TblCustomerUUSReview.cs" />
+    <Compile Include="Models\TBL_CUSTOMER_ADDITIONAL_INCOME.cs" />
+    <Compile Include="Models\TBL_CUSTOMER_ADDITIONAL_LIABILITY.cs" />
     <Compile Include="Models\TBL_ORIGINATION_FEE.cs" />
     <Compile Include="Models\StNmrcEligibility.cs" />
     <Compile Include="Models\TblCustomerUUS.cs" />

@@ -41,6 +41,8 @@ namespace FintrakBanking.ViewModels.External.Customer
         public int? customerTypeId { get; set; } 
         public string employerNumber { get; set; }
         public int? profileSourceId { get; set; }
+        public List<CustomerAddtionalIncome> AdditionalIncome { get; set; }
+        public List<CustomerAddtionalLiability> AdditionalLiability { get; set; }
         //public NextOfKin nextOfKin { get; set; }
         //public bool isInsiderRelated { get; set; } = false;
         //public InsiderRelated insiderRelated { get; set; }
@@ -56,5 +58,18 @@ namespace FintrakBanking.ViewModels.External.Customer
         public string otherBankAccountNumber { get; set; }
         public string otherBankSortCode { get; set; }
         public string pmbNhfAccount { get; set; }
+    }
+
+    public class CustomerAddtionalIncome
+    {
+        public string Source { get; set; }
+        public string Employer { get; set; }
+        public decimal Amount { get; set; }
+    }
+    public class CustomerAddtionalLiability
+    {
+        public string LoanType { get; set; }
+        public decimal Outstanding { get; set; }
+        public decimal MonthlyRepayment { get; set; }
     }
 }

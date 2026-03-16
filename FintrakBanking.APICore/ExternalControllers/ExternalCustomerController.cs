@@ -320,7 +320,6 @@ namespace FintrakBanking.APICore.ExternalControllers
         //        return Request.CreateResponse(HttpStatusCode.OK, new { success = false, message = ex.Message });
         //    }
         //}
-
         [HttpPost]
         [Route("individual-existing")]
         public HttpResponseMessage CreateIndividualExistingCustomer(ExistingIndividualCustomerForCreation customerForCreation)

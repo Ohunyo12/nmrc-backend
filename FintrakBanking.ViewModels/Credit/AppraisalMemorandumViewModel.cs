@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FintrakBanking.ViewModels.External.Customer;
 
 namespace FintrakBanking.ViewModels.Credit
 {
@@ -183,6 +184,16 @@ namespace FintrakBanking.ViewModels.Credit
         public List<ApprovedLoanDetailViewModel> facilities { get; set; }
         public List<SyndicatedLoanDetailViewModel> syndicated { get; set; }
         public LoanApplicationViewModel application { get; set; }
+        public List<CustomerAddtionalIncome> AdditionalIncome { get; set; }
+        public List<CustomerAddtionalLiability> AdditionalLiability { get; set; }
+        public PropertyDetails propertyDetails { get; set; }
+    }
+
+    public class PropertyDetails
+    {
+        public decimal? propertyPrice { get; set; }
+        public string propertyTitle { get; set; }
+        public decimal? downPayment { get; set; }
     }
 
     public class DedupeApplicationViewModel
